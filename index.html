@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVIS Project — Dr. Lua Valenzuela</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- LANGUAGE SWITCHER + NAV -->
+<nav class="navbar">
+    <div class="nav-brand">
+        <span class="nav-label">Marie Skłodowska-Curie Actions</span>
+        <span class="nav-title">Project OVIS</span>
+    </div>
+    <ul class="nav-links">
+        <li><a href="#news" data-i18n="nav.news">News</a></li>
+        <li><a href="#project" data-i18n="nav.project">Project</a></li>
+        <li><a href="#bibliography" data-i18n="nav.bibliography">Bibliography</a></li>
+        <li><a href="#discussion" data-i18n="nav.discussion">Discussion</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ca">CA</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+    <ul>
+        <li><a href="#news" data-i18n="nav.news">News</a></li>
+        <li><a href="#project" data-i18n="nav.project">Project</a></li>
+        <li><a href="#bibliography" data-i18n="nav.bibliography">Bibliography</a></li>
+        <li><a href="#discussion" data-i18n="nav.discussion">Discussion</a></li>
+        <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="lang-switcher mobile-lang">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ca">CA</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+    </div>
+</div>
+
+<!-- HERO -->
+<header class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <p class="hero-eyebrow">Marie Skłodowska-Curie Actions Fellowship</p>
+        <h1 class="hero-title">Origins of Variability<br><em>in Island Systems</em></h1>
+        <p class="hero-subtitle" data-i18n="hero.subtitle">Unravelling livestock diet and mobility across the Bronze–Iron Age transition in the Western Mediterranean</p>
+        <div class="hero-meta">
+            <span>Dr. Lua Valenzuela</span>
+            <span class="dot">·</span>
+            <span>Archaeozoology</span>
+            <span class="dot">·</span>
+            <span>Stable Isotopes</span>
+        </div>
+    </div>
+    <div class="hero-scroll">
+        <span data-i18n="hero.scroll">Scroll</span>
+        <div class="scroll-line"></div>
+    </div>
+</header>
+
+<!-- INTRO STRIP -->
+<section class="intro-strip">
+    <div class="intro-grid">
+        <div class="intro-stat">
+            <span class="stat-number">3</span>
+            <span class="stat-label" data-i18n="intro.islands">Island groups studied</span>
+        </div>
+        <div class="intro-divider"></div>
+        <div class="intro-stat">
+            <span class="stat-number">2</span>
+            <span class="stat-label" data-i18n="intro.periods">Archaeological periods</span>
+        </div>
+        <div class="intro-divider"></div>
+        <div class="intro-stat">
+            <span class="stat-number">500+</span>
+            <span class="stat-label" data-i18n="intro.samples">Faunal samples</span>
+        </div>
+        <div class="intro-divider"></div>
+        <div class="intro-stat">
+            <span class="stat-number">4</span>
+            <span class="stat-label" data-i18n="intro.partners">Research institutions</span>
+        </div>
+    </div>
+</section>
+
+<!-- NEWS -->
+<section class="section" id="news">
+    <div class="section-inner">
+        <div class="section-header">
+            <p class="section-eyebrow" data-i18n="nav.news">News</p>
+            <h2 class="section-title" data-i18n="news.title">Latest Updates</h2>
+        </div>
+        <div class="news-grid">
+            <article class="news-card news-card--featured">
+                <div class="news-card-img" style="background-image: url('https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=900&q=80')"></div>
+                <div class="news-card-body">
+                    <span class="news-tag" data-i18n="tag.publication">Publication</span>
+                    <time>March 2025</time>
+                    <h3 data-i18n="news.1.title">New isotopic study published in <em>Journal of Archaeological Science</em></h3>
+                    <p data-i18n="news.1.desc">A new article on livestock mobility during the Bronze–Iron Age transition in insular contexts has been published, presenting preliminary OVIS data.</p>
+                    <a href="#" class="card-link" data-i18n="news.readmore">Read more →</a>
+                </div>
+            </article>
+            <article class="news-card">
+                <div class="news-card-img" style="background-image: url('https://images.unsplash.com/photo-1544985361-b420d7a77043?w=600&q=80')"></div>
+                <div class="news-card-body">
+                    <span class="news-tag" data-i18n="tag.fieldwork">Fieldwork</span>
+                    <time>Summer 2025</time>
+                    <h3 data-i18n="news.2.title">Fieldwork campaign in Sardinia</h3>
+                    <p data-i18n="news.2.desc">New excavation and sampling campaign for the OVIS project, with international collaboration from three partner institutions.</p>
+                    <a href="#" class="card-link" data-i18n="news.readmore">Read more →</a>
+                </div>
+            </article>
+            <article class="news-card">
+                <div class="news-card-img" style="background-image: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80')"></div>
+                <div class="news-card-body">
+                    <span class="news-tag" data-i18n="tag.laboratory">Laboratory</span>
+                    <time>February 2025</time>
+                    <h3 data-i18n="news.3.title">Isotopic analysis of new dental samples underway</h3>
+                    <p data-i18n="news.3.desc">The laboratory has begun analysis of new dental samples from Menorca and Sardinia, focusing on strontium and oxygen isotopes.</p>
+                    <a href="#" class="card-link" data-i18n="news.readmore">Read more →</a>
+                </div>
+            </article>
+            <article class="news-card">
+                <div class="news-card-img" style="background-image: url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&q=80')"></div>
+                <div class="news-card-body">
+                    <span class="news-tag" data-i18n="tag.conference">Conference</span>
+                    <time>January 2025</time>
+                    <h3 data-i18n="news.4.title">Presentation at the International Isotope Meeting</h3>
+                    <p data-i18n="news.4.desc">Preliminary OVIS results were presented at an international stable isotopes congress, generating significant interest from the community.</p>
+                    <a href="#" class="card-link" data-i18n="news.readmore">Read more →</a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECT -->
+<section class="section section--alt" id="project">
+    <div class="section-inner">
+        <div class="section-header">
+            <p class="section-eyebrow" data-i18n="nav.project">Project</p>
+            <h2 class="section-title" data-i18n="project.title">About OVIS</h2>
+        </div>
+        <div class="project-layout">
+            <div class="project-text">
+                <h3 class="project-question" data-i18n="project.q1">What is OVIS?</h3>
+                <p data-i18n="project.p1">OVIS (Origins of Variability in Island Systems) is a Marie Skłodowska-Curie Actions fellowship investigating the diet, mobility, and management of ovicaprids — sheep and goats — across the Western Mediterranean islands during the Bronze and Iron Ages.</p>
+                <h3 class="project-question" data-i18n="project.q2">Why does it matter?</h3>
+                <p data-i18n="project.p2">Island communities in the ancient Mediterranean developed distinct strategies for managing livestock, shaped by geography, trade routes, and cultural exchange. By applying stable isotope analysis to faunal remains, OVIS reconstructs these strategies with unprecedented resolution.</p>
+                <h3 class="project-question" data-i18n="project.q3">Methodology</h3>
+                <p data-i18n="project.p3">The project combines zooarchaeological analysis with multi-isotope approaches (carbon, nitrogen, oxygen, strontium) on dental and bone remains. Sites in Menorca, Sardinia, and Sicily are compared to build a regional picture of pastoral practices.</p>
+            </div>
+            <div class="project-sidebar">
+                <div class="project-info-card">
+                    <p class="info-label" data-i18n="project.funded">Funded by</p>
+                    <p class="info-value">European Union — Horizon Europe</p>
+                    <p class="info-label" data-i18n="project.grant">Grant agreement</p>
+                    <p class="info-value">No. 101XXX</p>
+                    <p class="info-label" data-i18n="project.duration">Duration</p>
+                    <p class="info-value">2024 – 2026</p>
+                    <p class="info-label" data-i18n="project.host">Host institution</p>
+                    <p class="info-value">Universitat Autònoma de Barcelona</p>
+                    <p class="info-label" data-i18n="project.pi">Principal Investigator</p>
+                    <p class="info-value">Dr. Lua Valenzuela</p>
+                </div>
+                <div class="eu-badge">
+                    <span>Co-funded by the European Union</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BIBLIOGRAPHY -->
+<section class="section" id="bibliography">
+    <div class="section-inner">
+        <div class="section-header">
+            <p class="section-eyebrow" data-i18n="nav.bibliography">Bibliography</p>
+            <h2 class="section-title" data-i18n="bib.title">Key References</h2>
+        </div>
+        <div class="bib-filters">
+            <button class="bib-filter active" data-filter="all" data-i18n="bib.all">All</button>
+            <button class="bib-filter" data-filter="ovis" data-i18n="bib.ovis">OVIS Publications</button>
+            <button class="bib-filter" data-filter="isotopes" data-i18n="bib.isotopes">Stable Isotopes</button>
+            <button class="bib-filter" data-filter="zoo" data-i18n="bib.zoo">Zooarchaeology</button>
+        </div>
+        <div class="bib-list">
+            <div class="bib-entry" data-category="ovis">
+                <div class="bib-year">2025</div>
+                <div class="bib-content">
+                    <p class="bib-authors">Valenzuela, L., García-Martínez, A., & Rossi, M.</p>
+                    <p class="bib-title">"Livestock mobility in Bronze Age Menorca: a multi-isotope approach"</p>
+                    <p class="bib-journal"><em>Journal of Archaeological Science</em>, 58(2), 112–128</p>
+                    <a href="#" class="bib-link">DOI →</a>
+                </div>
+            </div>
+            <div class="bib-entry" data-category="isotopes">
+                <div class="bib-year">2023</div>
+                <div class="bib-content">
+                    <p class="bib-authors">Pellegrini, M., Donahue, R. E., & Lee-Thorp, J.</p>
+                    <p class="bib-title">"Strontium isotope analysis of prehistoric fauna: methodological considerations"</p>
+                    <p class="bib-journal"><em>Archaeometry</em>, 65(1), 44–60</p>
+                    <a href="#" class="bib-link">DOI →</a>
+                </div>
+            </div>
+            <div class="bib-entry" data-category="zoo">
+                <div class="bib-year">2022</div>
+                <div class="bib-content">
+                    <p class="bib-authors">Colominas, L., & Valenzuela-Lamas, S.</p>
+                    <p class="bib-title">"Ovicaprid husbandry in the Western Mediterranean: a review of zooarchaeological evidence"</p>
+                    <p class="bib-journal"><em>Quaternary International</em>, 612, 88–104</p>
+                    <a href="#" class="bib-link">DOI →</a>
+                </div>
+            </div>
+            <div class="bib-entry" data-category="isotopes">
+                <div class="bib-year">2021</div>
+                <div class="bib-content">
+                    <p class="bib-authors">Makarewicz, C. A., & Tuross, N.</p>
+                    <p class="bib-title">"Foddering by Mongolian pastoralists is recorded in the stable carbon (δ13C) and nitrogen (δ15N) isotopes of caprine dentinal collagen"</p>
+                    <p class="bib-journal"><em>Journal of Archaeological Science</em>, 38(4), 880–888</p>
+                    <a href="#" class="bib-link">DOI →</a>
+                </div>
+            </div>
+            <div class="bib-entry" data-category="zoo">
+                <div class="bib-year">2020</div>
+                <div class="bib-content">
+                    <p class="bib-authors">Hadjikoumis, A.</p>
+                    <p class="bib-title">"Traditional pig herding practices in Cyprus: a contribution to the study of animal husbandry in antiquity"</p>
+                    <p class="bib-journal"><em>World Archaeology</em>, 44(3), 351–369</p>
+                    <a href="#" class="bib-link">DOI →</a>
+                </div>
+            </div>
+            <div class="bib-entry" data-category="ovis">
+                <div class="bib-year">2024</div>
+                <div class="bib-content">
+                    <p class="bib-authors">Valenzuela, L.</p>
+                    <p class="bib-title">"OVIS project: preliminary results from Sardinian Bronze Age contexts"</p>
+                    <p class="bib-journal"><em>Proceedings of the International Isotope Meeting 2024</em></p>
+                    <a href="#" class="bib-link">PDF →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DISCUSSION -->
+<section class="section section--alt" id="discussion">
+    <div class="section-inner">
+        <div class="section-header">
+            <p class="section-eyebrow" data-i18n="nav.discussion">Discussion</p>
+            <h2 class="section-title" data-i18n="disc.title">Project Forum</h2>
+            <p class="section-desc" data-i18n="disc.desc">A space for researchers and collaborators to share questions and reflections on the OVIS project.</p>
+        </div>
+        <div class="threads">
+
+            <div class="thread">
+                <div class="thread-header">
+                    <h3 class="thread-title" data-i18n="disc.thread1">Livestock diet &amp; mobility results</h3>
+                    <span class="thread-count">2 <span data-i18n="disc.replies">replies</span></span>
+                </div>
+                <div class="thread-messages">
+                    <div class="message">
+                        <div class="message-avatar">AV</div>
+                        <div class="message-body">
+                            <div class="message-meta"><strong>Anna V.</strong> <time>15 Mar 2025</time></div>
+                            <p data-i18n="disc.msg1">Have you seen the results from the latest isotopic analyses? The difference in δ13C values between Menorca and Sardinia is remarkable — it suggests very different pasture management strategies.</p>
+                        </div>
+                    </div>
+                    <div class="message">
+                        <div class="message-avatar">MR</div>
+                        <div class="message-body">
+                            <div class="message-meta"><strong>Marc R.</strong> <time>16 Mar 2025</time></div>
+                            <p data-i18n="disc.msg2">Yes, especially the difference between islands! I wonder if it correlates with the presence of Nuragic trade networks. Are you planning to compare with Sicilian samples?</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="thread">
+                <div class="thread-header">
+                    <h3 class="thread-title" data-i18n="disc.thread2">Next fieldwork campaign</h3>
+                    <span class="thread-count">1 <span data-i18n="disc.replies">reply</span></span>
+                </div>
+                <div class="thread-messages">
+                    <div class="message">
+                        <div class="message-avatar">LG</div>
+                        <div class="message-body">
+                            <div class="message-meta"><strong>Laura G.</strong> <time>10 Mar 2025</time></div>
+                            <p data-i18n="disc.msg3">Does anyone know when the next fieldwork campaign in Sardinia will be? I'm interested in joining the sampling team if there's availability.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="disc-contact">
+            <p data-i18n="disc.contact">Want to join the discussion? Send your question or comment directly to the research team.</p>
+            <a href="mailto:lua.valenzuela@research.eu" class="btn-primary" data-i18n="disc.send">Send a message</a>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <p class="footer-project">Project OVIS</p>
+            <p class="footer-name">Dr. Lua Valenzuela</p>
+            <p class="footer-inst">Universitat Autònoma de Barcelona</p>
+        </div>
+        <div class="footer-links">
+            <a href="mailto:lua.valenzuela@research.eu">lua.valenzuela@research.eu</a>
+            <a href="#">@lua_research</a>
+            <a href="#" data-i18n="footer.orcid">ORCID Profile</a>
+        </div>
+        <div class="footer-eu">
+            <p data-i18n="footer.funded">Funded by the European Union under the Marie Skłodowska-Curie Actions programme (Horizon Europe).</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 · Project OVIS · Marie Skłodowska-Curie Actions</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
