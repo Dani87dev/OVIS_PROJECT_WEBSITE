@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact — OVIS Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .contact-success {
+            display: none;
+            background: var(--olive-pale);
+            border: 1px solid var(--olive-light);
+            border-radius: 4px;
+            padding: 20px 24px;
+            color: var(--olive);
+            font-size: 0.9rem;
+            margin-top: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="nav-brand">
+        <span class="nav-label">Marie Skłodowska-Curie Actions</span>
+        <a href="index.html" class="nav-title">Project OVIS</a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="ovis.html">OVIS</a></li>
+        <li><a href="arqueo.html">Archaeology News</a></li>
+        <li><a href="institutions.html">Institutions</a></li>
+        <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ca">CA</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <ul>
+        <li><a href="ovis.html">OVIS</a></li>
+        <li><a href="arqueo.html">Archaeology News</a></li>
+        <li><a href="institutions.html">Institutions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <p class="page-hero-eyebrow">Get in touch</p>
+        <h1>Contact</h1>
+        <p>Questions about the OVIS project, collaboration proposals, or media enquiries — reach out directly to the research team.</p>
+    </div>
+</div>
+
+<!-- CONTACT CONTENT -->
+<section class="subpage-section">
+    <div class="contact-layout">
+
+        <!-- Info side -->
+        <div class="contact-info">
+            <h3>Research Team</h3>
+            <p>The OVIS project welcomes enquiries from researchers, students, journalists, and institutions interested in the project's work. Response times may vary during fieldwork periods.</p>
+
+            <div class="contact-detail">
+                <div class="contact-item">
+                    <div class="contact-icon">✉</div>
+                    <div class="contact-item-text">
+                        <strong>Cardiff email</strong>
+                        <span><a href="mailto:Valenzuela-SuauL@cardiff.ac.uk" style="color:var(--olive)">Valenzuela-SuauL@cardiff.ac.uk</a></span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">✉</div>
+                    <div class="contact-item-text">
+                        <strong>Barcelona email</strong>
+                        <span><a href="mailto:lua.valenzuela@ub.edu" style="color:var(--olive)">lua.valenzuela@ub.edu</a></span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🏛</div>
+                    <div class="contact-item-text">
+                        <strong>Host Institution</strong>
+                        <span>Cardiff University, School of History,<br>Archaeology and Religion<br>Cardiff, Wales, UK</span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🏛</div>
+                    <div class="contact-item-text">
+                        <strong>Partner Institution</strong>
+                        <span>Institut d'Arqueologia, Universitat de Barcelona<br>c/ Montalegre 6-8, 08001 Barcelona</span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">⟁</div>
+                    <div class="contact-item-text">
+                        <strong>ORCID</strong>
+                        <span><a href="https://orcid.org/0000-0003-0803-9201" target="_blank" style="color:var(--olive)">0000-0003-0803-9201</a></span>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">R</div>
+                    <div class="contact-item-text">
+                        <strong>ResearchGate</strong>
+                        <span><a href="https://www.researchgate.net/profile/Lua-Valenzuela-Suau" target="_blank" style="color:var(--olive)">Lua-Valenzuela-Suau</a></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form side -->
+        <div>
+            <h3 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;margin-bottom:24px;">Send a message</h3>
+            <div class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Your full name">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <select id="subject">
+                        <option value="">Select a topic</option>
+                        <option value="collaboration">Research collaboration</option>
+                        <option value="data">Data / sample sharing</option>
+                        <option value="media">Media enquiry</option>
+                        <option value="discussion">Discussion forum</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" placeholder="Your message…"></textarea>
+                </div>
+                <button class="btn-primary" onclick="handleSubmit()" style="width:fit-content;cursor:pointer;border:none;">Send message</button>
+                <div class="contact-success" id="successMsg">
+                    ✓ Thank you for your message. The research team will be in touch shortly.
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <p class="footer-project">Project OVIS</p>
+            <p class="footer-name">Dr. Lua Valenzuela-Suau</p>
+            <p class="footer-inst">Cardiff University · Universitat de Barcelona</p>
+        </div>
+        <div class="footer-links">
+            <a href="mailto:Valenzuela-SuauL@cardiff.ac.uk">Valenzuela-SuauL@cardiff.ac.uk</a>
+            <a href="index.html">Home</a>
+            <a href="ovis.html">OVIS</a>
+            <a href="arqueo.html">Archaeology News</a>
+            <a href="institutions.html">Institutions</a>
+        </div>
+        <div class="footer-eu">
+            <p>Funded by the European Union under the Marie Skłodowska-Curie Actions programme (Horizon Europe).</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 · Project OVIS · Marie Skłodowska-Curie Actions</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+function handleSubmit() {
+    const name = document.getElementById('name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const message = document.getElementById('message').value.trim();
+    if (!name || !email || !message) {
+        alert('Please fill in at least your name, email, and message.');
+        return;
+    }
+    document.getElementById('successMsg').style.display = 'block';
+    document.getElementById('contactForm').querySelector('button').style.display = 'none';
+}
+</script>
+</body>
+</html>

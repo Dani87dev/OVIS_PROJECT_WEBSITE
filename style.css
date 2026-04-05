@@ -930,3 +930,285 @@ img { display: block; max-width: 100%; }
     .footer-eu { grid-column: auto; }
     .footer-bottom { padding: 16px 24px; }
 }
+
+/* =========================================================
+   MULTIPAGE ADDITIONS
+========================================================= */
+
+/* ── Dual news grid on index ── */
+.dual-news-block { margin-bottom: 60px; }
+.dual-news-block .block-eyebrow {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--olive-light);
+    margin-bottom: 6px;
+}
+.dual-news-block .block-title {
+    font-family: var(--font-serif);
+    font-size: 1.6rem;
+    font-weight: 300;
+    color: var(--ink);
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--olive-pale);
+}
+.dual-news-block .block-title a {
+    font-size: 0.78rem;
+    font-family: var(--font-sans);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--olive-light);
+    float: right;
+    padding-top: 6px;
+    transition: color 0.2s;
+}
+.dual-news-block .block-title a:hover { color: var(--olive); }
+
+.mini-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+.mini-card {
+    background: var(--white);
+    border: 1px solid var(--olive-pale);
+    border-radius: 4px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.mini-card:hover {
+    box-shadow: 0 8px 32px rgba(74,82,64,0.1);
+    transform: translateY(-2px);
+}
+.mini-card-img {
+    height: 160px;
+    background-size: cover;
+    background-position: center;
+    flex-shrink: 0;
+}
+.mini-card-body { padding: 20px 22px 24px; flex: 1; display: flex; flex-direction: column; }
+.mini-card-body .news-tag { margin-bottom: 8px; display: inline-block; }
+.mini-card-body time { font-size: 0.72rem; color: var(--ink-muted); display: block; margin-bottom: 8px; }
+.mini-card-body h3 { font-family: var(--font-serif); font-size: 1.05rem; font-weight: 400; line-height: 1.4; margin-bottom: 10px; }
+.mini-card-body p { font-size: 0.83rem; color: var(--ink-soft); line-height: 1.6; flex: 1; }
+.mini-card-body .card-link { margin-top: 14px; align-self: flex-start; }
+
+/* ── Inner page hero (subpages) ── */
+.page-hero {
+    background: var(--olive);
+    padding: 80px 48px 64px;
+    position: relative;
+    overflow: hidden;
+}
+.page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('img/portada.jpg') center/cover no-repeat;
+    opacity: 0.12;
+}
+.page-hero-inner { position: relative; max-width: var(--inner-max); margin: 0 auto; }
+.page-hero-eyebrow {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 16px;
+}
+.page-hero h1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 300;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 16px;
+}
+.page-hero p {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.72);
+    max-width: 580px;
+    font-weight: 300;
+    line-height: 1.7;
+}
+
+/* ── Subpage content ── */
+.subpage-section { padding: var(--section-pad) 48px; max-width: var(--inner-max); margin: 0 auto; }
+
+/* ── OVIS page timeline ── */
+.timeline { position: relative; padding-left: 32px; margin-top: 40px; }
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: var(--olive-pale);
+}
+.timeline-item { position: relative; margin-bottom: 40px; }
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -36px; top: 6px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--olive);
+    border: 2px solid var(--cream);
+    box-shadow: 0 0 0 1px var(--olive);
+}
+.timeline-date {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--olive-light);
+    margin-bottom: 6px;
+}
+.timeline-item h3 { font-family: var(--font-serif); font-size: 1.2rem; font-weight: 400; margin-bottom: 8px; }
+.timeline-item p { font-size: 0.88rem; color: var(--ink-soft); line-height: 1.7; }
+
+/* ── Researcher card ── */
+.researcher-card {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 40px;
+    background: var(--white);
+    border: 1px solid var(--olive-pale);
+    border-radius: 4px;
+    padding: 40px;
+    margin-top: 40px;
+}
+.researcher-avatar {
+    width: 200px; height: 200px;
+    border-radius: 3px;
+    background: var(--olive-pale);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-serif);
+    font-size: 3rem;
+    color: var(--olive);
+    flex-shrink: 0;
+    overflow: hidden;
+}
+.researcher-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.researcher-info h3 { font-family: var(--font-serif); font-size: 1.8rem; font-weight: 400; margin-bottom: 4px; }
+.researcher-info .role { font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--olive-light); margin-bottom: 16px; }
+.researcher-info p { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 20px; }
+.researcher-links { display: flex; gap: 12px; flex-wrap: wrap; }
+.researcher-links a {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--olive);
+    border: 1px solid var(--olive-pale);
+    padding: 6px 14px;
+    border-radius: 3px;
+    transition: all 0.2s;
+}
+.researcher-links a:hover { background: var(--olive); color: var(--white); border-color: var(--olive); }
+.researcher-ids { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 16px; }
+.researcher-ids span { font-size: 0.78rem; color: var(--ink-muted); }
+.researcher-ids strong { color: var(--ink-soft); }
+
+/* ── Arqueo News page ── */
+.arqueo-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 48px; margin-top: 40px; }
+.arqueo-main-article {
+    background: var(--white);
+    border: 1px solid var(--olive-pale);
+    border-radius: 4px;
+    overflow: hidden;
+}
+.arqueo-main-img { height: 300px; background-size: cover; background-position: center; }
+.arqueo-main-body { padding: 32px; }
+.arqueo-main-body .news-tag { margin-bottom: 12px; display: inline-block; }
+.arqueo-main-body time { font-size: 0.75rem; color: var(--ink-muted); display: block; margin-bottom: 10px; }
+.arqueo-main-body h2 { font-family: var(--font-serif); font-size: 1.7rem; font-weight: 400; margin-bottom: 14px; line-height: 1.3; }
+.arqueo-main-body p { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 14px; }
+
+.arqueo-sidebar { display: flex; flex-direction: column; gap: 20px; }
+.arqueo-side-card {
+    background: var(--white);
+    border: 1px solid var(--olive-pale);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: box-shadow 0.25s;
+}
+.arqueo-side-card:hover { box-shadow: 0 4px 20px rgba(74,82,64,0.1); }
+.arqueo-side-img { height: 120px; background-size: cover; background-position: center; }
+.arqueo-side-body { padding: 16px 18px 20px; }
+.arqueo-side-body .news-tag { margin-bottom: 6px; display: inline-block; font-size: 0.65rem; }
+.arqueo-side-body time { font-size: 0.68rem; color: var(--ink-muted); display: block; margin-bottom: 6px; }
+.arqueo-side-body h3 { font-family: var(--font-serif); font-size: 0.98rem; font-weight: 400; line-height: 1.4; }
+
+/* ── Institutions page ── */
+.institutions-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 28px; margin-top: 40px; }
+.institution-card {
+    background: var(--white);
+    border: 1px solid var(--olive-pale);
+    border-radius: 4px;
+    padding: 32px;
+    transition: box-shadow 0.25s, transform 0.25s;
+}
+.institution-card:hover { box-shadow: 0 8px 32px rgba(74,82,64,0.1); transform: translateY(-2px); }
+.institution-logo {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.institution-logo-text {
+    font-family: var(--font-serif);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--olive);
+    letter-spacing: 0.02em;
+}
+.institution-tag {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+    display: block;
+}
+.institution-card h3 { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 400; margin-bottom: 10px; }
+.institution-card p { font-size: 0.83rem; color: var(--ink-soft); line-height: 1.7; }
+
+/* ── Contact page ── */
+.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 40px; }
+.contact-info h3 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400; margin-bottom: 16px; }
+.contact-info p { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 28px; }
+.contact-detail { display: flex; flex-direction: column; gap: 16px; }
+.contact-item { display: flex; gap: 16px; align-items: flex-start; }
+.contact-icon { width: 36px; height: 36px; background: var(--cream-dark); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; flex-shrink: 0; }
+.contact-item-text strong { display: block; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--olive-light); margin-bottom: 3px; }
+.contact-item-text span { font-size: 0.88rem; color: var(--ink-soft); }
+.contact-form { display: flex; flex-direction: column; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--ink-soft); }
+.form-group input, .form-group textarea, .form-group select {
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    background: var(--white);
+    border: 1px solid var(--olive-pale);
+    border-radius: 3px;
+    padding: 12px 16px;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+}
+.form-group input:focus, .form-group textarea:focus { border-color: var(--olive); }
+.form-group textarea { min-height: 140px; resize: vertical; }
+
+/* ── Responsive additions ── */
+@media (max-width: 768px) {
+    .mini-cards { grid-template-columns: 1fr; }
+    .arqueo-grid { grid-template-columns: 1fr; }
+    .contact-layout { grid-template-columns: 1fr; gap: 40px; }
+    .researcher-card { grid-template-columns: 1fr; }
+    .researcher-avatar { width: 120px; height: 120px; }
+    .page-hero { padding: 60px 24px 48px; }
+    .subpage-section { padding: 60px 24px; }
+}

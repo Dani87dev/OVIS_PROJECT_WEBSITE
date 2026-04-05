@@ -5,11 +5,21 @@
 // ─── TRANSLATIONS ─────────────────────────────────────────
 const i18n = {
   en: {
-    "nav.news": "News",
-    "nav.project": "Project",
-    "nav.bibliography": "Bibliography",
+    "nav.ovis": "OVIS",
+    "nav.arqueo": "Archaeology News",
+    "nav.institutions": "Institutions",
     "nav.discussion": "Discussion",
     "nav.contact": "Contact",
+    "about.more": "Read more about the project →",
+    "news.ovis.eyebrow": "Project Updates",
+    "news.ovis.title": "Latest from OVIS",
+    "news.arqueo.eyebrow": "Field & Science",
+    "news.arqueo.title": "Archaeology News",
+    "news.all": "See all →",
+    "arqueo.news.1.title": "EAA 2025 — Annual Meeting in Lisbon",
+    "arqueo.news.1.desc": "The European Association of Archaeologists holds its 31st annual meeting, with sessions on zooarchaeology and insular Mediterranean prehistory.",
+    "arqueo.news.2.title": "New review on Bronze Age pastoralism in the Western Mediterranean",
+    "arqueo.news.2.desc": "A landmark synthesis article published in Journal of World Prehistory revises current models of livestock management in island contexts.",
     "hero.subtitle": "Unravelling livestock diet and mobility across the Bronze–Iron Age transition in the Western Mediterranean",
     "hero.scroll": "Scroll",
     "intro.islands": "Island groups studied",
@@ -62,11 +72,21 @@ const i18n = {
   },
 
   ca: {
-    "nav.news": "Notícies",
-    "nav.project": "Projecte",
-    "nav.bibliography": "Bibliografia",
+    "nav.ovis": "OVIS",
+    "nav.arqueo": "Notícies Arqueologia",
+    "nav.institutions": "Institucions",
     "nav.discussion": "Discussió",
     "nav.contact": "Contacte",
+    "about.more": "Llegir més sobre el projecte →",
+    "news.ovis.eyebrow": "Actualitat del Projecte",
+    "news.ovis.title": "Darreres notícies OVIS",
+    "news.arqueo.eyebrow": "Camp i Ciència",
+    "news.arqueo.title": "Notícies d'Arqueologia",
+    "news.all": "Veure totes →",
+    "arqueo.news.1.title": "EAA 2025 — Reunió Anual a Lisboa",
+    "arqueo.news.1.desc": "L'Associació Europea d'Arqueòlegs celebra la seva 31a reunió anual, amb sessions sobre zooarqueologia i prehistòria insular mediterrània.",
+    "arqueo.news.2.title": "Nova revisió sobre el pastoralisme del Bronze al Mediterrani Occidental",
+    "arqueo.news.2.desc": "Un article de síntesi publicat al Journal of World Prehistory revisa els models actuals de gestió ramadera en contextos insulars.",
     "hero.subtitle": "Desxifrant la dieta i la mobilitat del bestiar durant la transició Bronze–Ferro en el Mediterrani occidental",
     "hero.scroll": "Desplaça",
     "intro.islands": "Grups d'illes estudiats",
@@ -119,11 +139,21 @@ const i18n = {
   },
 
   es: {
-    "nav.news": "Noticias",
-    "nav.project": "Proyecto",
-    "nav.bibliography": "Bibliografía",
+    "nav.ovis": "OVIS",
+    "nav.arqueo": "Noticias Arqueología",
+    "nav.institutions": "Instituciones",
     "nav.discussion": "Discusión",
     "nav.contact": "Contacto",
+    "about.more": "Leer más sobre el proyecto →",
+    "news.ovis.eyebrow": "Actualidad del Proyecto",
+    "news.ovis.title": "Últimas noticias OVIS",
+    "news.arqueo.eyebrow": "Campo y Ciencia",
+    "news.arqueo.title": "Noticias de Arqueología",
+    "news.all": "Ver todas →",
+    "arqueo.news.1.title": "EAA 2025 — Reunión Anual en Lisboa",
+    "arqueo.news.1.desc": "La Asociación Europea de Arqueólogos celebra su 31ª reunión anual, con sesiones sobre zooarqueología y prehistoria insular mediterránea.",
+    "arqueo.news.2.title": "Nueva revisión sobre el pastoralismo del Bronce en el Mediterráneo Occidental",
+    "arqueo.news.2.desc": "Un artículo de síntesis publicado en Journal of World Prehistory revisa los modelos actuales de gestión ganadera en contextos insulares.",
     "hero.subtitle": "Desentrañando la dieta y la movilidad del ganado durante la transición Bronze–Hierro en el Mediterráneo occidental",
     "hero.scroll": "Desplazar",
     "intro.islands": "Grupos de islas estudiados",
@@ -176,11 +206,21 @@ const i18n = {
   },
 
   it: {
-    "nav.news": "Notizie",
-    "nav.project": "Progetto",
-    "nav.bibliography": "Bibliografia",
+    "nav.ovis": "OVIS",
+    "nav.arqueo": "Notizie Archeologia",
+    "nav.institutions": "Istituzioni",
     "nav.discussion": "Discussione",
     "nav.contact": "Contatto",
+    "about.more": "Scopri di più sul progetto →",
+    "news.ovis.eyebrow": "Aggiornamenti del Progetto",
+    "news.ovis.title": "Ultime notizie OVIS",
+    "news.arqueo.eyebrow": "Scienza e Territorio",
+    "news.arqueo.title": "Notizie di Archeologia",
+    "news.all": "Vedi tutte →",
+    "arqueo.news.1.title": "EAA 2025 — Riunione Annuale a Lisbona",
+    "arqueo.news.1.desc": "L'Associazione Europea degli Archeologi tiene il suo 31° incontro annuale, con sessioni su archeozoologia e preistoria insulare mediterranea.",
+    "arqueo.news.2.title": "Nuova rassegna sul pastoralismo dell'Età del Bronzo nel Mediterraneo Occidentale",
+    "arqueo.news.2.desc": "Un articolo di sintesi pubblicato nel Journal of World Prehistory rivede i modelli attuali di gestione del bestiame in contesti insulari.",
     "hero.subtitle": "Svelare la dieta e la mobilità del bestiame durante la transizione Bronzo–Ferro nel Mediterraneo occidentale",
     "hero.scroll": "Scorri",
     "intro.islands": "Gruppi di isole studiate",
@@ -310,3 +350,23 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     }
   });
 });
+
+// ─── ACTIVE NAV LINK (multipage) ──────────────────────────
+(function () {
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(a => {
+    const href = a.getAttribute('href');
+    if (href && href !== '#' && page.includes(href.split('#')[0])) {
+      a.classList.add('active');
+    }
+  });
+})();
+
+// ─── NAV ACTIVE STYLE ─────────────────────────────────────
+const navStyle = document.createElement('style');
+navStyle.textContent = `
+  .nav-links a.active { color: var(--olive); }
+  .nav-links a.active::after { width: 100%; }
+  .nav-title { text-decoration: none; }
+`;
+document.head.appendChild(navStyle);

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archaeology News — OVIS Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="nav-brand">
+        <span class="nav-label">Marie Skłodowska-Curie Actions</span>
+        <a href="index.html" class="nav-title">Project OVIS</a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="ovis.html">OVIS</a></li>
+        <li><a href="arqueo.html" class="active">Archaeology News</a></li>
+        <li><a href="institutions.html">Institutions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ca">CA</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <ul>
+        <li><a href="ovis.html">OVIS</a></li>
+        <li><a href="arqueo.html">Archaeology News</a></li>
+        <li><a href="institutions.html">Institutions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <p class="page-hero-eyebrow">Field &amp; Science</p>
+        <h1>Archaeology<br><em style="font-style:italic;color:var(--accent-light)">News &amp; Context</em></h1>
+        <p>Current developments in archaeozoology, zooarchaeology, and Western Mediterranean prehistory — the scientific landscape underpinning the OVIS project.</p>
+    </div>
+</div>
+
+<!-- MAIN CONTENT -->
+<section class="subpage-section">
+
+    <!-- FEATURED -->
+    <div class="section-header">
+        <p class="section-eyebrow">Featured</p>
+        <h2 class="section-title">Latest in the Field</h2>
+    </div>
+
+    <div class="arqueo-grid">
+        <!-- Main article -->
+        <div>
+            <article class="arqueo-main-article">
+                <div class="arqueo-main-img" style="background-image: url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=900&q=80')"></div>
+                <div class="arqueo-main-body">
+                    <span class="news-tag">Conference</span>
+                    <time>April 2025</time>
+                    <h2>EAA Annual Meeting 2025 — Lisbon</h2>
+                    <p>The 31st Annual Meeting of the European Association of Archaeologists takes place in Lisbon, Portugal, with a strong programme of sessions on zooarchaeology, stable isotope methods, and Bronze Age insular communities.</p>
+                    <p>Sessions of particular relevance to OVIS include "Pastoral strategies in island societies" (Session 142), "Multi-isotope approaches to animal mobility" (Session 87), and "Western Mediterranean Bronze Age connections" (Session 203). Abstract submissions are now closed; the programme is available on the EAA website.</p>
+                    <a href="https://www.e-a-a.org" target="_blank" class="card-link">EAA website →</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="arqueo-sidebar">
+            <article class="arqueo-side-card">
+                <div class="arqueo-side-img" style="background-image: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80')"></div>
+                <div class="arqueo-side-body">
+                    <span class="news-tag">Publication</span>
+                    <time>February 2025</time>
+                    <h3>New review on Bronze Age pastoralism in the Western Mediterranean</h3>
+                </div>
+            </article>
+            <article class="arqueo-side-card">
+                <div class="arqueo-side-img" style="background-image: url('https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=600&q=80')"></div>
+                <div class="arqueo-side-body">
+                    <span class="news-tag">Laboratory</span>
+                    <time>January 2025</time>
+                    <h3>Advances in sequential enamel isotope sampling for mobility reconstruction</h3>
+                </div>
+            </article>
+            <article class="arqueo-side-card">
+                <div class="arqueo-side-img" style="background-image: url('https://images.unsplash.com/photo-1544985361-b420d7a77043?w=600&q=80')"></div>
+                <div class="arqueo-side-body">
+                    <span class="news-tag">Fieldwork</span>
+                    <time>December 2024</time>
+                    <h3>New Nuragic site excavations in central Sardinia reveal complex pastoral economy</h3>
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <!-- MORE NEWS GRID -->
+    <div class="section-header" style="margin-top:72px">
+        <p class="section-eyebrow">More</p>
+        <h2 class="section-title">Recent Updates</h2>
+    </div>
+
+    <div class="bib-filters" style="margin-top:24px">
+        <button class="bib-filter active" data-filter="all">All</button>
+        <button class="bib-filter" data-filter="conference">Conferences</button>
+        <button class="bib-filter" data-filter="publication">Publications</button>
+        <button class="bib-filter" data-filter="fieldwork">Fieldwork</button>
+    </div>
+
+    <div class="news-grid" style="margin-top:32px">
+        <article class="news-card" data-category="publication">
+            <div class="news-card-img" style="background-image: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=700&q=80')"></div>
+            <div class="news-card-body">
+                <span class="news-tag">Publication</span>
+                <time>February 2025</time>
+                <h3>Bronze Age pastoralism in the Western Mediterranean: a synthesis</h3>
+                <p>A landmark review in <em>Journal of World Prehistory</em> revises current models of livestock management in island contexts and provides essential comparative data for OVIS-type research.</p>
+                <a href="#" class="card-link">Read →</a>
+            </div>
+        </article>
+        <article class="news-card" data-category="publication">
+            <div class="news-card-img" style="background-image: url('https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=700&q=80')"></div>
+            <div class="news-card-body">
+                <span class="news-tag">Publication</span>
+                <time>January 2025</time>
+                <h3>Sequential enamel isotope sampling: new methodological guidelines</h3>
+                <p>A methodological paper in <em>Archaeometry</em> establishes best practices for sequential strontium isotope sampling of caprine tooth enamel, directly relevant to OVIS methodology.</p>
+                <a href="#" class="card-link">Read →</a>
+            </div>
+        </article>
+        <article class="news-card" data-category="fieldwork">
+            <div class="news-card-img" style="background-image: url('https://images.unsplash.com/photo-1544985361-b420d7a77043?w=700&q=80')"></div>
+            <div class="news-card-body">
+                <span class="news-tag">Fieldwork</span>
+                <time>December 2024</time>
+                <h3>New Nuragic excavations in Sardinia</h3>
+                <p>Excavations at a central Sardinian Nuragic village reveal an unexpectedly complex pastoral economy, with evidence of long-distance caprine movement during the Late Bronze Age.</p>
+                <a href="#" class="card-link">Read →</a>
+            </div>
+        </article>
+        <article class="news-card" data-category="conference">
+            <div class="news-card-img" style="background-image: url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=700&q=80')"></div>
+            <div class="news-card-body">
+                <span class="news-tag">Conference</span>
+                <time>October 2024</time>
+                <h3>ICAZ 2024 — International Council for Archaeozoology</h3>
+                <p>The biennial ICAZ conference brought together archaeozoologists worldwide, with sessions on Mediterranean pastoralism, stable isotopes in faunal analysis, and island archaeozoology.</p>
+                <a href="#" class="card-link">Read →</a>
+            </div>
+        </article>
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <p class="footer-project">Project OVIS</p>
+            <p class="footer-name">Dr. Lua Valenzuela-Suau</p>
+            <p class="footer-inst">Cardiff University · Universitat de Barcelona</p>
+        </div>
+        <div class="footer-links">
+            <a href="mailto:Valenzuela-SuauL@cardiff.ac.uk">Valenzuela-SuauL@cardiff.ac.uk</a>
+            <a href="index.html">Home</a>
+            <a href="ovis.html">OVIS</a>
+            <a href="institutions.html">Institutions</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-eu">
+            <p>Funded by the European Union under the Marie Skłodowska-Curie Actions programme (Horizon Europe).</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 · Project OVIS · Marie Skłodowska-Curie Actions</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+// Filter tabs for arqueo page
+document.querySelectorAll('.bib-filter').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.bib-filter').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.news-card[data-category]').forEach(card => {
+            card.style.display = (filter === 'all' || card.dataset.category === filter) ? '' : 'none';
+        });
+    });
+});
+</script>
+</body>
+</html>

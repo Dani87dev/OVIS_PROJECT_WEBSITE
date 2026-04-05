@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project OVIS — In Depth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="nav-brand">
+        <span class="nav-label">Marie Skłodowska-Curie Actions</span>
+        <a href="index.html" class="nav-title">Project OVIS</a>
+    </div>
+    <ul class="nav-links">
+        <li><a href="ovis.html" class="active">OVIS</a></li>
+        <li><a href="arqueo.html">Archaeology News</a></li>
+        <li><a href="institutions.html">Institutions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="en">EN</button>
+        <button class="lang-btn" data-lang="ca">CA</button>
+        <button class="lang-btn" data-lang="es">ES</button>
+        <button class="lang-btn" data-lang="it">IT</button>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <ul>
+        <li><a href="ovis.html">OVIS</a></li>
+        <li><a href="arqueo.html">Archaeology News</a></li>
+        <li><a href="institutions.html">Institutions</a></li>
+        <li><a href="contact.html">Contact</a></li>
+    </ul>
+</div>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+    <div class="page-hero-inner">
+        <p class="page-hero-eyebrow">Marie Skłodowska-Curie Actions · Horizon Europe</p>
+        <h1>Project OVIS<br><em style="font-style:italic;color:var(--accent-light)">Origins of Variability in Island Systems</em></h1>
+        <p>A comprehensive look at the research, methodology, sites, team, and progress of the OVIS fellowship.</p>
+    </div>
+</div>
+
+<!-- ABOUT EXTENDED -->
+<section class="subpage-section" id="about">
+    <div class="section-header">
+        <p class="section-eyebrow">About</p>
+        <h2 class="section-title">What is OVIS?</h2>
+    </div>
+    <div class="project-layout" style="margin-top:40px">
+        <div class="project-text">
+            <h3 class="project-question">Overview</h3>
+            <p>OVIS (Origins of Variability in Island Systems) is a Marie Skłodowska-Curie Actions postdoctoral fellowship funded under Horizon Europe. The project investigates the diet, mobility, and management of ovicaprids — sheep and goats — across the Western Mediterranean islands during the Bronze and Iron Ages (ca. 1600–700 BCE).</p>
+            <h3 class="project-question" style="margin-top:28px">Scientific Questions</h3>
+            <p>Island communities in the ancient Mediterranean developed distinct strategies for managing livestock, shaped by geography, trade routes, and cultural exchange. OVIS asks: How did pastoral practices differ across island groups? Did mobility networks connect distant islands? How did the Bronze–Iron Age transition reshape animal husbandry?</p>
+            <h3 class="project-question" style="margin-top:28px">Methodology</h3>
+            <p>The project combines zooarchaeological analysis with multi-isotope approaches on dental and bone remains. Strontium (⁸⁷Sr/⁸⁶Sr) and oxygen (δ¹⁸O) isotopes track animal mobility; carbon (δ¹³C) and nitrogen (δ¹⁵N) isotopes reveal diet; dental microwear texture analysis reconstructs feeding ecology. Sites in Menorca, Sardinia, and Sicily are compared to build a regional picture of pastoral practices.</p>
+        </div>
+        <div class="project-sidebar">
+            <div class="project-info-card">
+                <p class="info-label">Funded by</p>
+                <p class="info-value">European Union — Horizon Europe</p>
+                <p class="info-label">Grant agreement</p>
+                <p class="info-value">No. 101XXX</p>
+                <p class="info-label">Duration</p>
+                <p class="info-value">2026 – 2028</p>
+                <p class="info-label">Host institution</p>
+                <p class="info-value">Cardiff University</p>
+                <p class="info-label">Partner institution</p>
+                <p class="info-value">Universitat de Barcelona (IAUB)</p>
+                <p class="info-label">Principal Investigator</p>
+                <p class="info-value">Dr. Lua Valenzuela-Suau</p>
+            </div>
+            <div class="eu-badge">
+                <span>Co-funded by the European Union</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- SITES / JACIMENTS -->
+<section class="subpage-section section--alt" id="sites" style="background:var(--cream-dark);max-width:100%;padding-left:0;padding-right:0">
+    <div style="max-width:var(--inner-max);margin:0 auto;padding:var(--section-pad) 48px;">
+        <div class="section-header">
+            <p class="section-eyebrow">Field Sites</p>
+            <h2 class="section-title">Archaeological Sites</h2>
+        </div>
+        <div class="institutions-grid" style="margin-top:40px">
+            <div class="institution-card">
+                <span class="institution-tag">Menorca · Balearic Islands</span>
+                <h3 class="institution-logo-text" style="font-size:1.4rem;margin-bottom:10px">Balearic Islands</h3>
+                <p>Bronze and Iron Age navetiform sites from Mallorca and Menorca provide the core dataset, including assemblages from Els Closos de Ca'n Gaià and s'Illot des Porros. These sites span the key transition period ca. 1600–850 BCE.</p>
+            </div>
+            <div class="institution-card">
+                <span class="institution-tag">Sardinia · Italy</span>
+                <h3 class="institution-logo-text" style="font-size:1.4rem;margin-bottom:10px">Sardinia</h3>
+                <p>Nuragic period sites in Sardinia offer a parallel island context with distinct cultural and geographic characteristics, enabling comparison of pastoral strategies across the central Mediterranean.</p>
+            </div>
+            <div class="institution-card">
+                <span class="institution-tag">Sicily · Italy</span>
+                <h3 class="institution-logo-text" style="font-size:1.4rem;margin-bottom:10px">Sicily</h3>
+                <p>Sicilian Bronze Age assemblages provide a third comparative dataset, representing the largest island in the study and a key node in Mediterranean trade networks during the period under investigation.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- METHODOLOGY -->
+<section class="subpage-section" id="methodology">
+    <div class="section-header">
+        <p class="section-eyebrow">Methodology</p>
+        <h2 class="section-title">Scientific Approach</h2>
+    </div>
+    <div class="project-layout" style="margin-top:40px">
+        <div class="project-text">
+            <h3 class="project-question">Zooarchaeology</h3>
+            <p>Standard zooarchaeological methods are applied to faunal assemblages: taxonomic identification, age-at-death profiling (epiphyseal fusion and dental eruption), sex determination, and skeletal part representation analysis to understand herd management and consumption strategies.</p>
+            <h3 class="project-question" style="margin-top:28px">Stable Isotope Analysis</h3>
+            <p>Multi-isotope sampling of tooth enamel (sequential sampling along the crown) and dentine collagen allows reconstruction of seasonal diet and lifetime mobility. Strontium and oxygen isotopes track geographic provenance; carbon and nitrogen isotopes reflect diet composition and trophic level.</p>
+            <h3 class="project-question" style="margin-top:28px">Dental Microwear Texture Analysis</h3>
+            <p>Confocal microscopy of tooth enamel surfaces reveals fine-scale feeding ecology: browsing vs. grazing, foddering practices, and landscape use. This method complements isotopic data with a direct record of diet in the weeks before death.</p>
+        </div>
+        <div class="project-sidebar">
+            <div class="project-info-card">
+                <p class="info-label">Isotope systems</p>
+                <p class="info-value">⁸⁷Sr/⁸⁶Sr · δ¹⁸O · δ¹³C · δ¹⁵N</p>
+                <p class="info-label">Target taxa</p>
+                <p class="info-value">Ovis aries · Capra hircus</p>
+                <p class="info-label">Sample target</p>
+                <p class="info-value">500+ faunal specimens</p>
+                <p class="info-label">Analysis labs</p>
+                <p class="info-value">Cardiff University · CSIC Barcelona</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- RESEARCHER -->
+<section class="subpage-section section--alt" id="researcher" style="background:var(--cream-dark);max-width:100%;padding-left:0;padding-right:0">
+    <div style="max-width:var(--inner-max);margin:0 auto;padding:var(--section-pad) 48px;">
+        <div class="section-header">
+            <p class="section-eyebrow">Team</p>
+            <h2 class="section-title">Principal Investigator</h2>
+        </div>
+        <div class="researcher-card">
+            <div class="researcher-avatar">LV</div>
+            <div class="researcher-info">
+                <h3>Dr. Lua Valenzuela-Suau</h3>
+                <p class="role">Postdoctoral Researcher · Marie Skłodowska-Curie Fellow</p>
+                <div class="researcher-ids">
+                    <span><strong>ORCID</strong> 0000-0003-0803-9201</span>
+                    <span><strong>SCOPUS</strong> 56015758300</span>
+                </div>
+                <p>Graduated in History from the University of Barcelona (2011), Master in Archaeology from the University of Granada (2013), and PhD in History, History of Art and Geography from the University of the Balearic Islands (2020). Her research focuses on livestock strategies and landscape exploitation in past societies, with special emphasis on island contexts. She specialises in zooarchaeological analysis, dental microwear, and strontium isotope mobility studies.</p>
+                <div class="researcher-links">
+                    <a href="https://www.researchgate.net/profile/Lua-Valenzuela-Suau" target="_blank">ResearchGate</a>
+                    <a href="https://uib-es.academia.edu/Luavalenzuela" target="_blank">Academia.edu</a>
+                    <a href="https://orcid.org/0000-0003-0803-9201" target="_blank">ORCID</a>
+                    <a href="mailto:lua.valenzuela@ub.edu">Email</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECT UPDATES / NEWS -->
+<section class="subpage-section" id="updates">
+    <div class="section-header">
+        <p class="section-eyebrow">Updates</p>
+        <h2 class="section-title">Project News</h2>
+    </div>
+    <div class="news-grid" style="margin-top:40px">
+        <article class="news-card news-card--featured">
+            <div class="news-card-img" style="background-image: url('https://images.unsplash.com/photo-1599940824399-b87987ceb72a?w=900&q=80')"></div>
+            <div class="news-card-body">
+                <span class="news-tag">Publication</span>
+                <time>March 2025</time>
+                <h3>New isotopic study published in <em>Journal of Archaeological Science</em></h3>
+                <p>A new article on livestock mobility during the Bronze–Iron Age transition in insular contexts has been published, presenting preliminary OVIS data on strontium isotope variation across Menorca and Sardinia.</p>
+                <a href="#" class="card-link">Read more →</a>
+            </div>
+        </article>
+        <article class="news-card">
+            <div class="news-card-img" style="background-image: url('https://images.unsplash.com/photo-1544985361-b420d7a77043?w=600&q=80')"></div>
+            <div class="news-card-body">
+                <span class="news-tag">Fieldwork</span>
+                <time>Summer 2025</time>
+                <h3>Fieldwork campaign in Sardinia</h3>
+                <p>New excavation and sampling campaign for the OVIS project, with international collaboration from three partner institutions.</p>
+                <a href="#" class="card-link">Read more →</a>
+            </div>
+        </article>
+        <article class="news-card">
+            <div class="news-card-img" style="background-image: url('https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&q=80')"></div>
+            <div class="news-card-body">
+                <span class="news-tag">Laboratory</span>
+                <time>February 2025</time>
+                <h3>Isotopic analysis of new dental samples underway</h3>
+                <p>The laboratory has begun analysis of new dental samples from Menorca and Sardinia, focusing on strontium and oxygen isotopes.</p>
+                <a href="#" class="card-link">Read more →</a>
+            </div>
+        </article>
+        <article class="news-card">
+            <div class="news-card-img" style="background-image: url('https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=600&q=80')"></div>
+            <div class="news-card-body">
+                <span class="news-tag">Conference</span>
+                <time>January 2025</time>
+                <h3>Presentation at the International Isotope Meeting</h3>
+                <p>Preliminary OVIS results were presented at an international stable isotopes congress, generating significant interest from the community.</p>
+                <a href="#" class="card-link">Read more →</a>
+            </div>
+        </article>
+    </div>
+</section>
+
+<!-- PROJECT TIMELINE -->
+<section class="subpage-section section--alt" style="background:var(--cream-dark);max-width:100%;padding-left:0;padding-right:0">
+    <div style="max-width:var(--inner-max);margin:0 auto;padding:var(--section-pad) 48px;">
+        <div class="section-header">
+            <p class="section-eyebrow">Timeline</p>
+            <h2 class="section-title">Project Milestones</h2>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <p class="timeline-date">2026 · Q1</p>
+                <h3>Project kickoff — Cardiff University</h3>
+                <p>Fellowship begins. Initial lab setup, database construction, and first sample batch preparation at Cardiff University isotope laboratory.</p>
+            </div>
+            <div class="timeline-item">
+                <p class="timeline-date">2026 · Q2–Q3</p>
+                <h3>First fieldwork campaign — Balearic Islands</h3>
+                <p>Sampling of faunal remains from Menorca and Mallorca archaeological repositories. Collaboration with the Museu de Menorca and UIB.</p>
+            </div>
+            <div class="timeline-item">
+                <p class="timeline-date">2026 · Q4</p>
+                <h3>Isotope analysis batch 1</h3>
+                <p>Strontium and oxygen isotope analysis of Balearic caprine tooth enamel at Cardiff labs. First data outputs expected.</p>
+            </div>
+            <div class="timeline-item">
+                <p class="timeline-date">2027 · Q1–Q2</p>
+                <h3>Sardinia fieldwork campaign</h3>
+                <p>Sampling in Nuragic site collections. Partnership with Università degli Studi di Sassari and the Soprintendenza Archeologia della Sardegna.</p>
+            </div>
+            <div class="timeline-item">
+                <p class="timeline-date">2027 · Q3–Q4</p>
+                <h3>Sicily sampling &amp; comparative analysis</h3>
+                <p>Third island group sampling. Integration of all isotope datasets. Dental microwear texture analysis begins.</p>
+            </div>
+            <div class="timeline-item">
+                <p class="timeline-date">2028</p>
+                <h3>Synthesis, publications &amp; dissemination</h3>
+                <p>Final data integration, peer-reviewed article submissions, conference presentations, and open-access data deposit. Project close.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BIBLIOGRAPHY (OVIS only — placeholder) -->
+<section class="subpage-section" id="bibliography">
+    <div class="section-header">
+        <p class="section-eyebrow">Bibliography</p>
+        <h2 class="section-title">OVIS-Related Publications</h2>
+    </div>
+    <div class="bib-list" style="margin-top:40px">
+        <div class="bib-entry" data-category="ovis">
+            <div class="bib-year">Coming<br>soon</div>
+            <div class="bib-content">
+                <p class="bib-authors">Valenzuela-Suau, L. et al.</p>
+                <p class="bib-title">"OVIS project publications will appear here as the fellowship progresses."</p>
+                <p class="bib-journal"><em>Publications list in progress — 2026–2028</em></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <p class="footer-project">Project OVIS</p>
+            <p class="footer-name">Dr. Lua Valenzuela-Suau</p>
+            <p class="footer-inst">Cardiff University · Universitat de Barcelona</p>
+        </div>
+        <div class="footer-links">
+            <a href="mailto:Valenzuela-SuauL@cardiff.ac.uk">Valenzuela-SuauL@cardiff.ac.uk</a>
+            <a href="index.html">Home</a>
+            <a href="arqueo.html">Archaeology News</a>
+            <a href="institutions.html">Institutions</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="footer-eu">
+            <p>Funded by the European Union under the Marie Skłodowska-Curie Actions programme (Horizon Europe).</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>© 2025 · Project OVIS · Marie Skłodowska-Curie Actions</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
