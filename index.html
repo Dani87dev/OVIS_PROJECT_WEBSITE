@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div class="scroll-progress"></div>
+<div class="cursor-dot"></div>
+<div class="cursor-outline"></div>
 
 <!-- NAVBAR -->
 <nav class="navbar">
@@ -54,6 +57,7 @@
 <!-- HERO -->
 <header class="hero" id="home">
     <div class="hero-bg"></div>
+    <canvas class="hero-particles"></canvas>
     <div class="hero-overlay"></div>
     <div class="hero-content">
         <p class="hero-eyebrow">Marie Skłodowska-Curie Actions Fellowship</p>
@@ -80,23 +84,103 @@
 <section class="intro-strip">
     <div class="intro-grid">
         <div class="intro-stat">
-            <span class="stat-number">3</span>
+            <span class="stat-number" data-count="3">3</span>
             <span class="stat-label" data-i18n="intro.islands">Islands studied</span>
         </div>
         <div class="intro-divider"></div>
         <div class="intro-stat">
-            <span class="stat-number">1500 years</span>
+            <span class="stat-number" data-count="1500" data-suffix=" years">1500 years</span>
             <span class="stat-label" data-i18n="intro.periods">Chronological scope</span>
         </div>
         <div class="intro-divider"></div>
         <div class="intro-stat">
-            <span class="stat-number">150+</span>
+            <span class="stat-number" data-count="150" data-suffix="+">150+</span>
             <span class="stat-label" data-i18n="intro.samples">Number of individuals</span>
         </div>
         <div class="intro-divider"></div>
         <div class="intro-stat">
-            <span class="stat-number">1200+</span>
+            <span class="stat-number" data-count="1200" data-suffix="+">1200+</span>
             <span class="stat-label" data-i18n="intro.partners">Faunal samples</span>
+        </div>
+    </div>
+</section>
+
+<!-- INTERACTIVE MAP -->
+<section class="section section--map" id="sites">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <p class="section-eyebrow">Study Areas</p>
+            <h2 class="section-title">Research Sites</h2>
+            <p class="section-desc">Three island systems across the Western Mediterranean — connected by Bronze and Iron Age pastoral networks.</p>
+        </div>
+        <div class="map-wrapper reveal">
+            <div class="map-svg-container">
+                <svg class="med-map" viewBox="0 0 640 380" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <linearGradient id="oceanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#1e4060"/>
+                            <stop offset="100%" stop-color="#0d2a45"/>
+                        </linearGradient>
+                    </defs>
+                    <!-- Ocean -->
+                    <rect width="640" height="380" fill="url(#oceanGrad)" rx="10"/>
+                    <ellipse cx="220" cy="200" rx="300" ry="180" fill="rgba(255,255,255,0.018)"/>
+                    <!-- Iberian Peninsula -->
+                    <path class="land" d="M 0,0 L 165,0 L 185,25 L 190,70 L 183,115 L 172,148 L 155,172 L 135,190 L 108,200 L 72,198 L 40,193 L 12,180 L 0,152 Z"/>
+                    <!-- France / S Alps coast -->
+                    <path class="land" d="M 165,0 L 400,0 L 405,18 L 385,35 L 355,44 L 320,50 L 285,48 L 250,42 L 210,35 L 185,25 Z"/>
+                    <!-- Italy -->
+                    <path class="land" d="M 400,0 L 530,0 L 530,28 L 510,58 L 498,90 L 500,125 L 504,158 L 498,185 L 482,198 L 470,193 L 468,175 L 475,148 L 474,118 L 462,88 L 440,62 L 418,40 L 405,18 Z"/>
+                    <!-- North Africa -->
+                    <rect class="land" x="0" y="315" width="640" height="65"/>
+                    <!-- Tunisia -->
+                    <path class="land" d="M 368,315 L 390,292 L 415,285 L 438,294 L 445,315 Z"/>
+                    <!-- Connecting lines -->
+                    <line class="site-connector" x1="222" y1="155" x2="348" y2="163"/>
+                    <line class="site-connector" x1="348" y1="163" x2="460" y2="210"/>
+                    <!-- MENORCA -->
+                    <g class="map-site-svg" data-site="menorca">
+                        <circle class="site-pulse-ring"  cx="222" cy="155" r="18" fill="none" stroke="#c4a882" stroke-width="1.5"/>
+                        <circle class="site-pulse-ring2" cx="222" cy="155" r="26" fill="none" stroke="#c4a882" stroke-width="1"/>
+                        <ellipse class="island-bg" cx="222" cy="155" rx="13" ry="7"/>
+                        <circle class="site-core" cx="222" cy="155" r="5"/>
+                        <text class="map-label" x="222" y="136">MENORCA</text>
+                    </g>
+                    <!-- SARDINIA -->
+                    <g class="map-site-svg" data-site="sardinia">
+                        <circle class="site-pulse-ring"  cx="348" cy="163" r="18" fill="none" stroke="#c4a882" stroke-width="1.5"/>
+                        <circle class="site-pulse-ring2" cx="348" cy="163" r="26" fill="none" stroke="#c4a882" stroke-width="1"/>
+                        <ellipse class="island-bg" cx="348" cy="163" rx="9" ry="17"/>
+                        <circle class="site-core" cx="348" cy="163" r="5"/>
+                        <text class="map-label" x="348" y="141">SARDINIA</text>
+                    </g>
+                    <!-- SICILY -->
+                    <g class="map-site-svg" data-site="sicily">
+                        <circle class="site-pulse-ring"  cx="460" cy="210" r="18" fill="none" stroke="#c4a882" stroke-width="1.5"/>
+                        <circle class="site-pulse-ring2" cx="460" cy="210" r="26" fill="none" stroke="#c4a882" stroke-width="1"/>
+                        <ellipse class="island-bg" cx="460" cy="210" rx="17" ry="10"/>
+                        <circle class="site-core" cx="460" cy="210" r="5"/>
+                        <text class="map-label" x="460" y="191">SICILY</text>
+                    </g>
+                </svg>
+            </div>
+            <div class="site-info-panel">
+                <div class="site-card" data-for="menorca">
+                    <h3>Menorca</h3>
+                    <p class="site-culture">Balearic Islands — <em>Talayotic culture</em></p>
+                    <p class="site-desc">Bronze & Iron Age settlements with distinctive talayot towers and rich faunal assemblages that record centuries of pastoral change.</p>
+                </div>
+                <div class="site-card" data-for="sardinia">
+                    <h3>Sardinia</h3>
+                    <p class="site-culture">Italy — <em>Nuragic culture</em></p>
+                    <p class="site-desc">Iconic nuraghe stone structures and complex pastoral societies with evidence of long-range Mediterranean trade networks.</p>
+                </div>
+                <div class="site-card" data-for="sicily">
+                    <h3>Sicily</h3>
+                    <p class="site-culture">Italy — <em>Sicanian / Siculian</em></p>
+                    <p class="site-desc">A strategic crossroads of Mediterranean exchange and cultural contact during the critical Bronze–Iron Age transition.</p>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -104,10 +188,10 @@
 <!-- ABOUT OVIS (summary) -->
 <section class="section section--alt" id="about">
     <div class="section-inner">
-        <div class="section-header">
+        <div class="section-header reveal">
             <h2 class="section-title" data-i18n="project.title">About OVIS</h2>
         </div>
-        <div class="project-layout">
+        <div class="project-layout reveal">
             <div class="project-text">
                 <h3 class="project-question" data-i18n="project.q1">What is OVIS?</h3>
                 <p data-i18n="project.p1">OVIS (Origins of Variability in Island Systems. Unraveling livestock diet and mobility accross the Bronze-Irone Age transition) is a Marie Skłodowska-Curie Actions project focused on understanding how island communities in the Western Mediterranean —such as the Balearic Islands and Sardinia— transformed during the transition from the Bronze Age to the Iron Age. It mainly analyses animal remains to reconstruct how people managed livestock, used resources, and adapted to socio-economic, political, environmental and climatic changes..</p>
@@ -142,7 +226,7 @@
     <div class="section-inner">
 
         <!-- OVIS Project News -->
-        <div class="dual-news-block">
+        <div class="dual-news-block reveal">
             <p class="block-eyebrow" data-i18n="news.ovis.eyebrow">Project Updates</p>
             <h2 class="block-title">
                 <span data-i18n="news.ovis.title">Latest from OVIS</span>
@@ -173,7 +257,7 @@
         </div>
 
         <!-- Archaeology News -->
-        <div class="dual-news-block">
+        <div class="dual-news-block reveal reveal--delay-2">
             <p class="block-eyebrow" data-i18n="news.arqueo.eyebrow">Field &amp; Science</p>
             <h2 class="block-title">
                 <span data-i18n="news.arqueo.title">Archaeology News</span>
@@ -209,12 +293,12 @@
 <!-- DISCUSSION / FORUM -->
 <section class="section section--alt" id="discussion">
     <div class="section-inner">
-        <div class="section-header">
+        <div class="section-header reveal">
             <p class="section-eyebrow" data-i18n="nav.discussion">Discussion</p>
             <h2 class="section-title" data-i18n="disc.title">Project Forum</h2>
             <p class="section-desc" data-i18n="disc.desc">A space for researchers and collaborators to share questions and reflections on the OVIS project.</p>
         </div>
-        <div class="threads">
+        <div class="threads reveal">
             <div class="thread">
                 <div class="thread-header">
                     <h3 class="thread-title" data-i18n="disc.thread1">Livestock diet &amp; mobility results</h3>

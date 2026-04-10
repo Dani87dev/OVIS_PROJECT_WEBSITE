@@ -1212,3 +1212,238 @@ img { display: block; max-width: 100%; }
     .page-hero { padding: 60px 24px 48px; }
     .subpage-section { padding: 60px 24px; }
 }
+
+/* =========================================================
+   INTERACTIVE ENHANCEMENTS — style-experiments branch
+========================================================= */
+
+/* ── Scroll Progress Bar ── */
+.scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--olive) 0%, var(--accent-light) 100%);
+    z-index: 2000;
+    pointer-events: none;
+    transition: width 0.05s linear;
+}
+
+/* ── Custom Cursor ── */
+body.custom-cursor,
+body.custom-cursor * { cursor: none !important; }
+
+.cursor-dot {
+    position: fixed;
+    top: 0; left: 0;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--olive);
+    pointer-events: none;
+    z-index: 9999;
+    transition: width 0.2s var(--ease), height 0.2s var(--ease), background 0.2s;
+}
+
+.cursor-outline {
+    position: fixed;
+    top: 0; left: 0;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(74, 82, 64, 0.55);
+    pointer-events: none;
+    z-index: 9998;
+    transition: width 0.3s var(--ease), height 0.3s var(--ease), border-color 0.3s, opacity 0.3s;
+}
+
+.cursor-dot.hover   { width: 10px; height: 10px; background: var(--accent); }
+.cursor-outline.hover { width: 48px; height: 48px; border-color: var(--accent); opacity: 0.45; }
+
+/* ── Scroll Reveal ── */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.72s var(--ease), transform 0.72s var(--ease);
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.reveal--delay-1 { transition-delay: 0.12s; }
+.reveal--delay-2 { transition-delay: 0.22s; }
+.reveal--delay-3 { transition-delay: 0.34s; }
+
+.reveal-stagger > * {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+}
+.reveal-stagger.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0s; }
+.reveal-stagger.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.1s; }
+.reveal-stagger.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.2s; }
+.reveal-stagger.visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.3s; }
+
+/* ── Hero Particles Canvas ── */
+.hero-particles {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    width: 100%;
+    height: 100%;
+}
+
+/* Ensure hero-content is above canvas */
+.hero-content { z-index: 3; }
+.hero-scroll   { z-index: 3; }
+
+/* ── Interactive Map Section ── */
+.section--map {
+    background: var(--cream-dark);
+}
+
+.map-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 290px;
+    gap: 48px;
+    align-items: center;
+}
+
+.map-svg-container {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(10, 30, 60, 0.28);
+    transition: box-shadow 0.4s var(--ease);
+}
+.map-svg-container:hover {
+    box-shadow: 0 28px 80px rgba(10, 30, 60, 0.38);
+}
+
+.med-map {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.med-map .land {
+    fill: #3d6b4a;
+    opacity: 0.9;
+}
+
+.site-connector {
+    stroke: rgba(196, 168, 130, 0.4);
+    stroke-width: 1.5;
+    stroke-dasharray: 5 5;
+    animation: dashFlow 18s linear infinite;
+}
+
+@keyframes dashFlow {
+    from { stroke-dashoffset: 0; }
+    to   { stroke-dashoffset: -100; }
+}
+
+/* SVG site markers */
+.map-site-svg { cursor: pointer; }
+
+.map-site-svg .site-core {
+    fill: #c4a882;
+    filter: drop-shadow(0 0 4px rgba(196,168,130,0.55));
+    transition: fill 0.3s;
+}
+.map-site-svg .island-bg {
+    fill: rgba(196, 168, 130, 0.3);
+    transition: fill 0.3s;
+}
+.map-site-svg .site-pulse-ring,
+.map-site-svg .site-pulse-ring2 {
+    transform-box: fill-box;
+    transform-origin: center;
+    opacity: 0;
+}
+.map-site-svg.active .site-core,
+.map-site-svg:hover  .site-core {
+    fill: #ffffff;
+    filter: drop-shadow(0 0 8px rgba(255,255,255,0.75));
+}
+.map-site-svg.active .island-bg,
+.map-site-svg:hover  .island-bg {
+    fill: rgba(255,255,255,0.22);
+}
+.map-site-svg.active .site-pulse-ring,
+.map-site-svg:hover  .site-pulse-ring {
+    animation: svgRingPulse 2s ease-out infinite;
+}
+.map-site-svg.active .site-pulse-ring2 {
+    animation: svgRingPulse 2s ease-out infinite 0.65s;
+}
+
+@keyframes svgRingPulse {
+    0%   { transform: scale(1); opacity: 0.75; }
+    100% { transform: scale(3.2); opacity: 0; }
+}
+
+.map-label {
+    font-family: var(--font-sans);
+    font-size: 9px;
+    fill: rgba(255,255,255,0.72);
+    text-anchor: middle;
+    letter-spacing: 0.12em;
+    font-weight: 500;
+    pointer-events: none;
+    transition: fill 0.3s;
+}
+.map-site-svg.active .map-label,
+.map-site-svg:hover  .map-label { fill: rgba(255,255,255,1); }
+
+/* Site info panel */
+.site-info-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.site-card {
+    padding: 18px 20px;
+    border-radius: 6px;
+    border: 1px solid var(--olive-pale);
+    border-left: 3px solid transparent;
+    background: var(--white);
+    cursor: pointer;
+    transition: transform 0.35s var(--ease), box-shadow 0.35s var(--ease), border-left-color 0.35s;
+}
+.site-card.active {
+    border-left-color: var(--accent);
+    box-shadow: 0 8px 28px rgba(74, 82, 64, 0.13);
+    transform: translateX(5px);
+}
+.site-card h3 {
+    font-family: var(--font-serif);
+    font-size: 1.15rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 3px;
+}
+.site-culture {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    margin-bottom: 5px;
+}
+.site-desc {
+    font-size: 0.82rem;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    display: none;
+    margin-top: 6px;
+}
+.site-card.active .site-desc { display: block; }
+
+/* ── Card 3D Tilt — override transition on leave ── */
+.mini-card, .project-info-card {
+    will-change: transform;
+}
+
+/* ── Responsive Map ── */
+@media (max-width: 900px) {
+    .map-wrapper { grid-template-columns: 1fr; }
+    .site-info-panel { flex-direction: row; flex-wrap: wrap; }
+    .site-card { flex: 1 1 160px; }
+}

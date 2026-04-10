@@ -370,3 +370,225 @@ navStyle.textContent = `
   .nav-title { text-decoration: none; }
 `;
 document.head.appendChild(navStyle);
+
+// =========================================================
+//  INTERACTIVE ENHANCEMENTS — style-experiments branch
+// =========================================================
+
+// ─── SCROLL PROGRESS BAR ─────────────────────────────────
+;(function () {
+  const bar = document.querySelector('.scroll-progress');
+  if (!bar) return;
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+    bar.style.width = Math.min(pct, 100) + '%';
+  }, { passive: true });
+})();
+
+// ─── SCROLL REVEAL (IntersectionObserver) ─────────────────
+;(function () {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => observer.observe(el));
+})();
+
+// ─── ANIMATED COUNTERS ────────────────────────────────────
+;(function () {
+  function animateCount(el) {
+    const raw    = el.getAttribute('data-count');
+    const suffix = el.getAttribute('data-suffix') || '';
+    const target = parseFloat(raw);
+    const dur    = 1800;
+    const start  = performance.now();
+
+    function tick(now) {
+      const progress = Math.min((now - start) / dur, 1);
+      const eased    = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      el.textContent = Math.round(target * eased) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = raw + suffix;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.counted) {
+        entry.target.dataset.counted = '1';
+        animateCount(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('[data-count]').forEach(el => obs.observe(el));
+})();
+
+// ─── PARALLAX HERO ────────────────────────────────────────
+;(function () {
+  const heroBg = document.querySelector('.hero-bg');
+  const hero   = document.querySelector('.hero');
+  if (!heroBg || !hero) return;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY < hero.offsetHeight) {
+      heroBg.style.transform = `scale(1) translateY(${window.scrollY * 0.22}px)`;
+    }
+  }, { passive: true });
+})();
+
+// ─── HERO PARTICLE CANVAS ─────────────────────────────────
+;(function () {
+  const canvas = document.querySelector('.hero-particles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [], animId;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  class Particle {
+    constructor() { this.reset(true); }
+    reset(anywhere) {
+      this.x     = Math.random() * W;
+      this.y     = anywhere ? Math.random() * H : H + 4;
+      this.size  = Math.random() * 1.6 + 0.3;
+      this.vx    = (Math.random() - 0.5) * 0.22;
+      this.vy    = -(Math.random() * 0.35 + 0.08);
+      this.alpha = Math.random() * 0.5 + 0.1;
+      this.life  = 1;
+      this.decay = Math.random() * 0.003 + 0.001;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.life -= this.decay;
+      if (this.life <= 0 || this.y < -4) this.reset(false);
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${this.alpha * this.life})`;
+      ctx.fill();
+    }
+  }
+
+  function init() {
+    resize();
+    particles = Array.from({ length: 75 }, () => new Particle());
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => { p.update(); p.draw(); });
+    animId = requestAnimationFrame(animate);
+  }
+
+  // Pause when hero leaves viewport (save CPU)
+  const heroEl = document.querySelector('.hero');
+  if (heroEl) {
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { animate(); }
+      else { cancelAnimationFrame(animId); }
+    }).observe(heroEl);
+  }
+
+  window.addEventListener('resize', resize);
+  init();
+  animate();
+})();
+
+// ─── CUSTOM CURSOR ────────────────────────────────────────
+;(function () {
+  const dot     = document.querySelector('.cursor-dot');
+  const outline = document.querySelector('.cursor-outline');
+  if (!dot || !outline) return;
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
+  document.body.classList.add('custom-cursor');
+  let mx = -100, my = -100, ox = -100, oy = -100;
+
+  document.addEventListener('mousemove', e => {
+    mx = e.clientX;
+    my = e.clientY;
+    dot.style.transform = `translate(${mx - 3}px, ${my - 3}px)`;
+  });
+
+  (function followCursor() {
+    ox += (mx - ox) * 0.1;
+    oy += (my - oy) * 0.1;
+    outline.style.transform = `translate(${ox - 16}px, ${oy - 16}px)`;
+    requestAnimationFrame(followCursor);
+  })();
+
+  const hoverTargets = 'a, button, .mini-card, .site-card, .map-site-svg, .btn-primary, .lang-btn, .thread';
+  document.querySelectorAll(hoverTargets).forEach(el => {
+    el.addEventListener('mouseenter', () => { dot.classList.add('hover'); outline.classList.add('hover'); });
+    el.addEventListener('mouseleave', () => { dot.classList.remove('hover'); outline.classList.remove('hover'); });
+  });
+})();
+
+// ─── CARD 3D TILT ─────────────────────────────────────────
+;(function () {
+  document.querySelectorAll('.mini-card, .project-info-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - 0.5;
+      const y = (e.clientY - r.top)  / r.height - 0.5;
+      card.style.transition = 'transform 0.05s, box-shadow 0.25s';
+      card.style.transform  = `perspective(700px) rotateY(${x * 9}deg) rotateX(${-y * 9}deg) translateY(-4px)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transition = 'transform 0.5s var(--ease), box-shadow 0.3s var(--ease)';
+      card.style.transform  = '';
+    });
+  });
+})();
+
+// ─── INTERACTIVE MAP SITES ────────────────────────────────
+;(function () {
+  const mapSites  = document.querySelectorAll('.map-site-svg');
+  const siteCards = document.querySelectorAll('.site-card');
+  if (!mapSites.length) return;
+
+  function activate(name) {
+    mapSites.forEach(s  => s.classList.toggle('active', s.dataset.site === name));
+    siteCards.forEach(c => c.classList.toggle('active', c.dataset.for  === name));
+  }
+
+  mapSites.forEach(s  => s.addEventListener('mouseenter', () => activate(s.dataset.site)));
+  mapSites.forEach(s  => s.addEventListener('click',      () => activate(s.dataset.site)));
+  siteCards.forEach(c => c.addEventListener('mouseenter', () => activate(c.dataset.for)));
+  siteCards.forEach(c => c.addEventListener('click',      () => activate(c.dataset.for)));
+
+  // Auto-cycle when section enters viewport
+  const siteList = ['menorca', 'sardinia', 'sicily'];
+  let idx = 0, timer = null;
+
+  const mapSection = document.querySelector('.section--map');
+  if (mapSection) {
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) {
+        activate(siteList[idx]);
+        timer = setInterval(() => {
+          idx = (idx + 1) % siteList.length;
+          activate(siteList[idx]);
+        }, 2800);
+      } else {
+        clearInterval(timer);
+      }
+    }, { threshold: 0.3 }).observe(mapSection);
+  }
+
+  // Stop auto-cycle when user interacts manually
+  [...mapSites, ...siteCards].forEach(el => {
+    el.addEventListener('mouseenter', () => clearInterval(timer));
+  });
+})();
