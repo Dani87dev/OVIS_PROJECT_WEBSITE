@@ -1229,35 +1229,6 @@ img { display: block; max-width: 100%; }
     transition: width 0.05s linear;
 }
 
-/* ── Custom Cursor ── */
-body.custom-cursor,
-body.custom-cursor * { cursor: none !important; }
-
-.cursor-dot {
-    position: fixed;
-    top: 0; left: 0;
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--olive);
-    pointer-events: none;
-    z-index: 9999;
-    transition: width 0.2s var(--ease), height 0.2s var(--ease), background 0.2s;
-}
-
-.cursor-outline {
-    position: fixed;
-    top: 0; left: 0;
-    width: 32px; height: 32px;
-    border-radius: 50%;
-    border: 1.5px solid rgba(74, 82, 64, 0.55);
-    pointer-events: none;
-    z-index: 9998;
-    transition: width 0.3s var(--ease), height 0.3s var(--ease), border-color 0.3s, opacity 0.3s;
-}
-
-.cursor-dot.hover   { width: 10px; height: 10px; background: var(--accent); }
-.cursor-outline.hover { width: 48px; height: 48px; border-color: var(--accent); opacity: 0.45; }
-
 /* ── Scroll Reveal ── */
 .reveal {
     opacity: 0;
@@ -1290,6 +1261,7 @@ body.custom-cursor * { cursor: none !important; }
     pointer-events: none;
     width: 100%;
     height: 100%;
+    opacity: 0.85;
 }
 
 /* Ensure hero-content is above canvas */
@@ -1435,11 +1407,6 @@ body.custom-cursor * { cursor: none !important; }
     margin-top: 6px;
 }
 .site-card.active .site-desc { display: block; }
-
-/* ── Card 3D Tilt — override transition on leave ── */
-.mini-card, .project-info-card {
-    will-change: transform;
-}
 
 /* ── Responsive Map ── */
 @media (max-width: 900px) {

@@ -404,7 +404,7 @@ document.head.appendChild(navStyle);
     const raw    = el.getAttribute('data-count');
     const suffix = el.getAttribute('data-suffix') || '';
     const target = parseFloat(raw);
-    const dur    = 1800;
+    const dur    = 3800;
     const start  = performance.now();
 
     function tick(now) {
@@ -437,7 +437,7 @@ document.head.appendChild(navStyle);
 
   window.addEventListener('scroll', () => {
     if (window.scrollY < hero.offsetHeight) {
-      heroBg.style.transform = `scale(1) translateY(${window.scrollY * 0.22}px)`;
+      heroBg.style.transform = `scale(1) translateY(${window.scrollY * 0.42}px)`;
     }
   }, { passive: true });
 })();
@@ -459,10 +459,10 @@ document.head.appendChild(navStyle);
     reset(anywhere) {
       this.x     = Math.random() * W;
       this.y     = anywhere ? Math.random() * H : H + 4;
-      this.size  = Math.random() * 1.6 + 0.3;
-      this.vx    = (Math.random() - 0.5) * 0.22;
-      this.vy    = -(Math.random() * 0.35 + 0.08);
-      this.alpha = Math.random() * 0.5 + 0.1;
+      this.size  = Math.random() * 2.4 + 0.6;
+      this.vx    = (Math.random() - 0.5) * 0.28;
+      this.vy    = -(Math.random() * 0.45 + 0.1);
+      this.alpha = Math.random() * 0.72 + 0.22;
       this.life  = 1;
       this.decay = Math.random() * 0.003 + 0.001;
     }
@@ -482,7 +482,7 @@ document.head.appendChild(navStyle);
 
   function init() {
     resize();
-    particles = Array.from({ length: 75 }, () => new Particle());
+    particles = Array.from({ length: 100 }, () => new Particle());
   }
 
   function animate() {
@@ -503,53 +503,6 @@ document.head.appendChild(navStyle);
   window.addEventListener('resize', resize);
   init();
   animate();
-})();
-
-// ─── CUSTOM CURSOR ────────────────────────────────────────
-;(function () {
-  const dot     = document.querySelector('.cursor-dot');
-  const outline = document.querySelector('.cursor-outline');
-  if (!dot || !outline) return;
-  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-
-  document.body.classList.add('custom-cursor');
-  let mx = -100, my = -100, ox = -100, oy = -100;
-
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX;
-    my = e.clientY;
-    dot.style.transform = `translate(${mx - 3}px, ${my - 3}px)`;
-  });
-
-  (function followCursor() {
-    ox += (mx - ox) * 0.1;
-    oy += (my - oy) * 0.1;
-    outline.style.transform = `translate(${ox - 16}px, ${oy - 16}px)`;
-    requestAnimationFrame(followCursor);
-  })();
-
-  const hoverTargets = 'a, button, .mini-card, .site-card, .map-site-svg, .btn-primary, .lang-btn, .thread';
-  document.querySelectorAll(hoverTargets).forEach(el => {
-    el.addEventListener('mouseenter', () => { dot.classList.add('hover'); outline.classList.add('hover'); });
-    el.addEventListener('mouseleave', () => { dot.classList.remove('hover'); outline.classList.remove('hover'); });
-  });
-})();
-
-// ─── CARD 3D TILT ─────────────────────────────────────────
-;(function () {
-  document.querySelectorAll('.mini-card, .project-info-card').forEach(card => {
-    card.addEventListener('mousemove', e => {
-      const r = card.getBoundingClientRect();
-      const x = (e.clientX - r.left) / r.width  - 0.5;
-      const y = (e.clientY - r.top)  / r.height - 0.5;
-      card.style.transition = 'transform 0.05s, box-shadow 0.25s';
-      card.style.transform  = `perspective(700px) rotateY(${x * 9}deg) rotateX(${-y * 9}deg) translateY(-4px)`;
-    });
-    card.addEventListener('mouseleave', () => {
-      card.style.transition = 'transform 0.5s var(--ease), box-shadow 0.3s var(--ease)';
-      card.style.transform  = '';
-    });
-  });
 })();
 
 // ─── INTERACTIVE MAP SITES ────────────────────────────────
