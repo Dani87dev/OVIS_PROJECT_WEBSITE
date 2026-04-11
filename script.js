@@ -437,7 +437,8 @@ document.head.appendChild(navStyle);
 
   window.addEventListener('scroll', () => {
     if (window.scrollY < hero.offsetHeight) {
-      heroBg.style.transform = `scale(1) translateY(${window.scrollY * 0.42}px)`;
+      const zoom = 1 + window.scrollY * 0.00045;
+      heroBg.style.transform = `scale(${zoom})`;
     }
   }, { passive: true });
 })();
