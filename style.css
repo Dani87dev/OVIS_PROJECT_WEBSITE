@@ -899,7 +899,10 @@ img { display: block; max-width: 100%; }
     .hamburger { display: flex; }
     .mobile-menu { display: block; }
 
-    .hero-content { padding: 48px 24px; }
+    .hero-content { padding: 48px 24px 48px 24px; max-width: 100%; }
+    .hero-title { font-size: clamp(2rem, 9vw, 3.2rem); }
+    .hero-meta { flex-wrap: wrap; gap: 8px; }
+    .hero-meta .dot { display: none; }
     .hero-scroll { display: none; }
 
     .intro-strip { padding: 32px 24px; }

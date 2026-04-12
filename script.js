@@ -463,7 +463,7 @@ document.head.appendChild(navStyle);
       this.size  = Math.random() * 2.4 + 0.6;
       this.vx    = (Math.random() - 0.5) * 0.28;
       this.vy    = -(Math.random() * 0.45 + 0.1);
-      this.alpha = Math.random() * 0.72 + 0.22;
+      this.alpha = Math.random() * 0.18 + 0.05;
       this.life  = 1;
       this.decay = Math.random() * 0.003 + 0.001;
     }
