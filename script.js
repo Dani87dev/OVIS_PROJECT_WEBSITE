@@ -506,43 +506,129 @@ document.head.appendChild(navStyle);
   animate();
 })();
 
-// ─── INTERACTIVE MAP SITES ────────────────────────────────
+// ─── LEAFLET MAP ─────────────────────────────────────────
 ;(function () {
-  const mapSites  = document.querySelectorAll('.map-site-svg');
-  const siteCards = document.querySelectorAll('.site-card');
-  if (!mapSites.length) return;
+  const mapEl = document.getElementById('leaflet-map');
+  if (!mapEl || typeof L === 'undefined') return;
 
-  function activate(name) {
-    mapSites.forEach(s  => s.classList.toggle('active', s.dataset.site === name));
-    siteCards.forEach(c => c.classList.toggle('active', c.dataset.for  === name));
+  const siteCards = document.querySelectorAll('.site-card');
+
+  // Site data
+  const sites = {
+    menorca:  { latlng: [39.95, 4.05],  zoom: 9,  label: 'Menorca',  culture: 'Balearic Islands — Talayotic culture' },
+    sardinia: { latlng: [40.12, 9.07],  zoom: 8,  label: 'Sardinia', culture: 'Italy — Nuragic culture'               },
+    sicily:   { latlng: [37.60, 14.00], zoom: 8,  label: 'Sicily',   culture: 'Italy — Sicanian / Siculian'           },
+  };
+
+  // Init map — bounds that frame all 3 research sites
+  const map = L.map('leaflet-map', {
+    minZoom: 4,
+    maxZoom: 12,
+    scrollWheelZoom: false,
+    zoomControl: true,
+  });
+
+  const siteBounds = L.latLngBounds(
+    Object.values(sites).map(s => s.latlng)
+  );
+
+  // ── Vista general: cambia aquí para mover el encuadre ──
+  const overviewCenter = [40, 9.0]; // [lat, lng]
+  const overviewZoom   = 5;
+  map.setView(overviewCenter, overviewZoom);
+
+  // CartoDB Voyager tiles (free, no API key)
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 20,
+  }).addTo(map);
+
+  // Custom marker icon
+  function makeIcon(active) {
+    return L.divIcon({
+      className: 'ovis-marker' + (active ? ' active' : ''),
+      iconSize:  [20, 20],
+      iconAnchor:[10, 10],
+      popupAnchor:[0, -14],
+    });
   }
 
-  mapSites.forEach(s  => s.addEventListener('mouseenter', () => activate(s.dataset.site)));
-  mapSites.forEach(s  => s.addEventListener('click',      () => activate(s.dataset.site)));
-  siteCards.forEach(c => c.addEventListener('mouseenter', () => activate(c.dataset.for)));
-  siteCards.forEach(c => c.addEventListener('click',      () => activate(c.dataset.for)));
+  // Create markers
+  const markers = {};
+  Object.entries(sites).forEach(([key, s]) => {
+    const marker = L.marker(s.latlng, { icon: makeIcon(false) })
+      .addTo(map)
+      .bindPopup(`<h4>${s.label}</h4><p class="pop-culture">${s.culture}</p>`);
+    markers[key] = marker;
+    marker.on('click', () => activate(key, false));
+  });
 
-  // Auto-cycle when section enters viewport
+  // Activate site: update marker + card
+  let userInteracted = false;
+  function activate(name, flyTo = true) {
+    // Update markers
+    Object.entries(markers).forEach(([key, m]) => {
+      m.setIcon(makeIcon(key === name));
+    });
+    // Update cards
+    siteCards.forEach(c => c.classList.toggle('active', c.dataset.for === name));
+    // Fly to site
+    if (flyTo) {
+      map.flyTo(sites[name].latlng, sites[name].zoom, { duration: 1.2 });
+    }
+  }
+
+  // Card clicks → stop cycle + fly to marker
+  siteCards.forEach(c => {
+    c.addEventListener('click', () => {
+      userInteracted = true;
+      clearTimeout(timer);
+      activate(c.dataset.for, true);
+    });
+  });
+
+  // Marker clicks → stop cycle
+  Object.values(markers).forEach(m => {
+    m.on('click', () => { userInteracted = true; clearTimeout(timer); });
+  });
+
+  // ── Auto-cycle: 10s overview → 5s per island → repeat ──
   const siteList = ['menorca', 'sardinia', 'sicily'];
-  let idx = 0, timer = null;
+  let timer = null;
+
+  function showOverview() {
+    Object.values(markers).forEach(m => m.setIcon(makeIcon(false)));
+    siteCards.forEach(c => c.classList.remove('active'));
+    map.flyTo(overviewCenter, overviewZoom, { duration: 1.4 });
+  }
+
+  function runCycle() {
+    if (userInteracted) return;
+    showOverview();
+    let step = 0;
+    function next() {
+      if (userInteracted) return;
+      if (step < siteList.length) {
+        activate(siteList[step], true);
+        step++;
+        timer = setTimeout(next, 5000);
+      } else {
+        runCycle(); // restart from overview
+      }
+    }
+    timer = setTimeout(next, 10000);
+  }
 
   const mapSection = document.querySelector('.section--map');
   if (mapSection) {
     new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) {
-        activate(siteList[idx]);
-        timer = setInterval(() => {
-          idx = (idx + 1) % siteList.length;
-          activate(siteList[idx]);
-        }, 2800);
+      if (entry.isIntersecting && !userInteracted) {
+        runCycle();
       } else {
-        clearInterval(timer);
+        clearTimeout(timer);
+        showOverview();
       }
     }, { threshold: 0.3 }).observe(mapSection);
   }
-
-  // Stop auto-cycle when user interacts manually
-  [...mapSites, ...siteCards].forEach(el => {
-    el.addEventListener('mouseenter', () => clearInterval(timer));
-  });
 })();
