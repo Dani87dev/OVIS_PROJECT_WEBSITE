@@ -507,79 +507,85 @@ document.head.appendChild(navStyle);
 })();
 
 // ─── LEAFLET MAP ─────────────────────────────────────────
-;(function () {
+;(async function () {
   const mapEl = document.getElementById('leaflet-map');
   if (!mapEl || typeof L === 'undefined') return;
 
   const siteCards = document.querySelectorAll('.site-card');
 
-  // Site data
+  // Site metadata
   const sites = {
-    menorca:  { latlng: [39.95, 4.05],  zoom: 9,  label: 'Menorca',  culture: 'Balearic Islands — Talayotic culture' },
-    sardinia: { latlng: [40.12, 9.07],  zoom: 8,  label: 'Sardinia', culture: 'Italy — Nuragic culture'               },
-    sicily:   { latlng: [37.60, 14.00], zoom: 8,  label: 'Sicily',   culture: 'Italy — Sicanian / Siculian'           },
+    menorca:  { center: [39.95, 4.05],  zoom: 10, label: 'Menorca',  culture: 'Balearic Islands — Talayotic culture', query: 'Menorca island Spain'  },
+    mallorca: { center: [39.62, 2.95],  zoom: 9,  label: 'Mallorca', culture: 'Balearic Islands — Talayotic culture', query: 'Mallorca island Spain'  },
+    sardinia: { center: [40.12, 9.07],  zoom: 8,  label: 'Sardinia', culture: 'Italy — Nuragic culture',              query: 'Sardinia island Italy'  },
   };
 
-  // Init map — bounds that frame all 3 research sites
+  // Polygon styles
+  const styleDefault = { color: '#c4a882', weight: 1.5, fillColor: '#c4a882', fillOpacity: 0.20 };
+  const styleActive  = { color: '#4a5240', weight: 2,   fillColor: '#4a5240', fillOpacity: 0.55 };
+
+  // Init map
   const map = L.map('leaflet-map', {
-    minZoom: 4,
-    maxZoom: 12,
+    minZoom: 4, maxZoom: 12,
     scrollWheelZoom: false,
     zoomControl: true,
   });
 
-  const siteBounds = L.latLngBounds(
-    Object.values(sites).map(s => s.latlng)
-  );
-
   // ── Vista general: cambia aquí para mover el encuadre ──
-  const overviewCenter = [40, 9.0]; // [lat, lng]
-  const overviewZoom   = 5;
+  const overviewCenter = [40.0, 6.5];
+  const overviewZoom   = 6;
   map.setView(overviewCenter, overviewZoom);
 
-  // CartoDB Voyager tiles (free, no API key)
+  // CartoDB Voyager tiles
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-    subdomains: 'abcd',
-    maxZoom: 20,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd', maxZoom: 20,
   }).addTo(map);
 
-  // Custom marker icon
-  function makeIcon(active) {
-    return L.divIcon({
-      className: 'ovis-marker' + (active ? ' active' : ''),
-      iconSize:  [20, 20],
-      iconAnchor:[10, 10],
-      popupAnchor:[0, -14],
-    });
+  // Fetch real island outline from Nominatim OSM
+  async function fetchShape(query) {
+    try {
+      const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=geojson&polygon_geojson=1&limit=1&polygon_threshold=0.005`;
+      const res = await fetch(url, { headers: { 'Accept-Language': 'en' } });
+      const data = await res.json();
+      const geom = data.features[0]?.geometry;
+      if (!geom) return null;
+      // If MultiPolygon, keep only the largest polygon (main island)
+      if (geom.type === 'MultiPolygon') {
+        geom.coordinates = [geom.coordinates.reduce((a, b) =>
+          b[0].length > a[0].length ? b : a
+        )];
+      }
+      return geom;
+    } catch (e) { return null; }
   }
 
-  // Create markers
-  const markers = {};
-  Object.entries(sites).forEach(([key, s]) => {
-    const marker = L.marker(s.latlng, { icon: makeIcon(false) })
-      .addTo(map)
-      .bindPopup(`<h4>${s.label}</h4><p class="pop-culture">${s.culture}</p>`);
-    markers[key] = marker;
-    marker.on('click', () => activate(key, false));
+  // Load all island shapes in parallel
+  const shapes = await Promise.all(
+    Object.values(sites).map(s => fetchShape(s.query))
+  );
+
+  // Create GeoJSON layers
+  const polygons = {};
+  Object.keys(sites).forEach((key, i) => {
+    if (!shapes[i]) return;
+    const layer = L.geoJSON({ type: 'Feature', geometry: shapes[i] }, {
+      style: styleDefault,
+    }).addTo(map);
+    polygons[key] = layer;
+    layer.on('click', () => { userInteracted = true; clearTimeout(timer); activate(key, false); });
+    layer.bindPopup(`<h4>${sites[key].label}</h4><p class="pop-culture">${sites[key].culture}</p>`);
   });
 
-  // Activate site: update marker + card
+  // Activate site
   let userInteracted = false;
   function activate(name, flyTo = true) {
-    // Update markers
-    Object.entries(markers).forEach(([key, m]) => {
-      m.setIcon(makeIcon(key === name));
-    });
-    // Update cards
+    Object.entries(polygons).forEach(([key, p]) => p.setStyle(key === name ? styleActive : styleDefault));
     siteCards.forEach(c => c.classList.toggle('active', c.dataset.for === name));
-    // Fly to site
-    if (flyTo) {
-      map.flyTo(sites[name].latlng, sites[name].zoom, { duration: 1.2 });
-    }
+    if (flyTo) map.flyTo(sites[name].center, sites[name].zoom, { duration: 1.2 });
   }
 
-  // Card clicks → stop cycle + fly to marker
+  // Card clicks
   siteCards.forEach(c => {
     c.addEventListener('click', () => {
       userInteracted = true;
@@ -588,17 +594,12 @@ document.head.appendChild(navStyle);
     });
   });
 
-  // Marker clicks → stop cycle
-  Object.values(markers).forEach(m => {
-    m.on('click', () => { userInteracted = true; clearTimeout(timer); });
-  });
-
   // ── Auto-cycle: 10s overview → 5s per island → repeat ──
-  const siteList = ['menorca', 'sardinia', 'sicily'];
+  const siteList = ['menorca', 'mallorca', 'sardinia'];
   let timer = null;
 
   function showOverview() {
-    Object.values(markers).forEach(m => m.setIcon(makeIcon(false)));
+    Object.values(polygons).forEach(p => p.setStyle(styleDefault));
     siteCards.forEach(c => c.classList.remove('active'));
     map.flyTo(overviewCenter, overviewZoom, { duration: 1.4 });
   }
@@ -614,7 +615,7 @@ document.head.appendChild(navStyle);
         step++;
         timer = setTimeout(next, 5000);
       } else {
-        runCycle(); // restart from overview
+        runCycle();
       }
     }
     timer = setTimeout(next, 10000);

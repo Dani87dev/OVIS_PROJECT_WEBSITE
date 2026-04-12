@@ -1330,20 +1330,8 @@ img { display: block; max-width: 100%; }
     font-style: italic;
 }
 
-/* Custom marker style */
-.ovis-marker {
-    background: #c4a882;
-    border: 3px solid #fff;
-    border-radius: 50%;
-    box-shadow: 0 2px 10px rgba(139,115,85,0.55);
-    transition: transform 0.2s, background 0.2s;
-    cursor: pointer;
-}
-.ovis-marker.active {
-    background: var(--olive);
-    transform: scale(1.35);
-    box-shadow: 0 0 0 6px rgba(196,168,130,0.3), 0 4px 14px rgba(74,82,64,0.4);
-}
+/* Leaflet polygon cursor */
+.leaflet-interactive { cursor: pointer; }
 
 /* Leaflet attribution tweak */
 .leaflet-control-attribution {
