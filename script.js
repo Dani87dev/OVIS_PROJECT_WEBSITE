@@ -370,3 +370,266 @@ navStyle.textContent = `
   .nav-title { text-decoration: none; }
 `;
 document.head.appendChild(navStyle);
+
+// =========================================================
+//  INTERACTIVE ENHANCEMENTS — style-experiments branch
+// =========================================================
+
+// ─── SCROLL PROGRESS BAR ─────────────────────────────────
+;(function () {
+  const bar = document.querySelector('.scroll-progress');
+  if (!bar) return;
+  window.addEventListener('scroll', () => {
+    const pct = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight) * 100;
+    bar.style.width = Math.min(pct, 100) + '%';
+  }, { passive: true });
+})();
+
+// ─── SCROLL REVEAL (IntersectionObserver) ─────────────────
+;(function () {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => observer.observe(el));
+})();
+
+// ─── ANIMATED COUNTERS ────────────────────────────────────
+;(function () {
+  function animateCount(el) {
+    const raw    = el.getAttribute('data-count');
+    const suffix = el.getAttribute('data-suffix') || '';
+    const target = parseFloat(raw);
+    const dur    = 3800;
+    const start  = performance.now();
+
+    function tick(now) {
+      const progress = Math.min((now - start) / dur, 1);
+      const eased    = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      el.textContent = Math.round(target * eased) + suffix;
+      if (progress < 1) requestAnimationFrame(tick);
+      else el.textContent = raw + suffix;
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting && !entry.target.dataset.counted) {
+        entry.target.dataset.counted = '1';
+        animateCount(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('[data-count]').forEach(el => obs.observe(el));
+})();
+
+// ─── PARALLAX HERO ────────────────────────────────────────
+;(function () {
+  const heroBg = document.querySelector('.hero-bg');
+  const hero   = document.querySelector('.hero');
+  if (!heroBg || !hero) return;
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY < hero.offsetHeight) {
+      const zoom = 1 + window.scrollY * 0.00045;
+      heroBg.style.transform = `scale(${zoom})`;
+    }
+  }, { passive: true });
+})();
+
+// ─── HERO PARTICLE CANVAS ─────────────────────────────────
+;(function () {
+  const canvas = document.querySelector('.hero-particles');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [], animId;
+
+  function resize() {
+    W = canvas.width  = canvas.offsetWidth;
+    H = canvas.height = canvas.offsetHeight;
+  }
+
+  class Particle {
+    constructor() { this.reset(true); }
+    reset(anywhere) {
+      this.x     = Math.random() * W;
+      this.y     = anywhere ? Math.random() * H : H + 4;
+      this.size  = Math.random() * 2.4 + 0.6;
+      this.vx    = (Math.random() - 0.5) * 0.28;
+      this.vy    = -(Math.random() * 0.45 + 0.1);
+      this.alpha = Math.random() * 0.18 + 0.05;
+      this.life  = 1;
+      this.decay = Math.random() * 0.003 + 0.001;
+    }
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+      this.life -= this.decay;
+      if (this.life <= 0 || this.y < -4) this.reset(false);
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,255,255,${this.alpha * this.life})`;
+      ctx.fill();
+    }
+  }
+
+  function init() {
+    resize();
+    particles = Array.from({ length: 100 }, () => new Particle());
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, W, H);
+    particles.forEach(p => { p.update(); p.draw(); });
+    animId = requestAnimationFrame(animate);
+  }
+
+  // Pause when hero leaves viewport (save CPU)
+  const heroEl = document.querySelector('.hero');
+  if (heroEl) {
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) { animate(); }
+      else { cancelAnimationFrame(animId); }
+    }).observe(heroEl);
+  }
+
+  window.addEventListener('resize', resize);
+  init();
+  animate();
+})();
+
+// ─── LEAFLET MAP ─────────────────────────────────────────
+;(async function () {
+  const mapEl = document.getElementById('leaflet-map');
+  if (!mapEl || typeof L === 'undefined') return;
+
+  const siteCards = document.querySelectorAll('.site-card');
+
+  // Site metadata
+  const sites = {
+    menorca:  { center: [39.95, 4.05],  zoom: 10, label: 'Menorca',  culture: 'Balearic Islands — Talayotic culture', query: 'Menorca island Spain'  },
+    mallorca: { center: [39.62, 2.95],  zoom: 9,  label: 'Mallorca', culture: 'Balearic Islands — Talayotic culture', query: 'Mallorca island Spain'  },
+    sardinia: { center: [40.12, 9.07],  zoom: 8,  label: 'Sardinia', culture: 'Italy — Nuragic culture',              query: 'Sardinia island Italy'  },
+  };
+
+  // Polygon styles
+  const styleDefault = { color: '#c4a882', weight: 1.5, fillColor: '#c4a882', fillOpacity: 0.20 };
+  const styleActive  = { color: '#4a5240', weight: 2,   fillColor: '#4a5240', fillOpacity: 0.55 };
+
+  // Init map
+  const map = L.map('leaflet-map', {
+    minZoom: 4, maxZoom: 12,
+    scrollWheelZoom: false,
+    zoomControl: true,
+  });
+
+  // ── Vista general: cambia aquí para mover el encuadre ──
+  const overviewCenter = [40.0, 6.5];
+  const overviewZoom   = 6;
+  map.setView(overviewCenter, overviewZoom);
+
+  // CartoDB Voyager tiles
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd', maxZoom: 20,
+  }).addTo(map);
+
+  // Fetch real island outline from Nominatim OSM
+  async function fetchShape(query) {
+    try {
+      const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=geojson&polygon_geojson=1&limit=1&polygon_threshold=0.005`;
+      const res = await fetch(url, { headers: { 'Accept-Language': 'en' } });
+      const data = await res.json();
+      const geom = data.features[0]?.geometry;
+      if (!geom) return null;
+      // If MultiPolygon, keep only the largest polygon (main island)
+      if (geom.type === 'MultiPolygon') {
+        geom.coordinates = [geom.coordinates.reduce((a, b) =>
+          b[0].length > a[0].length ? b : a
+        )];
+      }
+      return geom;
+    } catch (e) { return null; }
+  }
+
+  // Load all island shapes in parallel
+  const shapes = await Promise.all(
+    Object.values(sites).map(s => fetchShape(s.query))
+  );
+
+  // Create GeoJSON layers
+  const polygons = {};
+  Object.keys(sites).forEach((key, i) => {
+    if (!shapes[i]) return;
+    const layer = L.geoJSON({ type: 'Feature', geometry: shapes[i] }, {
+      style: styleDefault,
+    }).addTo(map);
+    polygons[key] = layer;
+    layer.on('click', () => { userInteracted = true; clearTimeout(timer); activate(key, false); });
+    layer.bindPopup(`<h4>${sites[key].label}</h4><p class="pop-culture">${sites[key].culture}</p>`);
+  });
+
+  // Activate site
+  let userInteracted = false;
+  function activate(name, flyTo = true) {
+    Object.entries(polygons).forEach(([key, p]) => p.setStyle(key === name ? styleActive : styleDefault));
+    siteCards.forEach(c => c.classList.toggle('active', c.dataset.for === name));
+    if (flyTo) map.flyTo(sites[name].center, sites[name].zoom, { duration: 1.2 });
+  }
+
+  // Card clicks
+  siteCards.forEach(c => {
+    c.addEventListener('click', () => {
+      userInteracted = true;
+      clearTimeout(timer);
+      activate(c.dataset.for, true);
+    });
+  });
+
+  // ── Auto-cycle: 10s overview → 5s per island → repeat ──
+  const siteList = ['menorca', 'mallorca', 'sardinia'];
+  let timer = null;
+
+  function showOverview() {
+    Object.values(polygons).forEach(p => p.setStyle(styleDefault));
+    siteCards.forEach(c => c.classList.remove('active'));
+    map.flyTo(overviewCenter, overviewZoom, { duration: 1.4 });
+  }
+
+  function runCycle() {
+    if (userInteracted) return;
+    showOverview();
+    let step = 0;
+    function next() {
+      if (userInteracted) return;
+      if (step < siteList.length) {
+        activate(siteList[step], true);
+        step++;
+        timer = setTimeout(next, 5000);
+      } else {
+        runCycle();
+      }
+    }
+    timer = setTimeout(next, 10000);
+  }
+
+  const mapSection = document.querySelector('.section--map');
+  if (mapSection) {
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !userInteracted) {
+        runCycle();
+      } else {
+        clearTimeout(timer);
+        showOverview();
+      }
+    }, { threshold: 0.3 }).observe(mapSection);
+  }
+})();

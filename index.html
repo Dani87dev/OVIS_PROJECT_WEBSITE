@@ -9,8 +9,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin=""/>
 </head>
 <body>
+<div class="scroll-progress"></div>
 
 <!-- NAVBAR -->
 <nav class="navbar">
@@ -54,6 +56,7 @@
 <!-- HERO -->
 <header class="hero" id="home">
     <div class="hero-bg"></div>
+    <canvas class="hero-particles"></canvas>
     <div class="hero-overlay"></div>
     <div class="hero-content">
         <p class="hero-eyebrow">Marie Skłodowska-Curie Actions Fellowship</p>
@@ -80,22 +83,22 @@
 <section class="intro-strip">
     <div class="intro-grid">
         <div class="intro-stat">
-            <span class="stat-number">3</span>
+            <span class="stat-number" data-count="3">3</span>
             <span class="stat-label" data-i18n="intro.islands">Islands studied</span>
         </div>
         <div class="intro-divider"></div>
         <div class="intro-stat">
-            <span class="stat-number">1500 years</span>
+            <span class="stat-number" data-count="1500" data-suffix=" years">1500 years</span>
             <span class="stat-label" data-i18n="intro.periods">Chronological scope</span>
         </div>
         <div class="intro-divider"></div>
         <div class="intro-stat">
-            <span class="stat-number">150+</span>
+            <span class="stat-number" data-count="150" data-suffix="+">150+</span>
             <span class="stat-label" data-i18n="intro.samples">Number of individuals</span>
         </div>
         <div class="intro-divider"></div>
         <div class="intro-stat">
-            <span class="stat-number">1200+</span>
+            <span class="stat-number" data-count="1200" data-suffix="+">1200+</span>
             <span class="stat-label" data-i18n="intro.partners">Faunal samples</span>
         </div>
     </div>
@@ -104,15 +107,15 @@
 <!-- ABOUT OVIS (summary) -->
 <section class="section section--alt" id="about">
     <div class="section-inner">
-        <div class="section-header">
+        <div class="section-header reveal">
             <h2 class="section-title" data-i18n="project.title">About OVIS</h2>
         </div>
-        <div class="project-layout">
+        <div class="project-layout reveal">
             <div class="project-text">
                 <h3 class="project-question" data-i18n="project.q1">What is OVIS?</h3>
-                <p data-i18n="project.p1">OVIS (Origins of Variability in Island Systems. Unraveling livestock diet and mobility accross the Bronze-Irone Age transition) is a Marie Skłodowska-Curie Actions project focused on understanding how island communities in the Western Mediterranean —such as the Balearic Islands and Sardinia— transformed during the transition from the Bronze Age to the Iron Age. It mainly analyses animal remains to reconstruct how people managed livestock, used resources, and adapted to socio-economic, political, environmental and climatic changes..</p>
+                <p data-i18n="project.p1">OVIS (Origins of Variability in Island Systems. Unraveling livestock diet and mobility accross the Bronze-Irone Age transition) is a Marie Skłodowska-Curie Actions project focused on understanding how island communities in the Western Mediterranean —such as the Balearic Islands and Sardinia— transformed during the transition from the Bronze Age to the Iron Age. It mainly analyses animal remains to reconstruct how people managed livestock, used resources, and adapted to socio-economic, political, environmental and climatic changes.</p>
                 <h3 class="project-question" data-i18n="project.q2">Why does it matter?</h3>
-                <p data-i18n="project.p2">This study Will help identify environmental changes, episodes of drought, and the strategies communities used to adapt, as well as the impact of new knowledge, technologies, and external contacts. Its main goa lis to understand how these populations responded to climatic variability, especially during the Bronze-Iron Age transition. This knowledge is key for addressing current climate challenges, particularly in island contexts, which are especially vulnerable to such impacts.</p>
+                <p data-i18n="project.p2">This study will help identify environmental changes, episodes of drought, and the strategies communities used to adapt, as well as the impact of new knowledge, technologies, and external contacts. Its main goa lis to understand how these populations responded to climatic variability, especially during the Bronze-Iron Age transition. This knowledge is key for addressing current climate challenges, particularly in island contexts, which are especially vulnerable to such impacts.</p>
                 <a href="ovis.html" class="btn-primary" style="display:inline-block;margin-top:28px;" data-i18n="about.more">Read more about the project →</a>
             </div>
             <div class="project-sidebar">
@@ -137,12 +140,43 @@
     </div>
 </section>
 
+<!-- INTERACTIVE MAP -->
+<section class="section section--map" id="sites">
+    <div class="section-inner">
+        <div class="section-header reveal">
+            <p class="section-eyebrow">Study Areas</p>
+            <h2 class="section-title">Research Sites</h2>
+            <p class="section-desc">Three island systems across the Western Mediterranean — connected by Bronze and Iron Age pastoral networks.</p>
+        </div>
+        <div class="map-wrapper reveal">
+            <div id="leaflet-map" class="leaflet-map-container"></div>
+            <div class="site-info-panel">
+                <div class="site-card" data-for="menorca">
+                    <h3>Menorca</h3>
+                    <p class="site-culture">Balearic Islands — <em>Talayotic culture</em></p>
+                    <p class="site-desc">Bronze & Iron Age settlements with distinctive talayot towers and rich faunal assemblages that record centuries of pastoral change.</p>
+                </div>
+                <div class="site-card" data-for="sardinia">
+                    <h3>Sardinia</h3>
+                    <p class="site-culture">Italy — <em>Nuragic culture</em></p>
+                    <p class="site-desc">Iconic nuraghe stone structures and complex pastoral societies with evidence of long-range Mediterranean trade networks.</p>
+                </div>
+                <div class="site-card" data-for="mallorca">
+                    <h3>Mallorca</h3>
+                    <p class="site-culture">Balearic Islands — <em>Talayotic culture</em></p>
+                    <p class="site-desc">The largest Balearic island, with major Talayotic settlements and faunal assemblages key to understanding Bronze–Iron Age pastoral transitions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- NEWS SECTION: OVIS + ARQUEO side by side -->
 <section class="section" id="news">
     <div class="section-inner">
 
         <!-- OVIS Project News -->
-        <div class="dual-news-block">
+        <div class="dual-news-block reveal">
             <p class="block-eyebrow" data-i18n="news.ovis.eyebrow">Project Updates</p>
             <h2 class="block-title">
                 <span data-i18n="news.ovis.title">Latest from OVIS</span>
@@ -173,7 +207,7 @@
         </div>
 
         <!-- Archaeology News -->
-        <div class="dual-news-block">
+        <div class="dual-news-block reveal reveal--delay-2">
             <p class="block-eyebrow" data-i18n="news.arqueo.eyebrow">Field &amp; Science</p>
             <h2 class="block-title">
                 <span data-i18n="news.arqueo.title">Archaeology News</span>
@@ -209,12 +243,12 @@
 <!-- DISCUSSION / FORUM -->
 <section class="section section--alt" id="discussion">
     <div class="section-inner">
-        <div class="section-header">
+        <div class="section-header reveal">
             <p class="section-eyebrow" data-i18n="nav.discussion">Discussion</p>
             <h2 class="section-title" data-i18n="disc.title">Project Forum</h2>
             <p class="section-desc" data-i18n="disc.desc">A space for researchers and collaborators to share questions and reflections on the OVIS project.</p>
         </div>
-        <div class="threads">
+        <div class="threads reveal">
             <div class="thread">
                 <div class="thread-header">
                     <h3 class="thread-title" data-i18n="disc.thread1">Livestock diet &amp; mobility results</h3>
@@ -283,6 +317,7 @@
     </div>
 </footer>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script src="script.js"></script>
 </body>
 </html>
