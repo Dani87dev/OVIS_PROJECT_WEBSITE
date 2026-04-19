@@ -443,69 +443,6 @@ document.head.appendChild(navStyle);
   }, { passive: true });
 })();
 
-// ─── HERO PARTICLE CANVAS ─────────────────────────────────
-;(function () {
-  const canvas = document.querySelector('.hero-particles');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, particles = [], animId;
-
-  function resize() {
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-  }
-
-  class Particle {
-    constructor() { this.reset(true); }
-    reset(anywhere) {
-      this.x     = Math.random() * W;
-      this.y     = anywhere ? Math.random() * H : H + 4;
-      this.size  = Math.random() * 2.4 + 0.6;
-      this.vx    = (Math.random() - 0.5) * 0.28;
-      this.vy    = -(Math.random() * 0.45 + 0.1);
-      this.alpha = Math.random() * 0.18 + 0.05;
-      this.life  = 1;
-      this.decay = Math.random() * 0.003 + 0.001;
-    }
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-      this.life -= this.decay;
-      if (this.life <= 0 || this.y < -4) this.reset(false);
-    }
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(255,255,255,${this.alpha * this.life})`;
-      ctx.fill();
-    }
-  }
-
-  function init() {
-    resize();
-    particles = Array.from({ length: 100 }, () => new Particle());
-  }
-
-  function animate() {
-    ctx.clearRect(0, 0, W, H);
-    particles.forEach(p => { p.update(); p.draw(); });
-    animId = requestAnimationFrame(animate);
-  }
-
-  // Pause when hero leaves viewport (save CPU)
-  const heroEl = document.querySelector('.hero');
-  if (heroEl) {
-    new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting) { animate(); }
-      else { cancelAnimationFrame(animId); }
-    }).observe(heroEl);
-  }
-
-  window.addEventListener('resize', resize);
-  init();
-  animate();
-})();
-
 // ─── LEAFLET MAP ─────────────────────────────────────────
 ;(async function () {
   const mapEl = document.getElementById('leaflet-map');
