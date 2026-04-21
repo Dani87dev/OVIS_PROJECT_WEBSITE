@@ -1,6 +1,7 @@
 # 🏛️ OVIS Project — Website
 
 Static website for the **OVIS** research project (*Origins of Variability in Island Systems*), a Marie Skłodowska-Curie Actions fellowship led by Dr. Lua Valenzuela at Cardiff University.
+
 http://www.ovisproject.com
 
 ## About this project
@@ -14,7 +15,12 @@ I used [Claude](https://claude.ai) (Anthropic) as an assistant to speed up parts
 - Pure **HTML5 + CSS3 + Vanilla JS** — no frameworks, no build tools
 - Google Fonts — Cormorant Garamond + DM Sans
 - Images — [Unsplash](https://unsplash.com/license) (free license, no attribution required)
-- Hosted on **GitHub Pages** with custom domain
+
+## 🚀 Hosting & Deployment
+
+- Source code hosted on **GitHub**
+- Deployed via **Netlify** (connected to this repo — pushes to `main` trigger automatic deploys)
+- Custom domain managed through **Namecheap**, with DNS pointing to Netlify
 
 ## ✨ Features
 
