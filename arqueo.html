@@ -9,17 +9,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <style>
-        .news-carousel{position:relative;margin-top:32px}
-        .news-track{overflow:hidden}
-        .news-slides{display:flex;transition:transform 0.5s ease}
-        .news-slides > article{flex:0 0 100%;min-width:0}
-        .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);color:#fff;border:none;width:48px;height:48px;border-radius:50%;font-size:1.5rem;cursor:pointer;z-index:5;display:flex;align-items:center;justify-content:center;transition:background 0.2s}
-        .carousel-btn:hover{background:rgba(0,0,0,0.85)}
-        .carousel-btn.prev{left:16px}
-        .carousel-btn.next{right:16px}
-        .carousel-dots{display:flex;justify-content:center;gap:12px;margin-top:24px}
-        .carousel-dot{width:10px;height:10px;border-radius:50%;border:none;background:rgba(0,0,0,0.2);cursor:pointer;padding:0;transition:background 0.2s}
-        .carousel-dot.active{background:var(--accent-light,#7a8a4f)}
+        .news-grid-thumbs{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px;margin-top:32px}
+        .news-thumb-card{cursor:pointer;background:#fff;border:1px solid rgba(0,0,0,0.08);overflow:hidden;transition:transform 0.3s,box-shadow 0.3s;display:flex;flex-direction:column}
+        .news-thumb-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.12)}
+        .news-thumb-img{width:100%;aspect-ratio:3/4;object-fit:cover;display:block;background:#000}
+        .news-thumb-body{padding:20px 24px}
+        .news-thumb-body .news-tag{display:inline-block;font-size:0.75rem;letter-spacing:0.15em;text-transform:uppercase;background:rgba(122,138,79,0.12);color:var(--accent-light,#7a8a4f);padding:4px 10px;margin-bottom:8px}
+        .news-thumb-body time{display:block;font-size:0.85rem;opacity:0.6;margin-bottom:8px}
+        .news-thumb-body h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;line-height:1.3;margin:0}
+
+        .news-detail{display:none;background:#fff;border:1px solid rgba(0,0,0,0.08);margin-top:32px;padding:48px;position:relative}
+        .news-detail.open{display:block}
+        .news-detail-close{position:absolute;top:16px;right:16px;background:none;border:none;font-size:2rem;cursor:pointer;line-height:1;opacity:0.5;transition:opacity 0.2s}
+        .news-detail-close:hover{opacity:1}
+        .news-detail h2{font-family:'Cormorant Garamond',serif;font-size:2rem;margin:8px 0 24px}
+        .news-detail-img{max-width:500px;width:100%;height:auto;display:block;margin:0 auto 32px}
     </style>
 </head>
 <body>
@@ -74,50 +78,70 @@
         <div style="width:80px;height:3px;background:var(--accent-light,#7a8a4f);margin:24px auto 0"></div>
     </div>
 
-    <div class="news-carousel">
-        <button class="carousel-btn prev" id="carouselPrev" aria-label="Previous">‹</button>
-        <button class="carousel-btn next" id="carouselNext" aria-label="Next">›</button>
+    <!-- THUMBNAILS GRID -->
+    <div class="news-grid-thumbs">
 
-        <div class="news-track">
-            <div class="news-slides" id="newsSlides">
-
-                <!-- News 1: X Jornades d'Arqueologia -->
-                <article class="arqueo-main-article">
-                    <img src="img/poster1.jpg" alt="Cartell X Jornades d'Arqueologia de les Illes Balears" style="width:100%;height:auto;display:block">
-                    <div class="arqueo-main-body">
-                        <span class="news-tag">Conferència</span>
-                        <time>20–21 de febrer de 2026</time>
-                        <h2>OVIS participa a les X Jornades d'Arqueologia de les Illes Balears</h2>
-                        <p>El passat mes de febrer varen tenir lloc a Palma (Mallorca, Illes Balears, Espanya) les X Jornades d'Arqueologia de les Illes Balears, organitzades per la Secció d'Arqueologia del Col·legi d'Historiadors de Balears.</p>
-                        <p>En el marc de les jornades, es va presentar el projecte OVIS davant la comunitat arqueològica que treballa a les Illes Balears mitjançant el pòster titulat "OVIS: Origins of Variability in Island Systems. Unraveling livestock diet and mobility across the Bronze-Iron Age transition". La presentació va anar a càrrec de la research fellow Dra. Lua Valenzuela-Suau i del supervisor del projecte, Prof. Richard Madgwick. Durant la sessió, es varen poder exposar els principals objectius del projecte, la metodologia seleccionada i els resultats esperats.</p>
-                        <p>Igualment, es varen presentar diversos estudis arqueozoològics previs que constitueixen el punt de partida de la recerca desenvolupada dins el projecte OVIS. Concretament, es varen donar a conèixer els treballs "Explotació ramadera i gestió de l'entorn al poblat de navetes de Clariana (Ciutadella, Menorca): integració de dades faunístiques, isotòpiques i de microdesgast dentari" (Dra. Lua Valenzuela-Suau i Dr. Damià Ramis) i "Animals i ritualitat a la cova núm. 45 de Calescoves (Alaior, Menorca)" (Dra. Lua Valenzuela-Suau, Dra. Sonia Carbonell i Dra. Margalida Antònia Coll).</p>
-                        <p>La participació en aquestes jornades ha representat una excel·lent oportunitat per compartir els primers plantejaments del projecte OVIS i establir espais de debat amb investigadors i investigadores especialitzats en la prehistòria balear.</p>
-                    </div>
-                </article>
-
-                <!-- News 2: XIII Cicle Víctor Guerrero -->
-                <article class="arqueo-main-article">
-                    <img src="img/poster3.jpeg" alt="Cartell XIII Cicle Víctor Guerrero" style="width:100%;height:auto;display:block">
-                    <div class="arqueo-main-body">
-                        <span class="news-tag">Conferència</span>
-                        <time>25 de febrer de 2026</time>
-                        <h2>Participem al XIII Cicle de Seminaris Víctor Guerrero de la Universitat de les Illes Balears</h2>
-                        <p>El passat mes de febrer vam tenir l'oportunitat de participar en el "XIII Cicle de Seminaris Víctor Guerrero", organitzat pel Departament de Ciències Històriques i Teoria de les Arts de la Universitat de les Illes Balears.</p>
-                        <p>La conferència, titulada "Uniformitat o diversitat? La gestió ramadera a les Illes Balears durant l'Edat del Bronze", va servir per presentar un estat de la qüestió sobre els coneixements actuals relacionats amb la gestió ramadera durant aquest període prehistòric. La ponència va posar especial atenció a les dades obtingudes mitjançant la zooarqueologia, els isòtops estables i els estudis de microdesgast dentari, eines clau per entendre l'alimentació, la mobilitat i les estratègies de maneig dels ramats.</p>
-                        <p>Aquesta recerca constitueix el punt de partida del projecte OVIS, centrat en l'estudi de les pràctiques ramaderes i les dinàmiques socioeconòmiques de les comunitats de les Illes Balears durant la prehistòria recent.</p>
-                        <p>Volem agrair a l'organització la invitació i l'oportunitat de compartir i debatre aquestes línies de recerca en el marc del seminari.</p>
-                    </div>
-                </article>
-
-                <!-- Slide 3: només pòster -->
-                <article class="arqueo-main-article">
-                    <img src="img/poster2.jpg" alt="Pòster del projecte OVIS" style="width:100%;height:auto;display:block">
-                </article>
-
+        <div class="news-thumb-card" data-news="1">
+            <img src="img/poster1.jpg" alt="Cartell X Jornades d'Arqueologia" class="news-thumb-img">
+            <div class="news-thumb-body">
+                <span class="news-tag">Conferència</span>
+                <time>20–21 de febrer de 2026</time>
+                <h3>OVIS participa a les X Jornades d'Arqueologia de les Illes Balears</h3>
             </div>
         </div>
 
-        <div class="carousel-dots" id="carouselDots"></div>
+        <div class="news-thumb-card" data-news="2">
+            <img src="img/poster3.jpeg" alt="Cartell XIII Cicle Víctor Guerrero" class="news-thumb-img">
+            <div class="news-thumb-body">
+                <span class="news-tag">Conferència</span>
+                <time>25 de febrer de 2026</time>
+                <h3>Participem al XIII Cicle de Seminaris Víctor Guerrero</h3>
+            </div>
+        </div>
+
+        <div class="news-thumb-card" data-news="3">
+            <img src="img/poster2.jpg" alt="Pòster del projecte OVIS" class="news-thumb-img">
+            <div class="news-thumb-body">
+                <span class="news-tag">Pòster</span>
+                <time>Febrer 2026</time>
+                <h3>Pòster del projecte OVIS</h3>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- DETAIL PANELS -->
+    <div class="news-detail" id="news-1">
+        <button class="news-detail-close" aria-label="Tancar">×</button>
+        <img src="img/poster1.jpg" alt="Cartell X Jornades d'Arqueologia" class="news-detail-img">
+        <span class="news-tag">Conferència</span>
+        <time>20–21 de febrer de 2026</time>
+        <h2>OVIS participa a les X Jornades d'Arqueologia de les Illes Balears</h2>
+        <p>El passat mes de febrer varen tenir lloc a Palma (Mallorca, Illes Balears, Espanya) les X Jornades d'Arqueologia de les Illes Balears, organitzades per la Secció d'Arqueologia del Col·legi d'Historiadors de Balears.</p>
+        <p>En el marc de les jornades, es va presentar el projecte OVIS davant la comunitat arqueològica que treballa a les Illes Balears mitjançant el pòster titulat "OVIS: Origins of Variability in Island Systems. Unraveling livestock diet and mobility across the Bronze-Iron Age transition". La presentació va anar a càrrec de la research fellow Dra. Lua Valenzuela-Suau i del supervisor del projecte, Prof. Richard Madgwick. Durant la sessió, es varen poder exposar els principals objectius del projecte, la metodologia seleccionada i els resultats esperats.</p>
+        <p>Igualment, es varen presentar diversos estudis arqueozoològics previs que constitueixen el punt de partida de la recerca desenvolupada dins el projecte OVIS. Concretament, es varen donar a conèixer els treballs "Explotació ramadera i gestió de l'entorn al poblat de navetes de Clariana (Ciutadella, Menorca): integració de dades faunístiques, isotòpiques i de microdesgast dentari" (Dra. Lua Valenzuela-Suau i Dr. Damià Ramis) i "Animals i ritualitat a la cova núm. 45 de Calescoves (Alaior, Menorca)" (Dra. Lua Valenzuela-Suau, Dra. Sonia Carbonell i Dra. Margalida Antònia Coll).</p>
+        <p>La participació en aquestes jornades ha representat una excel·lent oportunitat per compartir els primers plantejaments del projecte OVIS i establir espais de debat amb investigadors i investigadores especialitzats en la prehistòria balear.</p>
+    </div>
+
+    <div class="news-detail" id="news-2">
+        <button class="news-detail-close" aria-label="Tancar">×</button>
+        <img src="img/poster3.jpeg" alt="Cartell XIII Cicle Víctor Guerrero" class="news-detail-img">
+        <span class="news-tag">Conferència</span>
+        <time>25 de febrer de 2026</time>
+        <h2>Participem al XIII Cicle de Seminaris Víctor Guerrero de la Universitat de les Illes Balears</h2>
+        <p>El passat mes de febrer vam tenir l'oportunitat de participar en el "XIII Cicle de Seminaris Víctor Guerrero", organitzat pel Departament de Ciències Històriques i Teoria de les Arts de la Universitat de les Illes Balears.</p>
+        <p>La conferència, titulada "Uniformitat o diversitat? La gestió ramadera a les Illes Balears durant l'Edat del Bronze", va servir per presentar un estat de la qüestió sobre els coneixements actuals relacionats amb la gestió ramadera durant aquest període prehistòric. La ponència va posar especial atenció a les dades obtingudes mitjançant la zooarqueologia, els isòtops estables i els estudis de microdesgast dentari, eines clau per entendre l'alimentació, la mobilitat i les estratègies de maneig dels ramats.</p>
+        <p>Aquesta recerca constitueix el punt de partida del projecte OVIS, centrat en l'estudi de les pràctiques ramaderes i les dinàmiques socioeconòmiques de les comunitats de les Illes Balears durant la prehistòria recent.</p>
+        <p>Volem agrair a l'organització la invitació i l'oportunitat de compartir i debatre aquestes línies de recerca en el marc del seminari.</p>
+    </div>
+
+    <div class="news-detail" id="news-3">
+        <button class="news-detail-close" aria-label="Tancar">×</button>
+        <img src="img/poster2.jpg" alt="Pòster del projecte OVIS" class="news-detail-img" style="max-width:800px">
+        <span class="news-tag">Pòster</span>
+        <time>Febrer 2026</time>
+        <h2>Pòster del projecte OVIS</h2>
+        <p>Pòster científic del projecte OVIS — "Origins of Variability in Island Systems. Unraveling livestock diet and mobility across the Bronze-Iron Age transition" — presentat a les X Jornades d'Arqueologia de les Illes Balears.</p>
     </div>
 
 </section>
@@ -149,28 +173,24 @@
 <script src="script.js"></script>
 <script>
 (function(){
-    const slides = document.getElementById('newsSlides');
-    const total = slides.children.length;
-    const dotsContainer = document.getElementById('carouselDots');
-    let current = 0;
-
-    for(let i = 0; i < total; i++){
-        const dot = document.createElement('button');
-        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-        dot.addEventListener('click', () => goTo(i));
-        dotsContainer.appendChild(dot);
-    }
-
-    function goTo(i){
-        current = (i + total) % total;
-        slides.style.transform = 'translateX(-' + (current * 100) + '%)';
-        dotsContainer.querySelectorAll('.carousel-dot').forEach((d, idx) => {
-            d.classList.toggle('active', idx === current);
+    document.querySelectorAll('.news-thumb-card').forEach(card => {
+        card.addEventListener('click', () => {
+            const id = card.dataset.news;
+            const detail = document.getElementById('news-' + id);
+            document.querySelectorAll('.news-detail').forEach(d => {
+                if(d !== detail) d.classList.remove('open');
+            });
+            detail.classList.toggle('open');
+            if(detail.classList.contains('open')){
+                detail.scrollIntoView({behavior:'smooth', block:'start'});
+            }
         });
-    }
-
-    document.getElementById('carouselPrev').addEventListener('click', () => goTo(current - 1));
-    document.getElementById('carouselNext').addEventListener('click', () => goTo(current + 1));
+    });
+    document.querySelectorAll('.news-detail-close').forEach(btn => {
+        btn.addEventListener('click', () => {
+            btn.closest('.news-detail').classList.remove('open');
+        });
+    });
 })();
 </script>
 </body>
