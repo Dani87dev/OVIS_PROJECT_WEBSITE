@@ -8,6 +8,19 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .news-carousel{position:relative;margin-top:32px}
+        .news-track{overflow:hidden}
+        .news-slides{display:flex;transition:transform 0.5s ease}
+        .news-slides > article{flex:0 0 100%;min-width:0}
+        .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);color:#fff;border:none;width:48px;height:48px;border-radius:50%;font-size:1.5rem;cursor:pointer;z-index:5;display:flex;align-items:center;justify-content:center;transition:background 0.2s}
+        .carousel-btn:hover{background:rgba(0,0,0,0.85)}
+        .carousel-btn.prev{left:16px}
+        .carousel-btn.next{right:16px}
+        .carousel-dots{display:flex;justify-content:center;gap:12px;margin-top:24px}
+        .carousel-dot{width:10px;height:10px;border-radius:50%;border:none;background:rgba(0,0,0,0.2);cursor:pointer;padding:0;transition:background 0.2s}
+        .carousel-dot.active{background:var(--accent-light,#7a8a4f)}
+    </style>
 </head>
 <body>
 
@@ -19,7 +32,7 @@
     </div>
     <ul class="nav-links">
         <li><a href="ovis.html">OVIS</a></li>
-        <li><a href="arqueo.html" class="active">Archaeology News</a></li>
+        <li><a href="arqueo.html" class="active">Project News</a></li>
         <li><a href="institutions.html">Institutions</a></li>
         <li><a href="contact.html">Contact</a></li>
     </ul>
@@ -37,7 +50,7 @@
 <div class="mobile-menu" id="mobileMenu">
     <ul>
         <li><a href="ovis.html">OVIS</a></li>
-        <li><a href="arqueo.html">Archaeology News</a></li>
+        <li><a href="arqueo.html">Project News</a></li>
         <li><a href="institutions.html">Institutions</a></li>
         <li><a href="contact.html">Contact</a></li>
     </ul>
@@ -55,45 +68,56 @@
 <!-- MAIN CONTENT -->
 <section class="subpage-section">
 
-    <div class="section-header">
-        <p class="section-eyebrow">Project News</p>
-        <h2 class="section-title">Latest Updates</h2>
+    <div class="section-header" style="text-align:center;margin-bottom:48px">
+        <p class="section-eyebrow" style="font-size:1rem;letter-spacing:0.3em;font-weight:500">PROJECT NEWS</p>
+        <h2 class="section-title" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:600;margin-top:12px">Latest Updates</h2>
+        <div style="width:80px;height:3px;background:var(--accent-light,#7a8a4f);margin:24px auto 0"></div>
     </div>
 
-    <div style="display:grid;gap:64px;margin-top:32px">
+    <div class="news-carousel">
+        <button class="carousel-btn prev" id="carouselPrev" aria-label="Previous">‹</button>
+        <button class="carousel-btn next" id="carouselNext" aria-label="Next">›</button>
 
-        <!-- News 1: XIII Víctor Guerrero Seminar (most recent) -->
-        <article class="arqueo-main-article">
-    <div class="arqueo-main-img" style="background-image: url('img/poster1.jpg')"></div>
-    <div class="arqueo-main-body">
-        <span class="news-tag">Conferència</span>
-        <time>20–21 de febrer de 2026</time>
-        <h2>OVIS participa a les X Jornades d'Arqueologia de les Illes Balears</h2>
-        <p>El passat mes de febrer varen tenir lloc a Palma (Mallorca, Illes Balears, Espanya) les X Jornades d'Arqueologia de les Illes Balears, organitzades per la Secció d'Arqueologia del Col·legi d'Historiadors de Balears.</p>
-        <p>En el marc de les jornades, es va presentar el projecte OVIS davant la comunitat arqueològica que treballa a les Illes Balears mitjançant el pòster titulat "OVIS: Origins of Variability in Island Systems. Unraveling livestock diet and mobility across the Bronze-Iron Age transition". La presentació va anar a càrrec de la research fellow Dra. Lua Valenzuela-Suau i del supervisor del projecte, Prof. Richard Madgwick. Durant la sessió, es varen poder exposar els principals objectius del projecte, la metodologia seleccionada i els resultats esperats.</p>
-        <p>Igualment, es varen presentar diversos estudis arqueozoològics previs que constitueixen el punt de partida de la recerca desenvolupada dins el projecte OVIS. Concretament, es varen donar a conèixer els treballs "Explotació ramadera i gestió de l'entorn al poblat de navetes de Clariana (Ciutadella, Menorca): integració de dades faunístiques, isotòpiques i de microdesgast dentari" (Dra. Lua Valenzuela-Suau i Dr. Damià Ramis) i "Animals i ritualitat a la cova núm. 45 de Calescoves (Alaior, Menorca)" (Dra. Lua Valenzuela-Suau, Dra. Sonia Carbonell i Dra. Margalida Antònia Coll).</p>
-        <p>La participació en aquestes jornades ha representat una excel·lent oportunitat per compartir els primers plantejaments del projecte OVIS i establir espais de debat amb investigadors i investigadores especialitzats en la prehistòria balear.</p>
-        <figure style="margin-top:32px">
-            <img src="img/poster-ovis.jpg" alt="Pòster del projecte OVIS presentat a les X Jornades d'Arqueologia de les Illes Balears" style="width:100%;height:auto;display:block;border:1px solid rgba(0,0,0,0.08)">
-            <figcaption style="margin-top:12px;font-size:0.9rem;font-style:italic;opacity:0.7;text-align:center">Pòster presentat a les X Jornades d'Arqueologia de les Illes Balears.</figcaption>
-        </figure>
-    </div>
-</article>
+        <div class="news-track">
+            <div class="news-slides" id="newsSlides">
 
-        <!-- News 2: X Jornades d'Arqueologia de les Illes Balears -->
-      <article class="arqueo-main-article">
-    <div class="arqueo-main-img" style="background-image: url('img/poster3.jpg')"></div>
-    <div class="arqueo-main-body">
-        <span class="news-tag">Conferència</span>
-        <time>25 de febrer de 2026</time>
-        <h2>Participem al XIII Cicle de Seminaris Víctor Guerrero de la Universitat de les Illes Balears</h2>
-        <p>El passat mes de febrer vam tenir l'oportunitat de participar en el "XIII Cicle de Seminaris Víctor Guerrero", organitzat pel Departament de Ciències Històriques i Teoria de les Arts de la Universitat de les Illes Balears.</p>
-        <p>La conferència, titulada "Uniformitat o diversitat? La gestió ramadera a les Illes Balears durant l'Edat del Bronze", va servir per presentar un estat de la qüestió sobre els coneixements actuals relacionats amb la gestió ramadera durant aquest període prehistòric. La ponència va posar especial atenció a les dades obtingudes mitjançant la zooarqueologia, els isòtops estables i els estudis de microdesgast dentari, eines clau per entendre l'alimentació, la mobilitat i les estratègies de maneig dels ramats.</p>
-        <p>Aquesta recerca constitueix el punt de partida del projecte OVIS, centrat en l'estudi de les pràctiques ramaderes i les dinàmiques socioeconòmiques de les comunitats de les Illes Balears durant la prehistòria recent.</p>
-        <p>Volem agrair a l'organització la invitació i l'oportunitat de compartir i debatre aquestes línies de recerca en el marc del seminari.</p>
-    </div>
-</article>
+                <!-- News 1: X Jornades d'Arqueologia -->
+                <article class="arqueo-main-article">
+                    <img src="img/poster1.jpg" alt="Cartell X Jornades d'Arqueologia de les Illes Balears" style="width:100%;height:auto;display:block">
+                    <div class="arqueo-main-body">
+                        <span class="news-tag">Conferència</span>
+                        <time>20–21 de febrer de 2026</time>
+                        <h2>OVIS participa a les X Jornades d'Arqueologia de les Illes Balears</h2>
+                        <p>El passat mes de febrer varen tenir lloc a Palma (Mallorca, Illes Balears, Espanya) les X Jornades d'Arqueologia de les Illes Balears, organitzades per la Secció d'Arqueologia del Col·legi d'Historiadors de Balears.</p>
+                        <p>En el marc de les jornades, es va presentar el projecte OVIS davant la comunitat arqueològica que treballa a les Illes Balears mitjançant el pòster titulat "OVIS: Origins of Variability in Island Systems. Unraveling livestock diet and mobility across the Bronze-Iron Age transition". La presentació va anar a càrrec de la research fellow Dra. Lua Valenzuela-Suau i del supervisor del projecte, Prof. Richard Madgwick. Durant la sessió, es varen poder exposar els principals objectius del projecte, la metodologia seleccionada i els resultats esperats.</p>
+                        <p>Igualment, es varen presentar diversos estudis arqueozoològics previs que constitueixen el punt de partida de la recerca desenvolupada dins el projecte OVIS. Concretament, es varen donar a conèixer els treballs "Explotació ramadera i gestió de l'entorn al poblat de navetes de Clariana (Ciutadella, Menorca): integració de dades faunístiques, isotòpiques i de microdesgast dentari" (Dra. Lua Valenzuela-Suau i Dr. Damià Ramis) i "Animals i ritualitat a la cova núm. 45 de Calescoves (Alaior, Menorca)" (Dra. Lua Valenzuela-Suau, Dra. Sonia Carbonell i Dra. Margalida Antònia Coll).</p>
+                        <p>La participació en aquestes jornades ha representat una excel·lent oportunitat per compartir els primers plantejaments del projecte OVIS i establir espais de debat amb investigadors i investigadores especialitzats en la prehistòria balear.</p>
+                    </div>
+                </article>
 
+                <!-- News 2: XIII Cicle Víctor Guerrero -->
+                <article class="arqueo-main-article">
+                    <img src="img/poster3.jpeg" alt="Cartell XIII Cicle Víctor Guerrero" style="width:100%;height:auto;display:block">
+                    <div class="arqueo-main-body">
+                        <span class="news-tag">Conferència</span>
+                        <time>25 de febrer de 2026</time>
+                        <h2>Participem al XIII Cicle de Seminaris Víctor Guerrero de la Universitat de les Illes Balears</h2>
+                        <p>El passat mes de febrer vam tenir l'oportunitat de participar en el "XIII Cicle de Seminaris Víctor Guerrero", organitzat pel Departament de Ciències Històriques i Teoria de les Arts de la Universitat de les Illes Balears.</p>
+                        <p>La conferència, titulada "Uniformitat o diversitat? La gestió ramadera a les Illes Balears durant l'Edat del Bronze", va servir per presentar un estat de la qüestió sobre els coneixements actuals relacionats amb la gestió ramadera durant aquest període prehistòric. La ponència va posar especial atenció a les dades obtingudes mitjançant la zooarqueologia, els isòtops estables i els estudis de microdesgast dentari, eines clau per entendre l'alimentació, la mobilitat i les estratègies de maneig dels ramats.</p>
+                        <p>Aquesta recerca constitueix el punt de partida del projecte OVIS, centrat en l'estudi de les pràctiques ramaderes i les dinàmiques socioeconòmiques de les comunitats de les Illes Balears durant la prehistòria recent.</p>
+                        <p>Volem agrair a l'organització la invitació i l'oportunitat de compartir i debatre aquestes línies de recerca en el marc del seminari.</p>
+                    </div>
+                </article>
+
+                <!-- Slide 3: només pòster -->
+                <article class="arqueo-main-article">
+                    <img src="img/poster2.jpg" alt="Pòster del projecte OVIS" style="width:100%;height:auto;display:block">
+                </article>
+
+            </div>
+        </div>
+
+        <div class="carousel-dots" id="carouselDots"></div>
     </div>
 
 </section>
@@ -123,5 +147,31 @@
 </footer>
 
 <script src="script.js"></script>
+<script>
+(function(){
+    const slides = document.getElementById('newsSlides');
+    const total = slides.children.length;
+    const dotsContainer = document.getElementById('carouselDots');
+    let current = 0;
+
+    for(let i = 0; i < total; i++){
+        const dot = document.createElement('button');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(dot);
+    }
+
+    function goTo(i){
+        current = (i + total) % total;
+        slides.style.transform = 'translateX(-' + (current * 100) + '%)';
+        dotsContainer.querySelectorAll('.carousel-dot').forEach((d, idx) => {
+            d.classList.toggle('active', idx === current);
+        });
+    }
+
+    document.getElementById('carouselPrev').addEventListener('click', () => goTo(current - 1));
+    document.getElementById('carouselNext').addEventListener('click', () => goTo(current + 1));
+})();
+</script>
 </body>
 </html>
