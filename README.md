@@ -12,19 +12,19 @@ A website built with HTML, CSS and JavaScript for an academic research project. 
 
 I used [Claude](https://claude.ai) (Anthropic) as an assistant to speed up parts of the frontend implementation.
 
-## 🛠️ Stack
+## Stack
 
 - Pure **HTML5 + CSS3 + Vanilla JS** — no frameworks, no build tools
 - Google Fonts — Cormorant Garamond + DM Sans
 - Images — [Unsplash](https://unsplash.com/license) (free license, no attribution required)
 
-## 🚀 Hosting & Deployment
+## Hosting & Deployment
 
 - Source code hosted on **GitHub**
 - Deployed via **Netlify** (connected to this repo — pushes to `main` trigger automatic deploys)
 - Custom domain managed through **Namecheap**, with DNS pointing to Netlify
 
-## ✨ Features
+## Features
 
 - Fully responsive (mobile, tablet, desktop)
 - **4-language support** — English, Catalan, Spanish, Italian (client-side i18n, no dependencies)
