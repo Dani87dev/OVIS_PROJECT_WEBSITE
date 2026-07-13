@@ -860,6 +860,7 @@ img { display: block; max-width: 100%; }
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 48px;
+    align-items: start;
 }
 
 .footer-project {
@@ -880,19 +881,55 @@ img { display: block; max-width: 100%; }
     color: rgba(255,255,255,0.45);
 }
 
-.footer-links {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.footer-links a {
-    font-size: 0.87rem;
-    color: rgba(255,255,255,0.65);
+.footer-mail {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.45);
     transition: color 0.2s;
 }
 
-.footer-links a:hover { color: var(--white); }
+.footer-mail:hover { color: var(--white); }
+
+.footer-id {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.footer-mark { flex-shrink: 0; }
+
+.footer-mark--ovis {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+}
+
+.footer-mark--cardiff {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    background: var(--white);
+    border-radius: 8px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.footer-eu {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.footer-eu-flag {
+    flex-shrink: 0;
+    height: 40px;
+    width: auto;
+    border-radius: 4px;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.15);
+    margin-top: 3px;
+}
 
 .footer-eu p {
     font-size: 0.78rem;
