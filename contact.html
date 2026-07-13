@@ -73,7 +73,7 @@
 
             <!-- Info side -->
             <div class="contact-info">
-                <h3>Research Team</h3>
+                <h3 class="contact-heading">Research Team</h3>
                 <p>The OVIS project welcomes enquiries from researchers, students, journalists, and institutions
                     interested in the project's work. Response times may vary during fieldwork periods.</p>
 
@@ -82,7 +82,7 @@
                         <div class="contact-icon" aria-hidden="true">✉</div>
                         <div class="contact-item-text">
                             <strong>Email</strong>
-                            <span><a href="mailto:Valenzuela-SuauL@cardiff.ac.uk" style="color:var(--olive)">Valenzuela-SuauL@cardiff.ac.uk</a></span>
+                            <span><a href="mailto:Valenzuela-SuauL@cardiff.ac.uk">Valenzuela-SuauL@cardiff.ac.uk</a></span>
                         </div>
                     </div>
 
@@ -94,28 +94,25 @@
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-icon" aria-hidden="true">⟁</div>
+                        <div class="contact-icon contact-icon--text" aria-hidden="true">⟁</div>
                         <div class="contact-item-text">
                             <strong>ORCID</strong>
-                            <span><a href="https://orcid.org/0000-0003-0803-9201" target="_blank"
-                                     style="color:var(--olive)">0000-0003-0803-9201</a></span>
+                            <span><a href="https://orcid.org/0000-0003-0803-9201" target="_blank">0000-0003-0803-9201</a></span>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <div class="contact-icon" aria-hidden="true">R</div>
+                        <div class="contact-icon contact-icon--text" aria-hidden="true">R</div>
                         <div class="contact-item-text">
                             <strong>ResearchGate</strong>
-                            <span><a href="https://www.researchgate.net/profile/Lua-Valenzuela-Suau" target="_blank"
-                                     style="color:var(--olive)">Lua-Valenzuela-Suau</a></span>
+                            <span><a href="https://www.researchgate.net/profile/Lua-Valenzuela-Suau" target="_blank">Lua-Valenzuela-Suau</a></span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Form side -->
-            <div>
-                <h3 style="font-family:var(--font-serif);font-size:1.5rem;font-weight:400;margin-bottom:24px;">Send a
-                    message</h3>
+            <div class="contact-form-panel">
+                <h3 class="contact-heading">Send a message</h3>
                 <div class="contact-form" id="contactForm">
                     <div class="form-group">
                         <label for="name">Name</label>
@@ -140,8 +137,7 @@
                         <label for="message">Message</label>
                         <textarea id="message" placeholder="Your message…"></textarea>
                     </div>
-                    <button class="btn-primary" onclick="handleSubmit()"
-                            style="width:fit-content;cursor:pointer;border:none;">Send message
+                    <button class="btn-primary" onclick="handleSubmit()">Send message
                     </button>
                     <div class="contact-success" id="successMsg">
                         ✓ Thank you for your message. The research team will be in touch shortly.
