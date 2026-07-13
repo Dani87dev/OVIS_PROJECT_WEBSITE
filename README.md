@@ -2,7 +2,9 @@
 
 Static website for the **OVIS** research project (*Origins of Variability in Island Systems*), a Marie Skłodowska-Curie Actions fellowship led by Dr. Lua Valenzuela at Cardiff University.
 
-http://www.ovisproject.com
+🔗 http://www.ovisproject.com
+
+![OVIS project website preview](img/social-preview.png)
 
 ## About this project
 
@@ -26,17 +28,22 @@ I used [Claude](https://claude.ai) (Anthropic) as an assistant to speed up parts
 
 - Fully responsive (mobile, tablet, desktop)
 - **4-language support** — English, Catalan, Spanish, Italian (client-side i18n, no dependencies)
-- Sections: News, Project, Bibliography (with category filters), Discussion, Contact
+- Interactive map (Leaflet + live OpenStreetMap data) showing the Menorca, Mallorca and Sardinia field sites
+- Sections: News, Project, Institutions, Bibliography (with category filters), Discussion, Contact
 - Minimalist academic design — olive green & cream palette
 
 ## 📁 Project structure
 
 ```
-├── index.html       # Main page and content
-├── style.css        # All styles (CSS variables, responsive)
-├── script.js        # i18n translations + UI interactions
-└── img/
-    └── portada.jpg  # Hero image
+├── index.html         # Home page — hero, news, map
+├── ovis.html          # About the project, bibliography, discussion
+├── arqueo.html        # Archaeology news
+├── institutions.html  # Funder, host institution and partners
+├── contact.html       # Contact form and team details
+├── style.css          # All styles (CSS variables, responsive)
+├── script.js          # i18n translations + UI interactions
+├── CNAME              # Custom domain config for Netlify
+└── img/               # Hero images, logos and social preview
 ```
 
 ---
