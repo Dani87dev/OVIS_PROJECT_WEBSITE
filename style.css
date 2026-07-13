@@ -1179,16 +1179,21 @@ img { display: block; max-width: 100%; }
 .institution-card h3 { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 400; margin-bottom: 10px; }
 .institution-card p { font-size: 0.83rem; color: var(--ink-soft); line-height: 1.7; }
 
-.section-header--spaced { margin-top: 64px; }
-
-.institution-row {
-    display: flex;
+.institution-block {
+    display: grid;
+    grid-template-columns: 132px 1fr;
+    grid-template-areas:
+        "header header"
+        "logo   card";
+    column-gap: 80px;
+    row-gap: 24px;
     align-items: center;
-    gap: 80px;
-    margin-left: -212px;
 }
+.institution-block--spaced { margin-top: 64px; }
+.institution-block .section-header { grid-area: header; margin-bottom: 0; }
+
 .institution-feature {
-    flex: 1;
+    grid-area: card;
     background: var(--white);
     border: 1px solid var(--olive-pale);
     border-radius: 4px;
@@ -1198,7 +1203,7 @@ img { display: block; max-width: 100%; }
 .institution-feature-body p { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.7; }
 .institution-disclaimer { margin-top: 12px; font-size: 0.78rem; color: var(--ink-muted); }
 
-.institution-feature-logo { flex-shrink: 0; width: 132px; display: flex; align-items: center; justify-content: flex-end; }
+.institution-feature-logo { grid-area: logo; display: flex; align-items: center; justify-content: end; }
 .institution-feature-logo img { filter: drop-shadow(0 4px 8px rgba(28, 28, 26, 0.45)); }
 .institution-feature-logo--eu img { height: 88px; width: auto; max-width: none; display: block; }
 .institution-feature-logo--cardiff img { height: 96px; width: auto; display: block; }
@@ -1256,7 +1261,17 @@ img { display: block; max-width: 100%; }
     .researcher-avatar { width: 120px; height: 120px; }
     .page-hero { padding: 60px 24px 48px; }
     .subpage-section { padding: 60px 24px; }
-    .institution-feature { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .institution-block {
+        grid-template-columns: 1fr auto;
+        grid-template-areas:
+            "header logo"
+            "card   card";
+        column-gap: 16px;
+        row-gap: 16px;
+    }
+    .institution-feature-logo--eu img { height: 40px; }
+    .institution-feature-logo--cardiff img { height: 48px; }
+    .institution-feature-logo--uib img { height: 56px; }
 }
 
 /* =========================================================
