@@ -1179,6 +1179,30 @@ img { display: block; max-width: 100%; }
 .institution-card h3 { font-family: var(--font-serif); font-size: 1.1rem; font-weight: 400; margin-bottom: 10px; }
 .institution-card p { font-size: 0.83rem; color: var(--ink-soft); line-height: 1.7; }
 
+.section-header--spaced { margin-top: 64px; }
+
+.institution-feature {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background: var(--white);
+    border: 1px solid var(--olive-pale);
+    border-radius: 4px;
+    padding: 32px;
+}
+.institution-feature-body { flex: 1; }
+.institution-feature-body h3 { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 10px; }
+.institution-feature-body p { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.7; }
+.institution-disclaimer { margin-top: 12px; font-size: 0.78rem; color: var(--ink-muted); }
+
+.institution-feature-logo { flex-shrink: 0; display: flex; align-items: center; }
+.institution-feature-logo--eu { width: 90px; height: 44px; overflow: hidden; }
+.institution-feature-logo--eu img { height: 44px; width: auto; max-width: none; flex-shrink: 0; display: block; }
+.institution-feature-logo--cardiff img { height: 56px; width: auto; display: block; }
+.institution-feature-logo--uib img { height: 56px; width: auto; display: block; }
+
+.institution-logo-text--sm { font-size: 1rem; }
+
 /* ── Contact page ── */
 .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; margin-top: 40px; }
 .contact-info h3 { font-family: var(--font-serif); font-size: 1.5rem; font-weight: 400; margin-bottom: 16px; }
@@ -1213,6 +1237,7 @@ img { display: block; max-width: 100%; }
     .researcher-avatar { width: 120px; height: 120px; }
     .page-hero { padding: 60px 24px 48px; }
     .subpage-section { padding: 60px 24px; }
+    .institution-feature { flex-direction: column; align-items: flex-start; gap: 20px; }
 }
 
 /* =========================================================
