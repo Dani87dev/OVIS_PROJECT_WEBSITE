@@ -532,14 +532,14 @@ document.head.appendChild(navStyle);
 
   // Site metadata
   const sites = {
-    menorca:  { center: [39.95, 4.05],  zoom: 10, label: 'Menorca',  culture: 'Balearic Islands — Talayotic culture', query: 'Menorca island Spain'  },
-    mallorca: { center: [39.62, 2.95],  zoom: 9,  label: 'Mallorca', culture: 'Balearic Islands — Talayotic culture', query: 'Mallorca island Spain'  },
-    sardinia: { center: [40.12, 9.07],  zoom: 8,  label: 'Sardinia', culture: 'Italy — Nuragic culture',              query: 'Sardinia island Italy'  },
+    menorca:  { center: [39.95, 4.05],  zoom: 10, label: 'Menorca',  culture: 'Balearic Islands — Talayotic culture' },
+    mallorca: { center: [39.62, 2.95],  zoom: 9,  label: 'Mallorca', culture: 'Balearic Islands — Talayotic culture' },
+    sardinia: { center: [40.12, 9.07],  zoom: 8,  label: 'Sardinia', culture: 'Italy — Nuragic culture'              },
   };
 
   // Polygon styles
-  const styleDefault = { color: '#c4a882', weight: 1.5, fillColor: '#c4a882', fillOpacity: 0.20 };
-  const styleActive  = { color: '#4a5240', weight: 2,   fillColor: '#4a5240', fillOpacity: 0.55 };
+  const styleDefault = { color: '#c4a882', weight: 1.5, fillColor: '#c4a882', fillOpacity: 0.20, lineJoin: 'round', lineCap: 'round' };
+  const styleActive  = { color: '#4a5240', weight: 2,   fillColor: '#4a5240', fillOpacity: 0.55, lineJoin: 'round', lineCap: 'round' };
 
   // Init map
   const map = L.map('leaflet-map', {
@@ -554,44 +554,33 @@ document.head.appendChild(navStyle);
   map.setView(overviewCenter, overviewZoom);
 
   // CartoDB Voyager tiles
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd', maxZoom: 20,
   }).addTo(map);
 
-  // Fetch real island outline from Nominatim OSM
-  async function fetchShape(query) {
-    try {
-      const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=geojson&polygon_geojson=1&limit=1&polygon_threshold=0.005`;
-      const res = await fetch(url, { headers: { 'Accept-Language': 'en' } });
-      const data = await res.json();
-      const geom = data.features[0]?.geometry;
-      if (!geom) return null;
-      // If MultiPolygon, keep only the largest polygon (main island)
-      if (geom.type === 'MultiPolygon') {
-        geom.coordinates = [geom.coordinates.reduce((a, b) =>
-          b[0].length > a[0].length ? b : a
-        )];
-      }
-      return geom;
-    } catch (e) { return null; }
-  }
-
-  // Load all island shapes in parallel
-  const shapes = await Promise.all(
-    Object.values(sites).map(s => fetchShape(s.query))
-  );
+  // Island outlines pre-generated from Nominatim OSM (data/islands.json)
+  let shapes = {};
+  try {
+    const res = await fetch('data/islands.json');
+    shapes = await res.json();
+  } catch (e) { /* map stays usable without outlines */ }
 
   // Create GeoJSON layers
   const polygons = {};
-  Object.keys(sites).forEach((key, i) => {
-    if (!shapes[i]) return;
-    const layer = L.geoJSON({ type: 'Feature', geometry: shapes[i] }, {
+  Object.keys(sites).forEach(key => {
+    if (!shapes[key]) return;
+    const layer = L.geoJSON({ type: 'Feature', geometry: shapes[key] }, {
       style: styleDefault,
     }).addTo(map);
     polygons[key] = layer;
     layer.on('click', () => { userInteracted = true; clearTimeout(timer); activate(key, false); });
     layer.bindPopup(`<h4>${sites[key].label}</h4><p class="pop-culture">${sites[key].culture}</p>`);
+    layer.bindTooltip(sites[key].label, {
+      permanent: true,
+      direction: 'center',
+      className: 'island-label',
+    });
   });
 
   // Activate site
@@ -602,12 +591,18 @@ document.head.appendChild(navStyle);
     if (flyTo) map.flyTo(sites[name].center, sites[name].zoom, { duration: 1.2 });
   }
 
-  // Card clicks
+  // Card clicks + hover highlight of the matching island
   siteCards.forEach(c => {
     c.addEventListener('click', () => {
       userInteracted = true;
       clearTimeout(timer);
       activate(c.dataset.for, true);
+    });
+    c.addEventListener('mouseenter', () => {
+      polygons[c.dataset.for]?.setStyle(styleActive);
+    });
+    c.addEventListener('mouseleave', () => {
+      if (!c.classList.contains('active')) polygons[c.dataset.for]?.setStyle(styleDefault);
     });
   });
 
