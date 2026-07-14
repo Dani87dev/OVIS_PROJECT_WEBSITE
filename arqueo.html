@@ -125,10 +125,10 @@
         <a href="index.html" class="nav-title">Project OVIS</a>
     </div>
     <ul class="nav-links">
-        <li><a href="ovis.html">OVIS</a></li>
-        <li><a href="arqueo.html" class="active">Project News</a></li>
-        <li><a href="institutions.html">Institutions</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="ovis.html" data-i18n="nav.ovis">OVIS</a></li>
+        <li><a href="arqueo.html" class="active" data-i18n="nav.arqueo">Project News</a></li>
+        <li><a href="institutions.html" data-i18n="nav.institutions">Institutions</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
     </ul>
     <div class="lang-switcher">
         <button class="lang-btn active" data-lang="en">EN</button>
@@ -143,10 +143,10 @@
 
 <div class="mobile-menu" id="mobileMenu">
     <ul>
-        <li><a href="ovis.html">OVIS</a></li>
-        <li><a href="arqueo.html">Project News</a></li>
-        <li><a href="institutions.html">Institutions</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="ovis.html" data-i18n="nav.ovis">OVIS</a></li>
+        <li><a href="arqueo.html" data-i18n="nav.arqueo">Project News</a></li>
+        <li><a href="institutions.html" data-i18n="nav.institutions">Institutions</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
     </ul>
 </div>
 
@@ -155,9 +155,9 @@
     <!-- PAGE HERO -->
     <div class="page-hero">
         <div class="page-hero-inner">
-            <p class="page-hero-eyebrow">Field &amp; Science</p>
-            <h1>Archaeology<br><em style="font-style:italic;color:var(--accent-light)">News &amp; Context</em></h1>
-            <p>Current developments in archaeozoology, zooarchaeology, and Western Mediterranean prehistory — the
+            <p class="page-hero-eyebrow" data-i18n="arqueo.hero.eyebrow">Field &amp; Science</p>
+            <h1 data-i18n="arqueo.hero.title">Archaeology<br><em style="font-style:italic;color:var(--accent-light)">News &amp; Context</em></h1>
+            <p data-i18n="arqueo.hero.desc">Current developments in archaeozoology, zooarchaeology, and Western Mediterranean prehistory — the
                 scientific landscape underpinning the OVIS project.</p>
         </div>
     </div>
@@ -166,8 +166,8 @@
     <section class="subpage-section">
 
         <div class="section-header" style="text-align:center;margin-bottom:48px">
-            <p class="section-eyebrow" style="font-size:1rem;letter-spacing:0.3em;font-weight:500">PROJECT NEWS</p>
-            <h2 class="section-title" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:600;margin-top:12px">Latest
+            <p class="section-eyebrow" style="font-size:1rem;letter-spacing:0.3em;font-weight:500" data-i18n="arqueo.intro.eyebrow">Project News</p>
+            <h2 class="section-title" style="font-size:clamp(2.5rem,5vw,4rem);font-weight:600;margin-top:12px" data-i18n="arqueo.intro.title">Latest
                 Updates</h2>
             <div style="width:80px;height:3px;background:var(--accent-light,#7a8a4f);margin:24px auto 0"></div>
         </div>
@@ -178,9 +178,9 @@
             <div class="news-thumb-card" data-news="1">
                 <img src="img/poster1.jpg" alt="Cartell X Jornades d'Arqueologia" class="news-thumb-img">
                 <div class="news-thumb-body">
-                    <span class="news-tag">Conferència</span>
-                    <time>20–21 de febrer de 2026</time>
-                    <h3>OVIS participa a les X Jornades d'Arqueologia de les Illes Balears</h3>
+                    <span class="news-tag" data-i18n="tag.conference">Conference</span>
+                    <time data-i18n="arqueo.n1.date">20–21 February 2026</time>
+                    <h3 data-i18n="arqueo.n1.title">OVIS at the 10th Archaeology Conference of the Balearic Islands</h3>
                 </div>
             </div>
 
@@ -188,18 +188,18 @@
                 <img src="img/poster3.jpeg" alt="Cartell XIII Cicle Víctor Guerrero" class="news-thumb-img"
                      loading="lazy">
                 <div class="news-thumb-body">
-                    <span class="news-tag">Conferència</span>
-                    <time>25 de febrer de 2026</time>
-                    <h3>Participem al XIII Cicle de Seminaris Víctor Guerrero</h3>
+                    <span class="news-tag" data-i18n="tag.conference">Conference</span>
+                    <time data-i18n="arqueo.n2.date">25 February 2026</time>
+                    <h3 data-i18n="arqueo.n2.title">We take part in the 13th Víctor Guerrero Seminar Series at the University of the Balearic Islands</h3>
                 </div>
             </div>
 
             <div class="news-thumb-card" data-news="3">
                 <img src="img/poster2.jpg" alt="Pòster del projecte OVIS" class="news-thumb-img" loading="lazy">
                 <div class="news-thumb-body">
-                    <span class="news-tag">Pòster</span>
-                    <time>Febrer 2026</time>
-                    <h3>Pòster del projecte OVIS</h3>
+                    <span class="news-tag" data-i18n="tag.poster">Poster</span>
+                    <time data-i18n="arqueo.n3.date">February 2026</time>
+                    <h3 data-i18n="arqueo.n3.title">OVIS project poster</h3>
                 </div>
             </div>
 
@@ -207,63 +207,37 @@
 
         <!-- DETAIL PANELS -->
         <div class="news-detail" id="news-1">
-            <button class="news-detail-close" aria-label="Tancar">×</button>
+            <button class="news-detail-close" aria-label="Close" data-i18n-aria-label="aria.close">×</button>
             <img src="img/poster1.jpg" alt="Cartell X Jornades d'Arqueologia" class="news-detail-img" loading="lazy">
-            <span class="news-tag">Conferència</span>
-            <time>20–21 de febrer de 2026</time>
-            <h2>OVIS participa a les X Jornades d'Arqueologia de les Illes Balears</h2>
-            <p>El passat mes de febrer varen tenir lloc a Palma (Mallorca, Illes Balears, Espanya) les X Jornades
-                d'Arqueologia de les Illes Balears, organitzades per la Secció d'Arqueologia del Col·legi d'Historiadors
-                de Balears.</p>
-            <p>En el marc de les jornades, es va presentar el projecte OVIS davant la comunitat arqueològica que
-                treballa a les Illes Balears mitjançant el pòster titulat "OVIS: Origins of Variability in Island
-                Systems. Unraveling livestock diet and mobility across the Bronze-Iron Age transition". La presentació
-                va anar a càrrec de la research fellow Dra. Lua Valenzuela-Suau i del supervisor del projecte, Prof.
-                Richard Madgwick. Durant la sessió, es varen poder exposar els principals objectius del projecte, la
-                metodologia seleccionada i els resultats esperats.</p>
-            <p>Igualment, es varen presentar diversos estudis arqueozoològics previs que constitueixen el punt de
-                partida de la recerca desenvolupada dins el projecte OVIS. Concretament, es varen donar a conèixer els
-                treballs "Explotació ramadera i gestió de l'entorn al poblat de navetes de Clariana (Ciutadella,
-                Menorca): integració de dades faunístiques, isotòpiques i de microdesgast dentari" (Dra. Lua
-                Valenzuela-Suau i Dr. Damià Ramis) i "Animals i ritualitat a la cova núm. 45 de Calescoves (Alaior,
-                Menorca)" (Dra. Lua Valenzuela-Suau, Dra. Sonia Carbonell i Dra. Margalida Antònia Coll).</p>
-            <p>La participació en aquestes jornades ha representat una excel·lent oportunitat per compartir els primers
-                plantejaments del projecte OVIS i establir espais de debat amb investigadors i investigadores
-                especialitzats en la prehistòria balear.</p>
+            <span class="news-tag" data-i18n="tag.conference">Conference</span>
+            <time data-i18n="arqueo.n1.date">20–21 February 2026</time>
+            <h2 data-i18n="arqueo.n1.title">OVIS at the 10th Archaeology Conference of the Balearic Islands</h2>
+            <p data-i18n="arqueo.n1.p1">This past February, Palma (Mallorca, Balearic Islands, Spain) hosted the 10th Archaeology Conference of the Balearic Islands, organised by the Archaeology Section of the Association of Historians of the Balearic Islands.</p>
+            <p data-i18n="arqueo.n1.p2">As part of the conference, the OVIS project was presented to the archaeological community working in the Balearic Islands through the poster titled "OVIS: Origins of Variability in Island Systems. Unravelling livestock diet and mobility across the Bronze–Iron Age transition". The presentation was given by research fellow Dr. Lua Valenzuela-Suau and the project supervisor, Prof. Richard Madgwick. The session set out the project's main objectives, the chosen methodology, and the expected results.</p>
+            <p data-i18n="arqueo.n1.p3">Several earlier zooarchaeological studies that form the starting point of the research carried out within OVIS were also presented. Specifically, the works "Livestock exploitation and environmental management at the naveta settlement of Clariana (Ciutadella, Menorca): integrating faunal, isotopic and dental microwear data" (Dr. Lua Valenzuela-Suau and Dr. Damià Ramis) and "Animals and rituality in cave no. 45 of Calescoves (Alaior, Menorca)" (Dr. Lua Valenzuela-Suau, Dr. Sonia Carbonell and Dr. Margalida Antònia Coll) were introduced.</p>
+            <p data-i18n="arqueo.n1.p4">Taking part in this conference was an excellent opportunity to share the first outlines of the OVIS project and to open up spaces for discussion with researchers specialising in Balearic prehistory.</p>
         </div>
 
         <div class="news-detail" id="news-2">
-            <button class="news-detail-close" aria-label="Tancar">×</button>
+            <button class="news-detail-close" aria-label="Close" data-i18n-aria-label="aria.close">×</button>
             <img src="img/poster3.jpeg" alt="Cartell XIII Cicle Víctor Guerrero" class="news-detail-img" loading="lazy">
-            <span class="news-tag">Conferència</span>
-            <time>25 de febrer de 2026</time>
-            <h2>Participem al XIII Cicle de Seminaris Víctor Guerrero de la Universitat de les Illes Balears</h2>
-            <p>El passat mes de febrer vam tenir l'oportunitat de participar en el "XIII Cicle de Seminaris Víctor
-                Guerrero", organitzat pel Departament de Ciències Històriques i Teoria de les Arts de la Universitat de
-                les Illes Balears.</p>
-            <p>La conferència, titulada "Uniformitat o diversitat? La gestió ramadera a les Illes Balears durant l'Edat
-                del Bronze", va servir per presentar un estat de la qüestió sobre els coneixements actuals relacionats
-                amb la gestió ramadera durant aquest període prehistòric. La ponència va posar especial atenció a les
-                dades obtingudes mitjançant la zooarqueologia, els isòtops estables i els estudis de microdesgast
-                dentari, eines clau per entendre l'alimentació, la mobilitat i les estratègies de maneig dels
-                ramats.</p>
-            <p>Aquesta recerca constitueix el punt de partida del projecte OVIS, centrat en l'estudi de les pràctiques
-                ramaderes i les dinàmiques socioeconòmiques de les comunitats de les Illes Balears durant la prehistòria
-                recent.</p>
-            <p>Volem agrair a l'organització la invitació i l'oportunitat de compartir i debatre aquestes línies de
-                recerca en el marc del seminari.</p>
+            <span class="news-tag" data-i18n="tag.conference">Conference</span>
+            <time data-i18n="arqueo.n2.date">25 February 2026</time>
+            <h2 data-i18n="arqueo.n2.title">We take part in the 13th Víctor Guerrero Seminar Series at the University of the Balearic Islands</h2>
+            <p data-i18n="arqueo.n2.p1">This past February we had the opportunity to take part in the "13th Víctor Guerrero Seminar Series", organised by the Department of Historical Sciences and Theory of the Arts at the University of the Balearic Islands.</p>
+            <p data-i18n="arqueo.n2.p2">The lecture, titled "Uniformity or diversity? Livestock management in the Balearic Islands during the Bronze Age", offered an overview of current knowledge on livestock management during this prehistoric period. The talk paid particular attention to the data obtained through zooarchaeology, stable isotopes, and dental microwear studies — key tools for understanding the diet, mobility, and management strategies of the herds.</p>
+            <p data-i18n="arqueo.n2.p3">This research is the starting point of the OVIS project, focused on the study of livestock practices and the socio-economic dynamics of Balearic Island communities during late prehistory.</p>
+            <p data-i18n="arqueo.n2.p4">We would like to thank the organisers for the invitation and the opportunity to share and discuss these lines of research within the seminar.</p>
         </div>
 
         <div class="news-detail" id="news-3">
-            <button class="news-detail-close" aria-label="Tancar">×</button>
+            <button class="news-detail-close" aria-label="Close" data-i18n-aria-label="aria.close">×</button>
             <img src="img/poster2.jpg" alt="Pòster del projecte OVIS" class="news-detail-img" style="max-width:800px"
                  loading="lazy">
-            <span class="news-tag">Pòster</span>
-            <time>Febrer 2026</time>
-            <h2>Pòster del projecte OVIS</h2>
-            <p>Pòster científic del projecte OVIS — "Origins of Variability in Island Systems. Unraveling livestock diet
-                and mobility across the Bronze-Iron Age transition" — presentat a les X Jornades d'Arqueologia de les
-                Illes Balears.</p>
+            <span class="news-tag" data-i18n="tag.poster">Poster</span>
+            <time data-i18n="arqueo.n3.date">February 2026</time>
+            <h2 data-i18n="arqueo.n3.title">OVIS project poster</h2>
+            <p data-i18n="arqueo.n3.p1">Scientific poster of the OVIS project — "Origins of Variability in Island Systems. Unravelling livestock diet and mobility across the Bronze–Iron Age transition" — presented at the 10th Archaeology Conference of the Balearic Islands.</p>
         </div>
 
     </section>
@@ -288,7 +262,7 @@
         </div>
         <div class="footer-eu">
             <img class="footer-eu-flag" src="img/logo-eu.png" alt="European Union flag" width="1179" height="779" loading="lazy">
-            <p>Funded by the European Union under the Marie Skłodowska-Curie Actions programme (Horizon Europe).</p>
+            <p data-i18n="footer.funded">Funded by the European Union under the Marie Skłodowska-Curie Actions programme (Horizon Europe).</p>
         </div>
     </div>
     <div class="footer-bottom">

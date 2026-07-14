@@ -31,10 +31,10 @@
         <a href="index.html" class="nav-title">Project OVIS</a>
     </div>
     <ul class="nav-links">
-        <li><a href="ovis.html">OVIS</a></li>
-        <li><a href="arqueo.html">Archaeology News</a></li>
-        <li><a href="institutions.html">Institutions</a></li>
-        <li><a href="contact.html" class="active">Contact</a></li>
+        <li><a href="ovis.html" data-i18n="nav.ovis">OVIS</a></li>
+        <li><a href="arqueo.html" data-i18n="nav.arqueo">Project News</a></li>
+        <li><a href="institutions.html" data-i18n="nav.institutions">Institutions</a></li>
+        <li><a href="contact.html" class="active" data-i18n="nav.contact">Contact</a></li>
     </ul>
     <div class="lang-switcher">
         <button class="lang-btn active" data-lang="en">EN</button>
@@ -49,10 +49,10 @@
 
 <div class="mobile-menu" id="mobileMenu">
     <ul>
-        <li><a href="ovis.html">OVIS</a></li>
-        <li><a href="arqueo.html">Project News</a></li>
-        <li><a href="institutions.html">Institutions</a></li>
-        <li><a href="contact.html">Contact</a></li>
+        <li><a href="ovis.html" data-i18n="nav.ovis">OVIS</a></li>
+        <li><a href="arqueo.html" data-i18n="nav.arqueo">Project News</a></li>
+        <li><a href="institutions.html" data-i18n="nav.institutions">Institutions</a></li>
+        <li><a href="contact.html" data-i18n="nav.contact">Contact</a></li>
     </ul>
 </div>
 <main>
@@ -60,9 +60,9 @@
     <!-- PAGE HERO -->
     <div class="page-hero">
         <div class="page-hero-inner">
-            <p class="page-hero-eyebrow">Get in touch</p>
-            <h1>Contact</h1>
-            <p>Questions about the OVIS project, collaboration proposals, or media enquiries — reach out directly to the
+            <p class="page-hero-eyebrow" data-i18n="contact.hero.eyebrow">Get in touch</p>
+            <h1 data-i18n="contact.hero.title">Contact</h1>
+            <p data-i18n="contact.hero.desc">Questions about the OVIS project, collaboration proposals, or media enquiries — reach out directly to the
                 research team.</p>
         </div>
     </div>
@@ -73,15 +73,15 @@
 
             <!-- Info side -->
             <div class="contact-info">
-                <h3 class="contact-heading">Research Team</h3>
-                <p>The OVIS project welcomes enquiries from researchers, students, journalists, and institutions
+                <h3 class="contact-heading" data-i18n="contact.team.title">Research Team</h3>
+                <p data-i18n="contact.team.desc">The OVIS project welcomes enquiries from researchers, students, journalists, and institutions
                     interested in the project's work. Response times may vary during fieldwork periods.</p>
 
                 <div class="contact-detail">
                     <div class="contact-item">
                         <div class="contact-icon" aria-hidden="true">✉</div>
                         <div class="contact-item-text">
-                            <strong>Email</strong>
+                            <strong data-i18n="contact.email.label">Email</strong>
                             <span><a href="mailto:Valenzuela-SuauL@cardiff.ac.uk">Valenzuela-SuauL@cardiff.ac.uk</a></span>
                         </div>
                     </div>
@@ -89,8 +89,8 @@
                     <div class="contact-item">
                         <div class="contact-icon" aria-hidden="true">🏛</div>
                         <div class="contact-item-text">
-                            <strong>Host Institution</strong>
-                            <span>Cardiff University, School of History,<br>Archaeology and Religion<br>Cardiff, Wales, UK</span>
+                            <strong data-i18n="contact.host.label">Host Institution</strong>
+                            <span data-i18n="contact.host.value" data-i18n-html>Cardiff University, School of History,<br>Archaeology and Religion<br>Cardiff, Wales, UK</span>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -112,34 +112,34 @@
 
             <!-- Form side -->
             <div class="contact-form-panel">
-                <h3 class="contact-heading">Send a message</h3>
+                <h3 class="contact-heading" data-i18n="disc.send">Send a message</h3>
                 <div class="contact-form" id="contactForm">
                     <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" placeholder="Your full name">
+                        <label for="name" data-i18n="contact.form.name">Name</label>
+                        <input type="text" id="name" placeholder="Your full name" data-i18n-placeholder="contact.form.name.ph">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
+                        <label for="email" data-i18n="contact.form.email">Email</label>
                         <input type="email" id="email" placeholder="your@email.com">
                     </div>
                     <div class="form-group">
-                        <label for="subject">Subject</label>
+                        <label for="subject" data-i18n="contact.form.subject">Subject</label>
                         <select id="subject">
-                            <option value="">Select a topic</option>
-                            <option value="collaboration">Research collaboration</option>
-                            <option value="data">Data / sample sharing</option>
-                            <option value="media">Media enquiry</option>
-                            <option value="discussion">Discussion forum</option>
-                            <option value="other">Other</option>
+                            <option value="" data-i18n="contact.form.opt0">Select a topic</option>
+                            <option value="collaboration" data-i18n="contact.form.opt.collab">Research collaboration</option>
+                            <option value="data" data-i18n="contact.form.opt.data">Data / sample sharing</option>
+                            <option value="media" data-i18n="contact.form.opt.media">Media enquiry</option>
+                            <option value="discussion" data-i18n="contact.form.opt.discussion">Discussion forum</option>
+                            <option value="other" data-i18n="contact.form.opt.other">Other</option>
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" placeholder="Your message…"></textarea>
+                        <label for="message" data-i18n="contact.form.message">Message</label>
+                        <textarea id="message" placeholder="Your message…" data-i18n-placeholder="contact.form.message.ph"></textarea>
                     </div>
-                    <button class="btn-primary" onclick="handleSubmit()">Send message
+                    <button class="btn-primary" onclick="handleSubmit()" data-i18n="contact.form.send">Send message
                     </button>
-                    <div class="contact-success" id="successMsg">
+                    <div class="contact-success" id="successMsg" data-i18n="contact.form.success">
                         ✓ Thank you for your message. The research team will be in touch shortly.
                     </div>
                 </div>
@@ -168,7 +168,7 @@
         </div>
         <div class="footer-eu">
             <img class="footer-eu-flag" src="img/logo-eu.png" alt="European Union flag" width="1179" height="779" loading="lazy">
-            <p>Funded by the European Union under the Marie Skłodowska-Curie Actions programme (Horizon Europe).</p>
+            <p data-i18n="footer.funded">Funded by the European Union under the Marie Skłodowska-Curie Actions programme (Horizon Europe).</p>
         </div>
     </div>
     <div class="footer-bottom">
