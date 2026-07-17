@@ -356,6 +356,10 @@ img { display: block; max-width: 100%; }
     color: var(--white);
     line-height: 1;
     margin-bottom: 6px;
+    /* The counter rewrites this text every frame: nowrap keeps the strip's
+       height fixed as digits are added, tabular-nums keeps it from recentring. */
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
 }
 
 .stat-label {
@@ -996,6 +1000,7 @@ img { display: block; max-width: 100%; }
     }
     .intro-divider { display: none; }
     .intro-stat { padding: 0; }
+    .stat-number { font-size: clamp(1.5rem, 6.5vw, 2rem); }
 
     .section { padding: var(--section-pad) 24px; }
 
