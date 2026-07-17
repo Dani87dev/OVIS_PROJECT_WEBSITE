@@ -22,10 +22,11 @@ const i18n = {
     // —— index: hero / intro ——
     "hero.subtitle": "Unravelling livestock diet and mobility across the Bronze–Iron Age transition in the Western Mediterranean",
     "hero.scroll": "Scroll",
-    "intro.islands": "Island groups studied",
-    "intro.periods": "Archaeological periods",
-    "intro.samples": "Faunal samples",
-    "intro.partners": "Research institutions",
+    "intro.islands": "Islands studied",
+    "intro.periods": "Chronological scope",
+    "intro.samples": "Number of individuals",
+    "intro.partners": "Faunal samples",
+    "intro.years": " years",
     // —— index: research sites map ——
     "map.eyebrow": "Study Areas",
     "map.title": "Research Sites",
@@ -210,10 +211,11 @@ const i18n = {
     // —— index: hero / intro ——
     "hero.subtitle": "Desxifrant la dieta i la mobilitat del bestiar durant la transició Bronze–Ferro en el Mediterrani occidental",
     "hero.scroll": "Desplaça",
-    "intro.islands": "Grups d'illes estudiats",
-    "intro.periods": "Períodes arqueològics",
-    "intro.samples": "Mostres de fauna",
-    "intro.partners": "Institucions associades",
+    "intro.islands": "Illes estudiades",
+    "intro.periods": "Abast cronològic",
+    "intro.samples": "Nombre d'individus",
+    "intro.partners": "Mostres de fauna",
+    "intro.years": " anys",
     // —— index: research sites map ——
     "map.eyebrow": "Àrees d'estudi",
     "map.title": "Jaciments d'estudi",
@@ -398,10 +400,11 @@ const i18n = {
     // —— index: hero / intro ——
     "hero.subtitle": "Desentrañando la dieta y la movilidad del ganado durante la transición Bronze–Hierro en el Mediterráneo occidental",
     "hero.scroll": "Desplazar",
-    "intro.islands": "Grupos de islas estudiados",
-    "intro.periods": "Períodos arqueológicos",
-    "intro.samples": "Muestras de fauna",
-    "intro.partners": "Instituciones asociadas",
+    "intro.islands": "Islas estudiadas",
+    "intro.periods": "Alcance cronológico",
+    "intro.samples": "Número de individuos",
+    "intro.partners": "Muestras de fauna",
+    "intro.years": " años",
     // —— index: research sites map ——
     "map.eyebrow": "Áreas de estudio",
     "map.title": "Yacimientos de estudio",
@@ -586,10 +589,11 @@ const i18n = {
     // —— index: hero / intro ——
     "hero.subtitle": "Svelare la dieta e la mobilità del bestiame durante la transizione Bronzo–Ferro nel Mediterraneo occidentale",
     "hero.scroll": "Scorri",
-    "intro.islands": "Gruppi di isole studiate",
-    "intro.periods": "Periodi archeologici",
-    "intro.samples": "Campioni faunistici",
-    "intro.partners": "Istituzioni partner",
+    "intro.islands": "Isole studiate",
+    "intro.periods": "Arco cronologico",
+    "intro.samples": "Numero di individui",
+    "intro.partners": "Campioni faunistici",
+    "intro.years": " anni",
     // —— index: research sites map ——
     "map.eyebrow": "Aree di studio",
     "map.title": "Siti di studio",
@@ -782,6 +786,16 @@ function applyLang(lang) {
     const val = dict[el.getAttribute('data-i18n-aria-label')];
     if (val != null) el.setAttribute('aria-label', val);
   });
+  // Animated counters own their own textContent, so translate the suffix through
+  // data-suffix and repaint. A count in flight reads the suffix each frame, so
+  // leave it alone -- its next frame picks the new one up.
+  document.querySelectorAll('[data-i18n-suffix]').forEach(el => {
+    const val = dict[el.getAttribute('data-i18n-suffix')];
+    if (val == null) return;
+    el.setAttribute('data-suffix', val);
+    const raw = el.getAttribute('data-count');
+    if (raw != null && !el.dataset.animating) el.textContent = raw + val;
+  });
   document.querySelectorAll('.lang-btn').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
@@ -908,17 +922,22 @@ document.head.appendChild(navStyle);
 ;(function () {
   function animateCount(el) {
     const raw    = el.getAttribute('data-count');
-    const suffix = el.getAttribute('data-suffix') || '';
     const target = parseFloat(raw);
     const dur    = 3800;
     const start  = performance.now();
+    el.dataset.animating = '1';
 
     function tick(now) {
+      // Read the suffix per frame: applyLang can swap it mid-count.
+      const suffix   = el.getAttribute('data-suffix') || '';
       const progress = Math.min((now - start) / dur, 1);
       const eased    = 1 - Math.pow(1 - progress, 3); // ease-out cubic
       el.textContent = Math.round(target * eased) + suffix;
       if (progress < 1) requestAnimationFrame(tick);
-      else el.textContent = raw + suffix;
+      else {
+        el.textContent = raw + suffix;
+        delete el.dataset.animating;
+      }
     }
     requestAnimationFrame(tick);
   }
