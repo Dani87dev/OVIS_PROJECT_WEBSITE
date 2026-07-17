@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Static website for **OVIS** (*Origins of Variability in Island Systems*), a Marie Skłodowska-Curie Actions research project at Cardiff University. Pure HTML5 + CSS3 + vanilla JS — no frameworks, no build tools, no package manager, no bundler.
 
-Live at http://www.ovisproject.com. Hosted on Netlify, deployed automatically on push to `main`. Custom domain via `CNAME` file, DNS managed through Namecheap.
+Live at https://ovisproject.com. Hosted on **GitHub Pages**, deployed automatically on push to `main` — classic "deploy from a branch" (source: `main`, repo root); there is no Actions workflow. Custom domain via the `CNAME` file in the repo root, DNS managed through Namecheap. GitHub Pages rewrites or removes `CNAME` whenever the custom domain is changed in the repo settings, so if the domain drops, check that file first.
 
 ## Commands
 
