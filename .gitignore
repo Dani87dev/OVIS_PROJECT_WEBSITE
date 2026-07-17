@@ -1,3 +1,6 @@
 .claude/*
 !.claude/agents/
 diagramas/
+
+# WSL writes these next to any file copied in from Windows
+*:Zone.Identifier
