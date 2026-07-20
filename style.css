@@ -1268,22 +1268,29 @@ img { display: block; max-width: 100%; }
 .institution-card p { font-size: 0.83rem; color: var(--ink-soft); line-height: 1.7; }
 
 .institution-feature {
+    position: relative;
     background: var(--white);
     border: 1px solid var(--olive-pale);
     border-radius: 4px;
     padding: 32px;
     transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
-.institution-feature:hover { box-shadow: 0 8px 32px rgba(74, 82, 64, 0.1); transform: translateY(-2px); }
+.institution-feature:hover,
+.institution-feature:focus-within { box-shadow: 0 8px 32px rgba(74, 82, 64, 0.1); transform: translateY(-2px); }
+.institution-feature-link { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+.institution-feature-link::after { content: ""; position: absolute; inset: 0; border-radius: 4px; }
+.institution-feature:hover .institution-feature-link { color: var(--olive); }
 .institution-feature-body h3 { font-family: var(--font-serif); font-size: 1.3rem; font-weight: 400; margin-bottom: 10px; }
 .institution-feature-body p { font-size: 0.9rem; color: var(--ink-soft); line-height: 1.7; }
 .institution-disclaimer { margin-top: 12px; font-size: 0.78rem; color: var(--ink-muted); }
 
 .institution-logo-text--sm { font-size: 1rem; }
 
-/* ── Funder block ── */
-.institution-funder .section-header { margin-bottom: 40px; }
-.institution-funder-logo {
+/* ── Funder & host blocks ── */
+.institution-host { margin-top: 64px; }
+.institution-funder .section-header,
+.institution-host .section-header { margin-bottom: 40px; }
+.institution-card-logo {
     display: block;
     height: 64px;
     width: auto;
@@ -1303,6 +1310,7 @@ img { display: block; max-width: 100%; }
     gap: 24px;
 }
 .institution-logo-card {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1314,7 +1322,8 @@ img { display: block; max-width: 100%; }
     padding: 32px 24px;
     transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
-.institution-logo-card:hover { box-shadow: 0 8px 32px rgba(74, 82, 64, 0.1); transform: translateY(-2px); }
+.institution-logo-card:hover,
+.institution-logo-card:focus-within { box-shadow: 0 8px 32px rgba(74, 82, 64, 0.1); transform: translateY(-2px); }
 .institution-logo-card-media {
     display: flex;
     align-items: center;
@@ -1335,6 +1344,9 @@ img { display: block; max-width: 100%; }
     color: var(--ink);
     line-height: 1.4;
 }
+.institution-logo-card-link { color: inherit; text-decoration: none; transition: color 0.2s ease; }
+.institution-logo-card-link::after { content: ""; position: absolute; inset: 0; border-radius: 4px; }
+.institution-logo-card:hover .institution-logo-card-link { color: var(--olive); }
 
 /* ── Contact page ── */
 .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
@@ -1386,7 +1398,7 @@ img { display: block; max-width: 100%; }
     .researcher-avatar { width: 120px; height: 120px; }
     .page-hero { padding: 60px 24px 48px; }
     .subpage-section { padding: 60px 24px; }
-    .institution-funder-logo { height: 48px; margin-bottom: 18px; }
+    .institution-card-logo { height: 48px; margin-bottom: 18px; }
     .institution-partners { margin-top: 48px; }
     .institution-logos { grid-template-columns: repeat(2, 1fr); gap: 16px; }
     .institution-logo-card { padding: 24px 14px; gap: 14px; }
