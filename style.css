@@ -1672,6 +1672,49 @@ img { display: block; max-width: 100%; }
 }
 .site-card.active .site-desc { display: block; }
 
+/* Single "Click me" hint above the island cards, hidden once one is selected */
+.site-hint {
+    display: block;
+    width: 100%;
+    font-size: 0.66rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--olive-light);
+    margin: 0 0 2px;
+}
+.site-info-panel:has(.site-card.active) .site-hint { display: none; }
+
+/* Excavation list inside each map card — shown when the card is selected */
+.dig-list { display: none; margin-top: 12px; }
+.site-card.active .dig-list { display: block; }
+.dig-list-label {
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 6px;
+}
+.dig-list ul { list-style: none; margin: 0; padding: 0; }
+.dig-list li {
+    position: relative;
+    padding-left: 15px;
+    font-size: 0.82rem;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.9);
+}
+.dig-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.62em;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #c4a882;
+}
+
 /* ── Responsive Map ── */
 @media (max-width: 900px) {
     .map-wrapper { grid-template-columns: 1fr; }

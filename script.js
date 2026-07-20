@@ -31,6 +31,7 @@ const i18n = {
     // —— index: research sites map ——
     "map.eyebrow": "Study Areas",
     "map.title": "Research Sites",
+    "map.hint": "Click me",
     "map.desc": "Three island systems across the Western Mediterranean, differing in size, cultural traditions, and resource availability",
     "map.sardinia.name": "Sardinia (Italy)",
     "map.sardinia.culture": "From Nuraghic culture to Roman conquest",
@@ -231,6 +232,7 @@ const i18n = {
     // —— index: research sites map ——
     "map.eyebrow": "Àrees d'estudi",
     "map.title": "Jaciments d'estudi",
+    "map.hint": "Clica'm",
     "map.desc": "Tres sistemes insulars del Mediterrani occidental, diferents en mida, tradicions culturals i disponibilitat de recursos",
     "map.sardinia.name": "Sardenya (Itàlia)",
     "map.sardinia.culture": "De la cultura nuràgica a la conquesta romana",
@@ -431,6 +433,7 @@ const i18n = {
     // —— index: research sites map ——
     "map.eyebrow": "Áreas de estudio",
     "map.title": "Yacimientos de estudio",
+    "map.hint": "Clícame",
     "map.desc": "Tres sistemas insulares del Mediterráneo occidental, diferentes en tamaño, tradiciones culturales y disponibilidad de recursos",
     "map.sardinia.name": "Cerdeña (Italia)",
     "map.sardinia.culture": "De la cultura nurágica a la conquista romana",
@@ -631,6 +634,7 @@ const i18n = {
     // —— index: research sites map ——
     "map.eyebrow": "Aree di studio",
     "map.title": "Siti di studio",
+    "map.hint": "Cliccami",
     "map.desc": "Tre sistemi insulari del Mediterraneo occidentale, diversi per dimensioni, tradizioni culturali e disponibilità di risorse",
     "map.sardinia.name": "Sardegna (Italia)",
     "map.sardinia.culture": "Dalla cultura nuragica alla conquista romana",
@@ -1030,11 +1034,10 @@ document.head.appendChild(navStyle);
   const styleDefault = { color: '#c4a882', weight: 1.5, fillColor: '#c4a882', fillOpacity: 0.20, lineJoin: 'round', lineCap: 'round' };
   const styleActive  = { color: '#4a5240', weight: 2,   fillColor: '#4a5240', fillOpacity: 0.55, lineJoin: 'round', lineCap: 'round' };
 
-  // Init map
+  // Init map — draggable + zoomable (wheel off so it doesn't hijack page scroll)
   const map = L.map('leaflet-map', {
-    minZoom: 4, maxZoom: 12,
-    scrollWheelZoom: false,
     zoomControl: true,
+    scrollWheelZoom: false,
   });
 
   // ── Vista general: cambia aquí para mover el encuadre ──
@@ -1063,7 +1066,7 @@ document.head.appendChild(navStyle);
       style: styleDefault,
     }).addTo(map);
     polygons[key] = layer;
-    layer.on('click', () => { userInteracted = true; clearTimeout(timer); activate(key, false); });
+    layer.on('click', () => toggle(key));
     layer.bindPopup(`<h4>${sites[key].label}</h4><p class="pop-culture">${sites[key].culture}</p>`);
     layer.bindTooltip(sites[key].label, {
       permanent: true,
@@ -1072,65 +1075,54 @@ document.head.appendChild(navStyle);
     });
   });
 
-  // Activate site
-  let userInteracted = false;
-  function activate(name, flyTo = true) {
-    Object.entries(polygons).forEach(([key, p]) => p.setStyle(key === name ? styleActive : styleDefault));
-    siteCards.forEach(c => c.classList.toggle('active', c.dataset.for === name));
-    if (flyTo) map.flyTo(sites[name].center, sites[name].zoom, { duration: 1.2 });
-  }
-
-  // Card clicks + hover highlight of the matching island
-  siteCards.forEach(c => {
-    c.addEventListener('click', () => {
-      userInteracted = true;
-      clearTimeout(timer);
-      activate(c.dataset.for, true);
-    });
-    c.addEventListener('mouseenter', () => {
-      polygons[c.dataset.for]?.setStyle(styleActive);
-    });
-    c.addEventListener('mouseleave', () => {
-      if (!c.classList.contains('active')) polygons[c.dataset.for]?.setStyle(styleDefault);
-    });
+  // Excavation sites (from the project docs): [name, chronology, lat, lon]
+  const digSites = {
+    mallorca: [
+      ['Closos de can Gaià', '1400–600 BC', 39.419136, 3.244298],
+      ['Sa Ferradura', '1200–840 BC', 39.544534, 3.350827],
+      ['S’Hospitalet Vell', '700–500 BC', 39.482575, 3.261558],
+      ['Talaies de Can Jordi', '200–100 BC', 39.376822, 3.135975],
+    ],
+    menorca: [
+      ['Es Coll de Cala Morell', '1400–1200 BC', 40.057778, 3.882537],
+      ['Cornia Nou', '1100–600 BC', 39.881323, 4.233485],
+      ['Sant Agustí', '300–200 BC', 39.928506, 4.035324],
+    ],
+    sardinia: [
+      ['Sa Osa', '1200–1100 BC', 39.914167, 8.542222],
+      ['S’Urachi', '600–400 BC', 40.015557, 8.582429],
+    ],
+  };
+  Object.values(digSites).flat().forEach(([name, chrono, lat, lon]) => {
+    L.circleMarker([lat, lon], {
+      radius: 5, color: '#4a5240', weight: 2, fillColor: '#c4a882', fillOpacity: 0.95,
+    }).addTo(map)
+      .bindTooltip(name, { direction: 'top', offset: [0, -4] })
+      .bindPopup(`<h4>${name}</h4><p class="pop-culture">${chrono}</p>`);
   });
 
-  // ── Auto-cycle: 10s overview → 5s per island → repeat ──
-  const siteList = ['menorca', 'mallorca', 'sardinia'];
-  let timer = null;
-
-  function showOverview() {
+  // Select an island (highlight only it), clear, or toggle on re-click
+  function activate(name) {
+    Object.entries(polygons).forEach(([key, p]) => p.setStyle(key === name ? styleActive : styleDefault));
+    siteCards.forEach(c => c.classList.toggle('active', c.dataset.for === name));
+  }
+  function clearSelection() {
     Object.values(polygons).forEach(p => p.setStyle(styleDefault));
     siteCards.forEach(c => c.classList.remove('active'));
-    map.flyTo(overviewCenter, overviewZoom, { duration: 1.4 });
+  }
+  function toggle(name) {
+    const isActive = [...siteCards].some(c => c.dataset.for === name && c.classList.contains('active'));
+    if (isActive) clearSelection(); else activate(name);
   }
 
-  function runCycle() {
-    if (userInteracted) return;
-    showOverview();
-    let step = 0;
-    function next() {
-      if (userInteracted) return;
-      if (step < siteList.length) {
-        activate(siteList[step], true);
-        step++;
-        timer = setTimeout(next, 5000);
-      } else {
-        runCycle();
-      }
-    }
-    timer = setTimeout(next, 10000);
-  }
+  // Card clicks — toggle the matching island (re-click deselects)
+  siteCards.forEach(c => {
+    c.addEventListener('click', () => toggle(c.dataset.for));
+  });
 
-  const mapSection = document.querySelector('.section--map');
-  if (mapSection) {
-    new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !userInteracted) {
-        runCycle();
-      } else {
-        clearTimeout(timer);
-        showOverview();
-      }
-    }, { threshold: 0.3 }).observe(mapSection);
+  // Frame all three islands a bit closer as the starting view
+  const framed = Object.values(polygons);
+  if (framed.length) {
+    map.fitBounds(L.featureGroup(framed).getBounds().pad(0.03), { animate: false });
   }
 })();
