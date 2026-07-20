@@ -18,6 +18,7 @@ const i18n = {
     "news.readmore": "Read more →",
     "tag.conference": "Conference",
     "tag.poster": "Poster",
+    "tag.call": "Call for Papers",
     "aria.close": "Close",
     // —— index: hero / intro ——
     "hero.subtitle": "Unravelling livestock diet and mobility across the Bronze–Iron Age transition in the Western Mediterranean",
@@ -138,6 +139,11 @@ const i18n = {
     "arqueo.n3.date": "February 2026",
     "arqueo.n3.title": "OVIS project poster",
     "arqueo.n3.p1": "Scientific poster of the OVIS project — \"Origins of Variability in Island Systems. Unravelling livestock diet and mobility across the Bronze–Iron Age transition\" — presented at the 10th Archaeology Conference of the Balearic Islands.",
+    "arqueo.n4.date": "17–22 May 2027",
+    "arqueo.n4.title": "Call for Abstracts ICAZ 2027 (Vancouver, Canada)",
+    "arqueo.n4.p1": "The International Council for Archaeozoology (ICAZ) has opened the call for papers for its 2027 conference in Vancouver, Canada. OVIS is co-organising the session \"Developing Islandscapes: Animals, mobility and environmental practices\", convened by Dr. Lua Valenzuela-Suau and Prof. Richard Madgwick.",
+    "arqueo.n4.p2": "Island contexts offer exceptionally diverse yet structurally comparable settings for studying the relationships between livestock management, landscape transformation, and climate change. The session invites contributions that apply zooarchaeological methods — including isotope analysis, dental microwear, ancient DNA, biometry, or studies of species introductions — to explore subsistence strategies and adaptive mechanisms developed in island contexts around the world.",
+    "arqueo.n4.p3": "Hybrid session · Vancouver, Canada · 17–22 May 2027. Abstract submission deadline: 25 August. Submissions are made online through the conference form.",
     // —— contact page ——
     "contact.hero.eyebrow": "Get in touch",
     "contact.hero.title": "Contact",
@@ -211,6 +217,7 @@ const i18n = {
     "news.readmore": "Llegir més →",
     "tag.conference": "Conferència",
     "tag.poster": "Pòster",
+    "tag.call": "Convocatòria",
     "aria.close": "Tancar",
     // —— index: hero / intro ——
     "hero.subtitle": "Desxifrant la dieta i la mobilitat del bestiar durant la transició Bronze–Ferro en el Mediterrani occidental",
@@ -331,6 +338,11 @@ const i18n = {
     "arqueo.n3.date": "Febrer de 2026",
     "arqueo.n3.title": "Pòster del projecte OVIS",
     "arqueo.n3.p1": "Pòster científic del projecte OVIS — \"Origins of Variability in Island Systems. Unraveling livestock diet and mobility across the Bronze-Iron Age transition\" — presentat a les X Jornades d'Arqueologia de les Illes Balears.",
+    "arqueo.n4.date": "17–22 de maig de 2027",
+    "arqueo.n4.title": "Convocatòria de resums ICAZ 2027 (Vancouver, Canadà)",
+    "arqueo.n4.p1": "El Consell Internacional d'Arqueozoologia (ICAZ) ha obert la convocatòria de comunicacions per al seu congrés de 2027 a Vancouver (Canadà). OVIS coorganitza la sessió \"Developing Islandscapes: Animals, mobility and environmental practices\", coordinada per la Dra. Lua Valenzuela-Suau i el Prof. Richard Madgwick.",
+    "arqueo.n4.p2": "Els contextos insulars ofereixen entorns excepcionalment diversos però estructuralment comparables per estudiar les relacions entre la gestió ramadera, la transformació del paisatge i el canvi climàtic. La sessió convida a presentar contribucions que apliquin mètodes zooarqueològics —anàlisi d'isòtops, microdesgast dental, ADN antic, biometria o estudis d'introduccions d'espècies— per explorar les estratègies de subsistència i els mecanismes d'adaptació desenvolupats en contextos insulars d'arreu del món.",
+    "arqueo.n4.p3": "Sessió híbrida · Vancouver, Canadà · 17–22 de maig de 2027. Data límit per enviar resums: 25 d'agost. Les propostes s'envien en línia a través del formulari del congrés.",
     // —— contact page ——
     "contact.hero.eyebrow": "Contacta'ns",
     "contact.hero.title": "Contacte",
@@ -404,6 +416,7 @@ const i18n = {
     "news.readmore": "Leer más →",
     "tag.conference": "Conferencia",
     "tag.poster": "Póster",
+    "tag.call": "Convocatoria",
     "aria.close": "Cerrar",
     // —— index: hero / intro ——
     "hero.subtitle": "Desentrañando la dieta y la movilidad del ganado durante la transición Bronze–Hierro en el Mediterráneo occidental",
@@ -524,6 +537,11 @@ const i18n = {
     "arqueo.n3.date": "Febrero de 2026",
     "arqueo.n3.title": "Póster del proyecto OVIS",
     "arqueo.n3.p1": "Póster científico del proyecto OVIS — \"Origins of Variability in Island Systems. Unraveling livestock diet and mobility across the Bronze-Iron Age transition\" — presentado en las X Jornadas de Arqueología de las Islas Baleares.",
+    "arqueo.n4.date": "17–22 de mayo de 2027",
+    "arqueo.n4.title": "Convocatoria de resúmenes ICAZ 2027 (Vancouver, Canadá)",
+    "arqueo.n4.p1": "El Consejo Internacional de Arqueozoología (ICAZ) ha abierto la convocatoria de comunicaciones para su congreso de 2027 en Vancouver (Canadá). OVIS coorganiza la sesión \"Developing Islandscapes: Animals, mobility and environmental practices\", coordinada por la Dra. Lua Valenzuela-Suau y el Prof. Richard Madgwick.",
+    "arqueo.n4.p2": "Los contextos insulares ofrecen entornos excepcionalmente diversos pero estructuralmente comparables para estudiar las relaciones entre la gestión ganadera, la transformación del paisaje y el cambio climático. La sesión invita a presentar contribuciones que apliquen métodos zooarqueológicos —análisis de isótopos, microdesgaste dental, ADN antiguo, biometría o estudios de introducciones de especies— para explorar las estrategias de subsistencia y los mecanismos de adaptación desarrollados en contextos insulares de todo el mundo.",
+    "arqueo.n4.p3": "Sesión híbrida · Vancouver, Canadá · 17–22 de mayo de 2027. Fecha límite para enviar resúmenes: 25 de agosto. Las propuestas se envían en línea a través del formulario del congreso.",
     // —— contact page ——
     "contact.hero.eyebrow": "Ponte en contacto",
     "contact.hero.title": "Contacto",
@@ -597,6 +615,7 @@ const i18n = {
     "news.readmore": "Leggi di più →",
     "tag.conference": "Conferenza",
     "tag.poster": "Poster",
+    "tag.call": "Call for papers",
     "aria.close": "Chiudi",
     // —— index: hero / intro ——
     "hero.subtitle": "Svelare la dieta e la mobilità del bestiame durante la transizione Bronzo–Ferro nel Mediterraneo occidentale",
@@ -717,6 +736,11 @@ const i18n = {
     "arqueo.n3.date": "Febbraio 2026",
     "arqueo.n3.title": "Poster del progetto OVIS",
     "arqueo.n3.p1": "Poster scientifico del progetto OVIS — \"Origins of Variability in Island Systems. Unraveling livestock diet and mobility across the Bronze-Iron Age transition\" — presentato alle X Giornate di Archeologia delle Isole Baleari.",
+    "arqueo.n4.date": "17–22 maggio 2027",
+    "arqueo.n4.title": "Call for abstract ICAZ 2027 (Vancouver, Canada)",
+    "arqueo.n4.p1": "L'International Council for Archaeozoology (ICAZ) ha aperto la call for papers per il suo congresso del 2027 a Vancouver (Canada). OVIS è co-organizzatore della sessione \"Developing Islandscapes: Animals, mobility and environmental practices\", coordinata dalla Dr.ssa Lua Valenzuela-Suau e dal Prof. Richard Madgwick.",
+    "arqueo.n4.p2": "I contesti insulari offrono ambienti eccezionalmente diversi ma strutturalmente comparabili per studiare le relazioni tra gestione del bestiame, trasformazione del paesaggio e cambiamento climatico. La sessione invita a presentare contributi che applichino metodi archeozoologici —analisi isotopiche, microusura dentale, DNA antico, biometria o studi sulle introduzioni di specie— per esplorare le strategie di sussistenza e i meccanismi di adattamento sviluppati nei contesti insulari di tutto il mondo.",
+    "arqueo.n4.p3": "Sessione ibrida · Vancouver, Canada · 17–22 maggio 2027. Scadenza per l'invio degli abstract: 25 agosto. Le proposte si inviano online tramite il modulo del congresso.",
     // —— contact page ——
     "contact.hero.eyebrow": "Mettiti in contatto",
     "contact.hero.title": "Contatto",

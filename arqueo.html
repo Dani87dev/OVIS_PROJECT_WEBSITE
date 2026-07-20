@@ -12,9 +12,16 @@
     <style>
         .news-grid-thumbs {
             display: grid;
-            grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(4, 1fr);
             gap: 32px;
             margin-top: 32px
+        }
+
+        @media (max-width: 1024px) {
+            .news-grid-thumbs {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px
+            }
         }
 
         .news-thumb-card {
@@ -175,6 +182,15 @@
         <!-- THUMBNAILS GRID -->
         <div class="news-grid-thumbs">
 
+            <div class="news-thumb-card" data-news="4">
+                <img src="img/poster4_news_vertical_jpg.jpg" alt="Call for papers ICAZ 2027 poster" class="news-thumb-img">
+                <div class="news-thumb-body">
+                    <span class="news-tag" data-i18n="tag.call">Call for Papers</span>
+                    <time data-i18n="arqueo.n4.date">17–22 May 2027</time>
+                    <h3 data-i18n="arqueo.n4.title">Call for Abstracts ICAZ 2027 (Vancouver, Canada)</h3>
+                </div>
+            </div>
+
             <div class="news-thumb-card" data-news="1">
                 <img src="img/poster1.jpg" alt="Cartell X Jornades d'Arqueologia" class="news-thumb-img">
                 <div class="news-thumb-body">
@@ -206,6 +222,17 @@
         </div>
 
         <!-- DETAIL PANELS -->
+        <div class="news-detail" id="news-4">
+            <button class="news-detail-close" aria-label="Close" data-i18n-aria-label="aria.close">×</button>
+            <img src="img/poster4_news_vertical_jpg.jpg" alt="Call for papers ICAZ 2027 poster" class="news-detail-img" style="max-width:700px" loading="lazy">
+            <span class="news-tag" data-i18n="tag.call">Call for Papers</span>
+            <time data-i18n="arqueo.n4.date">17–22 May 2027</time>
+            <h2 data-i18n="arqueo.n4.title">Call for Abstracts ICAZ 2027 (Vancouver, Canada)</h2>
+            <p data-i18n="arqueo.n4.p1">The International Council for Archaeozoology (ICAZ) has opened the call for papers for its 2027 conference in Vancouver, Canada. OVIS is co-organising the session "Developing Islandscapes: Animals, mobility and environmental practices", convened by Dr. Lua Valenzuela-Suau and Prof. Richard Madgwick.</p>
+            <p data-i18n="arqueo.n4.p2">Island contexts offer exceptionally diverse yet structurally comparable settings for studying the relationships between livestock management, landscape transformation, and climate change. The session invites contributions that apply zooarchaeological methods — including isotope analysis, dental microwear, ancient DNA, biometry, or studies of species introductions — to explore subsistence strategies and adaptive mechanisms developed in island contexts around the world.</p>
+            <p data-i18n="arqueo.n4.p3">Hybrid session · Vancouver, Canada · 17–22 May 2027. Abstract submission deadline: 25 August. Submissions are made online through the conference form.</p>
+        </div>
+
         <div class="news-detail" id="news-1">
             <button class="news-detail-close" aria-label="Close" data-i18n-aria-label="aria.close">×</button>
             <img src="img/poster1.jpg" alt="Cartell X Jornades d'Arqueologia" class="news-detail-img" loading="lazy">
