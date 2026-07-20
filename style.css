@@ -1245,6 +1245,16 @@ img { display: block; max-width: 100%; }
 }
 .institution-card:hover { box-shadow: 0 8px 32px rgba(74,82,64,0.1); transform: translateY(-2px); }
 
+/* Island silhouette centred at the top of each site card */
+.site-shape {
+    display: block;
+    height: 76px;
+    width: auto;
+    max-width: 80%;
+    margin: 0 auto 20px;
+    object-fit: contain;
+}
+
 /* Site cards: reveal the list of archaeological sites on hover */
 .site-reveal {
     max-height: 0;
