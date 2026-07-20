@@ -405,6 +405,7 @@ img { display: block; max-width: 100%; }
     text-transform: uppercase;
     color: var(--olive-light);
     margin-bottom: 12px;
+    transition: color 0.2s ease;
 }
 
 .section-title {
@@ -413,6 +414,7 @@ img { display: block; max-width: 100%; }
     font-weight: 300;
     color: var(--ink);
     line-height: 1.2;
+    transition: color 0.2s ease;
 }
 
 .section-desc {
@@ -1296,6 +1298,32 @@ img { display: block; max-width: 100%; }
     width: auto;
     max-width: 100%;
     margin-bottom: 22px;
+}
+
+/* Highlight a section's heading while hovering a card within that section:
+   the title gets an olive box behind it and its text turns cream. */
+.institution-funder .section-title,
+.institution-host .section-title,
+.institution-partners .section-title {
+    width: fit-content;
+    padding: 6px 16px;
+    margin-left: -16px;
+    border-radius: 2px;
+    transition: color 0.2s ease, background-color 0.2s ease;
+}
+
+.institution-funder:has(.institution-feature:hover) .section-eyebrow,
+.institution-host:has(.institution-feature:hover) .section-eyebrow,
+.institution-partners:has(.institution-logo-card:hover) .section-eyebrow { color: var(--olive); }
+
+.institution-funder:has(.institution-feature:hover) .section-title,
+.institution-host:has(.institution-feature:hover) .section-title,
+.institution-partners:has(.institution-logo-card:hover) .section-title {
+    background-color: rgba(74, 82, 64, 0.2);
+    color: var(--white);
+    font-weight: 600;
+    -webkit-text-stroke: 2px var(--olive);
+    paint-order: stroke fill;
 }
 
 /* ── Partner logo wall ── */
