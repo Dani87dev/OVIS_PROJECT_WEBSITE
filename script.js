@@ -879,22 +879,6 @@ mobileMenu?.querySelectorAll('a').forEach(a => {
     });
 });
 
-// ─── BIBLIOGRAPHY FILTERS ─────────────────────────────────
-document.querySelectorAll('.bib-filter').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.bib-filter').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    const filter = btn.dataset.filter;
-    document.querySelectorAll('.bib-entry').forEach(entry => {
-      if (filter === 'all' || entry.dataset.category === filter) {
-        entry.classList.remove('hidden');
-      } else {
-        entry.classList.add('hidden');
-      }
-    });
-  });
-});
-
 // ─── SMOOTH SCROLL OFFSET ────────────────────────────────
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
