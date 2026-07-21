@@ -204,6 +204,7 @@ const i18n = {
     "inst.partner.joukowsky": "Joukowsky Institute · Brown University",
     "inst.partner.menorca": "Museum of Menorca",
     "inst.partner.cansaura": "Museum of Ciutadella · Can Saura",
+    "inst.partner.manacor": "Museum of History of Manacor",
   },
 
   ca: {
@@ -406,6 +407,7 @@ const i18n = {
     "inst.partner.joukowsky": "Institut Joukowsky · Brown University",
     "inst.partner.menorca": "Museu de Menorca",
     "inst.partner.cansaura": "Museu de Ciutadella · Can Saura",
+    "inst.partner.manacor": "Museu d'Història de Manacor",
   },
 
   es: {
@@ -608,6 +610,7 @@ const i18n = {
     "inst.partner.joukowsky": "Instituto Joukowsky · Brown University",
     "inst.partner.menorca": "Museo de Menorca",
     "inst.partner.cansaura": "Museo de Ciutadella · Can Saura",
+    "inst.partner.manacor": "Museo de Historia de Manacor",
   },
 
   it: {
@@ -810,6 +813,7 @@ const i18n = {
     "inst.partner.joukowsky": "Istituto Joukowsky · Brown University",
     "inst.partner.menorca": "Museo di Minorca",
     "inst.partner.cansaura": "Museo di Ciutadella · Can Saura",
+    "inst.partner.manacor": "Museo di Storia di Manacor",
   }
 };
 
