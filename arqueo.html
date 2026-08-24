@@ -27,16 +27,18 @@
         .news-thumb-card {
             cursor: pointer;
             background: #fff;
-            border: 1px solid rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--olive-pale);
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(74, 82, 64, 0.22), 0 3px 8px rgba(74, 82, 64, 0.14);
+            transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease), border-color 0.25s var(--ease);
             display: flex;
             flex-direction: column
         }
 
         .news-thumb-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.12)
+            border-color: var(--olive);
+            box-shadow: 0 22px 55px rgba(74, 82, 64, 0.34), 0 6px 16px rgba(74, 82, 64, 0.2)
         }
 
         .news-thumb-img {
@@ -120,6 +122,187 @@
             height: auto;
             display: block;
             margin: 0 auto 32px
+        }
+        /* ── PROJECT ROADMAP ── */
+        .roadmap {
+            margin-top: 96px;
+            padding-top: 72px;
+            border-top: 1px solid var(--olive-pale);
+        }
+
+        .roadmap-lead {
+            max-width: 56ch;
+            margin: 14px auto 0;
+            font-size: 0.95rem;
+            color: var(--ink-soft);
+            line-height: 1.7;
+        }
+
+        .roadmap-track {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 0 16px;
+            margin: 0;
+            padding: 0;
+        }
+
+        .roadmap-step {
+            position: relative;
+            padding-top: 32px;
+            min-width: 0;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
+        /* linea horizontal que conecta los puntos */
+        .roadmap-step::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 0;
+            width: calc(100% + 16px);
+            height: 2px;
+            background: var(--olive-pale);
+        }
+
+        .roadmap-step:last-child::before {
+            width: 0;
+        }
+
+        .roadmap-step.is-done::before,
+        .roadmap-step.is-current::before {
+            background: var(--olive);
+        }
+
+        .roadmap-dot {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid var(--olive-pale);
+            z-index: 1;
+        }
+
+        .roadmap-step.is-done .roadmap-dot {
+            background: var(--olive);
+            border-color: var(--olive);
+        }
+
+        .roadmap-step.is-current .roadmap-dot {
+            background: var(--white);
+            border-color: var(--olive);
+            box-shadow: 0 0 0 5px rgba(74, 82, 64, 0.16);
+        }
+
+        .roadmap-date {
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--olive-light);
+            margin-bottom: 8px;
+        }
+
+        .roadmap-status {
+            display: inline-block;
+            font-size: 0.62rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 3px 9px;
+            border-radius: 2px;
+            margin-bottom: 10px;
+            border: 1px solid var(--olive-pale);
+            color: var(--ink-muted);
+        }
+
+        .roadmap-step.is-done .roadmap-status {
+            background: var(--olive);
+            border-color: var(--olive);
+            color: var(--white);
+        }
+
+        .roadmap-step.is-current .roadmap-status {
+            background: rgba(74, 82, 64, 0.1);
+            border-color: var(--olive);
+            color: var(--olive);
+        }
+
+        .roadmap-step h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.02rem;
+            font-weight: 600;
+            line-height: 1.32;
+            margin: 0 0 8px;
+            color: var(--ink);
+        }
+
+        .roadmap-step.is-upcoming h3 {
+            color: var(--ink-soft);
+        }
+
+        .roadmap-desc {
+            font-size: 0.76rem;
+            line-height: 1.55;
+            color: var(--ink-soft);
+        }
+
+        .roadmap-step.is-upcoming .roadmap-desc {
+            color: var(--ink-muted);
+        }
+
+        /* pantallas medianas: 3 columnas x 2 filas, sin scroll lateral */
+        @media (max-width: 1024px) {
+            .roadmap-track {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 40px 20px;
+            }
+
+            .roadmap-step::before {
+                width: calc(100% + 20px);
+            }
+
+            /* la linea se corta al final de cada fila */
+            .roadmap-step:nth-child(3n)::before {
+                width: 0;
+            }
+        }
+
+        /* movil: linea vertical */
+        @media (max-width: 700px) {
+            .roadmap-track {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .roadmap-step {
+                padding: 0 0 32px 34px;
+            }
+
+            .roadmap-step:last-child {
+                padding-bottom: 0;
+            }
+
+            .roadmap-step::before,
+            .roadmap-step:nth-child(3n)::before {
+                top: 8px;
+                left: 8px;
+                width: 2px;
+                height: 100%;
+            }
+
+            .roadmap-step:last-child::before {
+                height: 0;
+            }
+
+            .roadmap-dot {
+                top: 0;
+                left: 0;
+            }
         }
     </style>
 </head>
@@ -265,6 +448,59 @@
             <time data-i18n="arqueo.n3.date">February 2026</time>
             <h2 data-i18n="arqueo.n3.title">OVIS project poster</h2>
             <p data-i18n="arqueo.n3.p1">Scientific poster of the OVIS project — "Origins of Variability in Island Systems. Unravelling livestock diet and mobility across the Bronze–Iron Age transition" — presented at the 10th Archaeology Conference of the Balearic Islands.</p>
+        </div>
+
+        <!-- PROJECT ROADMAP -->
+        <div class="roadmap">
+            <div class="section-header" style="text-align:center;margin-bottom:40px">
+                <p class="section-eyebrow" data-i18n="roadmap.eyebrow">Roadmap</p>
+                <h2 class="section-title" data-i18n="roadmap.title">Project Milestones</h2>
+                <p class="roadmap-lead" data-i18n="roadmap.lead">Key stages of the OVIS fellowship — what has been completed and what lies ahead.</p>
+            </div>
+            <ol class="roadmap-track">
+                <li class="roadmap-step is-done">
+                    <span class="roadmap-dot" aria-hidden="true"></span>
+                    <p class="roadmap-date">2026 · Q1</p>
+                    <span class="roadmap-status" data-i18n="roadmap.status.done">Completed</span>
+                    <h3 data-i18n="ovis.tl.1.title">Project kickoff — Cardiff University</h3>
+                    <p class="roadmap-desc" data-i18n="ovis.tl.1.desc">Fellowship begins. Initial lab setup, database construction, and first sample batch preparation at Cardiff University isotope laboratory.</p>
+                </li>
+                <li class="roadmap-step is-current">
+                    <span class="roadmap-dot" aria-hidden="true"></span>
+                    <p class="roadmap-date">2026 · Q2–Q3</p>
+                    <span class="roadmap-status" data-i18n="roadmap.status.current">In progress</span>
+                    <h3 data-i18n="ovis.tl.2.title">First fieldwork campaign — Balearic Islands</h3>
+                    <p class="roadmap-desc" data-i18n="ovis.tl.2.desc">Sampling of faunal remains from Menorca and Mallorca archaeological repositories. Collaboration with the Museu de Menorca and UIB.</p>
+                </li>
+                <li class="roadmap-step is-upcoming">
+                    <span class="roadmap-dot" aria-hidden="true"></span>
+                    <p class="roadmap-date">2026 · Q4</p>
+                    <span class="roadmap-status" data-i18n="roadmap.status.upcoming">Upcoming</span>
+                    <h3 data-i18n="ovis.tl.3.title">Isotope analysis batch 1</h3>
+                    <p class="roadmap-desc" data-i18n="ovis.tl.3.desc">Strontium and oxygen isotope analysis of Balearic caprine tooth enamel at Cardiff labs. First data outputs expected.</p>
+                </li>
+                <li class="roadmap-step is-upcoming">
+                    <span class="roadmap-dot" aria-hidden="true"></span>
+                    <p class="roadmap-date">2027 · Q1–Q2</p>
+                    <span class="roadmap-status" data-i18n="roadmap.status.upcoming">Upcoming</span>
+                    <h3 data-i18n="ovis.tl.4.title">Sardinia fieldwork campaign</h3>
+                    <p class="roadmap-desc" data-i18n="ovis.tl.4.desc">Sampling in Nuragic site collections. Partnership with Università degli Studi di Sassari and the Soprintendenza Archeologia della Sardegna.</p>
+                </li>
+                <li class="roadmap-step is-upcoming">
+                    <span class="roadmap-dot" aria-hidden="true"></span>
+                    <p class="roadmap-date">2027 · Q3–Q4</p>
+                    <span class="roadmap-status" data-i18n="roadmap.status.upcoming">Upcoming</span>
+                    <h3 data-i18n="ovis.tl.5.title">Sicily sampling &amp; comparative analysis</h3>
+                    <p class="roadmap-desc" data-i18n="ovis.tl.5.desc">Third island group sampling. Integration of all isotope datasets. Dental microwear texture analysis begins.</p>
+                </li>
+                <li class="roadmap-step is-upcoming">
+                    <span class="roadmap-dot" aria-hidden="true"></span>
+                    <p class="roadmap-date">2028</p>
+                    <span class="roadmap-status" data-i18n="roadmap.status.upcoming">Upcoming</span>
+                    <h3 data-i18n="ovis.tl.6.title">Synthesis, publications &amp; dissemination</h3>
+                    <p class="roadmap-desc" data-i18n="ovis.tl.6.desc">Final data integration, peer-reviewed article submissions, conference presentations, and open-access data deposit. Project close.</p>
+                </li>
+            </ol>
         </div>
 
     </section>
