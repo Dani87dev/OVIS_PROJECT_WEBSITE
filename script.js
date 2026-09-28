@@ -1006,7 +1006,7 @@ document.head.appendChild(navStyle);
   map.setView(overviewCenter, overviewZoom);
 
   // CartoDB Voyager tiles
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png', {
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png?key=cb1_41xo_1_2fec9e5abc72163bbacf7803', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd', maxZoom: 20,
   }).addTo(map);
